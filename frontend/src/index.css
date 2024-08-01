@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: NCLMonsterBeast;
+  src: url(./fonts/NCLMonsterBeast-Demo.otf) format("opentype");
+}
+
+@font-face {
+  font-family: ZENOVAXENO;
+  src: url(./fonts/ZENOVAXENO.ttf) format("truetype");
+}
