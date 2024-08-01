@@ -4,6 +4,7 @@ import dotenv from "dotenv"; // Per caricare variabili d'ambiente da file .env
 import cors from "cors"; // Middleware per gestire CORS (Cross-Origin Resource Sharing)
 import listEndpoints from "express-list-endpoints"; // Utility per elencare gli endpoints dell'app
 import userRoutes from "./routes/userRoutes.js"; // Rotte per gli utenti
+import messagesRoutes from "./routes/messagesRoutes.js"; // Rotte per gli utenti
 import contentRoutes from "./routes/contentRoutes.js"; // Rotte per i conenuti
 import gymRoutes from "./routes/gymRoutes.js"; // Rotte per le palestre
 import classRoutes from "./routes/classRoutes.js"; // Rotte per le classi
@@ -63,6 +64,7 @@ app.use("/api/contents", contentRoutes); // Rotte per i contenuti
 app.use("/api/gyms", gymRoutes); // Rotte per le palestre
 app.use("/api/classes", classRoutes); // Rotte per le classi
 app.use("/api/subscriptions", subscriptionRoutes); // Rotte per gli abbonamenti
+app.use("/api/messages", messagesRoutes); // Rotte per gli abbonamenti
 
 // DEFINIZIONE DELLA PORTA SU CUI IL SERVER ASCOLTERÀ
 const PORT = process.env.PORT || 5001;

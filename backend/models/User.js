@@ -1,18 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const messageSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    content: { type: String, required: true },
-  },
-  {
-    timestamps: true,
-    _id: true, // MI ASSICURO CHE OGNI messaggio ABBIA UN PROPRIO _ID UNIVOCO
-  },
-);
-
 const userSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   cognome: { type: String, required: true }, 
@@ -21,7 +9,6 @@ const userSchema = new mongoose.Schema({
   avatar: { type: String },
   password: { type: String }, 
   trainerId: { type: String , default: null  }, 
-  chat: [messageSchema], // Aggiungo l'array di messaggi EMBEDDED.
   isTrainer: { type: Boolean , default: false }, 
   isAdmin: { type: Boolean , default: false }, 
   SubscriptionId: { type: String, required: true },
