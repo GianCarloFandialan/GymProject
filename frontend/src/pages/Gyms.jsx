@@ -4,7 +4,7 @@ import GymSectionLeft from "../components/gym/GymSectionLeft";
 import GymSectionRight from "../components/gym/GymSectionRight";
 import FullPageSpinner from "../components/spinners/FullPageSpinner";
 import GymHero from "../components/gym/GymHero";
-import HomeCloser from "../components/home/HomeCloser";
+import Closer from "../components/footer/Closer";
 
 function Gyms() {
 
@@ -22,15 +22,15 @@ function Gyms() {
     //  FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE LE PALESTRE
     const fetchGyms = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I CONTENUTI
+        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE PALESTRE
         const response = await getGyms();
-        // AGGIORNA LO STATO CON I DATI DEI CONTENUTI
+        // AGGIORNA LO STATO CON I DATI DELLE PALESTRE
         setGyms(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false)        
       } catch (error) {
         // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch del contenuti:", error);
+        console.error("Errore nella fetch delle palestre:", error);
       }
     };
 
@@ -59,10 +59,9 @@ function Gyms() {
               )
             }
           })}
-          <HomeCloser/>
+          <Closer/>
         </div>
       }
-      
     </>
   )
 }

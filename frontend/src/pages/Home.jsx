@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import FullPageSpinner from "../components/spinners/FullPageSpinner";
 import { useEffect, useState } from "react";
 import { getContents } from "../services/api";
@@ -6,7 +5,7 @@ import HomeHero from "../components/home/HomeHero";
 import { HomePageContext } from "../services/context";
 import HomeCarousel from "../components/home/HomeCarousel";
 import HomeSection from "../components/home/HomeSection";
-import HomeCloser from "../components/home/HomeCloser";
+import Closer from "../components/footer/Closer";
 
 function Home() {
 
@@ -53,7 +52,7 @@ function Home() {
             <HomeHero/>
             <HomeCarousel/>
             <HomeSection/>
-            <HomeCloser/>
+            <Closer/>
           </div>
         </HomePageContext.Provider>
       }

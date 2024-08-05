@@ -2,6 +2,7 @@ import { motion, useTransform, useScroll } from "framer-motion";
 import { useContext, useRef, useState } from "react";
 import HomeCarouselCard from "./homecarousel_components/HomeCarouselCard";
 import { HomePageContext } from "../../services/context";
+import { Link } from "react-router-dom";
 
 const HomeCarousel = () => {
 
@@ -23,7 +24,10 @@ const HomeCarousel = () => {
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
           {carouselContent.map((card) => {
-            return <HomeCarouselCard card={card} key={card._id} />;
+            return (
+              <Link to={`/${card.title.slice(0, 1)}${card.title.slice(1).toLowerCase()}`} key={card._id}>
+                <HomeCarouselCard card={card} />
+              </Link>)
           })}
         </motion.div>
       </div>

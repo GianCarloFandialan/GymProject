@@ -48,7 +48,8 @@ function GymHero() {
           initial={{ opacity:0, y:'-35vh' }} 
           whileInView={{ opacity:1, y:'0' }}
           transition={{duration: 1.3}} 
-        className="bg-center bg-no-repeat  bg-gray-700 bg-blend-multiply relative">
+          className="bg-center bg-no-repeat  bg-gray-700 bg-blend-multiply relative"
+        >
           <img 
             src={`${contents[0].cover}`} 
             alt="jumbotron image" 
@@ -75,11 +76,11 @@ function GymHero() {
                 {contents[0].description}
               </p>
               <div 
-                className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0"
+                className="flex flex-row justify-center space-y-0 "
               >
                 <a 
                   href="#" 
-                  className="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
+                  className="inline-flex justify-center hover:text-gray-900 items-center md:py-3 px-5 sm:ms-4 text-base font-bold text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400 py-2 md:text-2xl"
                 >
                   ISCRIVITI
                 </a>  
