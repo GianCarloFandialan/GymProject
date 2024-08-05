@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 
 function NavbarX() {
   return (
+    // ICONA PER CHIUDERE LA SIDEBAR CON ANNESSA ANIMAZIONE
     <motion.svg 
     initial={{
       scale:0

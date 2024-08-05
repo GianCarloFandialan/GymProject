@@ -1,7 +1,8 @@
 import { motion } from "framer-motion"
 
-function NavbarHamburger(params) {
+function NavbarHamburger() {
   return (
+    // ICONA DELL'HAMBURGER MENU CON ANNESSA ANIMAZIONE
     <motion.svg 
       initial={{
         scale:0

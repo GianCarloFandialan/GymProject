@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 
 function Sidebar( { children } ) {
+  //SIDEBAR CON ANNESSA ANIMAZIONE
   return(
     <motion.div 
       initial={{ x:'-100vw', opacity:0 }} 

@@ -64,14 +64,11 @@ export const deleteUser = (id) => api.delete(`/users/${id}`);
 
 
 //FUNZIONI RIGUARDANTI I MESSAGGI
-export const getMessages = () => api.get(`/users/${id}/messages`);
-export const createMessage = (postData) => api.post(`/users/${id}/messages`, postData, {
+export const getMessages = () => api.get(`/messages`);
+export const createMessage = (postData) => api.post(`/messages`, postData);
+export const createMessageSpecial = (postData) => api.post(`/messages`, postData, {
   headers: {
     'Content-Type': 'multipart/form-data'
   }
 });
-export const createMessageSpecial = (postData) => api.post(`/users/${id}/messages/pdf`, postData, {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }
-});
+export const deleteMessage = (id) => api.delete(`/messages/${id}`);

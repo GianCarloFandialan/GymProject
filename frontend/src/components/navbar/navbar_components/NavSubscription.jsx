@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 function NavSubscription() {
   return(
     <>
+      {/* BOTTONE PER ABBONARSI CON ANNESSA ANIMAZIONE */}
       <motion.button 
         initial={{
           scale:0

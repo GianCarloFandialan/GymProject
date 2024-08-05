@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 function NavUserIcon() {
   return(
     <>
+      {/* ICONA USER CON ANNESSA ANIMAZIONE */}
       <motion.svg 
         initial={{
           scale:0
