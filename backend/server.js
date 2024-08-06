@@ -10,6 +10,7 @@ import gymRoutes from "./routes/gymRoutes.js"; // Rotte per le palestre
 import classRoutes from "./routes/classRoutes.js"; // Rotte per le classi
 import subscriptionRoutes from "./routes/subscriptionRoutes.js"; // Rotte per gli abbonamenti
 import authRoutes from "./routes/authRoutes.js"; // Rotte per l'autenticazione
+import contactRoutes from "./routes/contactRoutes.js"; // Rotte per i contatti
 import session from "express-session"; // Importiamo session
 import passport from "./config/passportConfig.js"; // importiamo passport
 
@@ -64,8 +65,8 @@ app.use("/api/contents", contentRoutes); // Rotte per i contenuti
 app.use("/api/gyms", gymRoutes); // Rotte per le palestre
 app.use("/api/classes", classRoutes); // Rotte per le classi
 app.use("/api/subscriptions", subscriptionRoutes); // Rotte per gli abbonamenti
-app.use("/api/messages", messagesRoutes); // Rotte per gli abbonamenti
-
+app.use("/api/messages", messagesRoutes); // Rotte per i messaggi
+app.use("/api/contacts", contactRoutes); // Rotte per i contatti
 // DEFINIZIONE DELLA PORTA SU CUI IL SERVER ASCOLTERÀ
 const PORT = process.env.PORT || 5001;
 

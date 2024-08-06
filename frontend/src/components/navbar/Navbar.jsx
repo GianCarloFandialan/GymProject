@@ -66,7 +66,7 @@ function Navbar() {
       initial={{ y:-79 }} 
       whileInView={{ y:0 }}
       transition={{duration: 1,}}
-      className="shadow-md px-7 z-20 fixed w-screen bg-white"
+      className="shadow-md px-7 z-50 fixed w-screen bg-white"
     >
       <div className=" h-[80px] flex justify-between items-center lg:w-[85vw] mx-auto">
 

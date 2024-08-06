@@ -45,10 +45,17 @@ export const deleteGym = (id) => api.delete(`/gyms/${id}`);
 
 //FUNZIONI RIGUARDANTI GLI ABBONAMENTI
 export const getSubscriptions = () => api.get('/subscriptions');
-export const getSingleSubscriptio = (id) => api.get(`/subscriptions/${id}`);
-export const createSubscriptio = (postData) => api.post("/subscriptions", postData);
-export const updateSubscriptio = (id, postData) => api.put(`/subscriptions/${id}`, postData);
-export const deleteSubscriptio = (id) => api.delete(`/subscriptions/${id}`);
+export const getSingleSubscription = (id) => api.get(`/subscriptions/${id}`);
+export const createSubscription = (postData) => api.post("/subscriptions", postData);
+export const updateSubscription = (id, postData) => api.put(`/subscriptions/${id}`, postData);
+export const deleteSubscription = (id) => api.delete(`/subscriptions/${id}`);
+
+//FUNZIONI RIGUARDANTI I CONTATTI
+export const getContacts = () => api.get('/contacts');
+export const getSingleContact = (id) => api.get(`/contacts/${id}`);
+export const createContact = (postData) => api.post("/contacts", postData);
+export const updateContact = (id, postData) => api.put(`/contacts/${id}`, postData);
+export const deleteContact = (id) => api.delete(`/contacts/${id}`);
 
 //FUNZIONI RIGUARDANTI GLI UTENTI
 export const getUsers = () => api.get('/users');
@@ -61,7 +68,6 @@ export const createUser = (postData) => api.post("/users", postData, {
 export const updateUser = (id, postData) => api.put(`/users/${id}`, postData);
 export const updateUserCover = (id, postData) => api.patch(`/users/${id}/cover`, postData);
 export const deleteUser = (id) => api.delete(`/users/${id}`);
-
 
 //FUNZIONI RIGUARDANTI I MESSAGGI
 export const getMessages = () => api.get(`/messages`);

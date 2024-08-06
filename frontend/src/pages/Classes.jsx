@@ -19,7 +19,7 @@ function Classes() {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true)
 
-    const fetchContent = async () => {
+    const fetchClasses = async () => {
       try {
         // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE CLASSI
         const response = await getClasses();
@@ -33,8 +33,8 @@ function Classes() {
         console.error("Errore nella fetch delle classi:", error);
       }
     };
-    // CHIAMIAMO LA FUNZIONE fetchContent
-    fetchContent();
+    // CHIAMIAMO LA FUNZIONE fetchClasses
+    fetchClasses();
   }, [])
 
   return (
@@ -45,7 +45,7 @@ function Classes() {
           <FullPageSpinner/>
         </div>
         :
-        <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center">
+        <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center md:mx-auto">
           <ClassHero/>
           {classes.map((lesson, index) => {
             if (index % 2 === 0) {
