@@ -3,6 +3,7 @@ import ContactDetails from "../components/contacts/ContactsDetails"
 import FullPageSpinner from "../components/spinners/FullPageSpinner"
 import { getContacts } from "../services/api"
 import Closer from "../components/footer/Closer"
+import { motion } from "framer-motion";
 
 function Contacts() {
   
@@ -36,6 +37,23 @@ function Contacts() {
     fetchContacts();
   }, [])
 
+  //SI IMPOSTANO LE VARIBILI PER L'ANIMAZIONE DELLA LISTA DELLA NAVBAR
+  const navLinksVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.3,
+        },
+    },
+    exit: {
+        transition: {
+            staggerChildren: 0.05,
+            staggerDirection: -1,
+        },
+    },
+  };
+
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
@@ -44,7 +62,13 @@ function Contacts() {
           <FullPageSpinner/>
         </div>
         :
-        <div className="w-[75vw] lg:w-[90vw] mx-auto">
+        <motion.div 
+          variants={navLinksVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="w-[75vw] lg:w-[90vw] mx-auto"
+        >
           <h2 className=" mx-auto my-3 font-bold text-2xl md:text-4xl">
             Domande Frequenti:
           </h2>
@@ -58,7 +82,7 @@ function Contacts() {
             Se le informazioni qui non sono state sufficienti, non esitare a contattarci. Puoi chiamare il nostro numero verde al <span className="font-bold text-green-500 cursor-pointer">800-123-456 </span>o inviare un'email a <span className="font-bold text-blue-500 cursor-pointer">info@gymproject.com</span>. Siamo qui per aiutarti con qualsiasi domanda o chiarimento!
           </p>
           <Closer/>
-        </div>
+        </motion.div >
       }
     </>
   )
