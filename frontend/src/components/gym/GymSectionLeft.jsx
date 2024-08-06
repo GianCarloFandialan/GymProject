@@ -12,21 +12,21 @@ function GymSectionLeft( { gym } ) {
       }}
       transition={{duration: 1.5,}}
     >
-      <div className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
           <div className="relative z-10 lg:py-16">
             <div className="relative h-64 sm:h-80 lg:h-full">
               <img
                 alt=""
                 src={`${gym.cover}`}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover rounded-t-3xl lg:rounded-3xl"
               />
             </div>
           </div>
 
-          <div className="relative flex items-center bg-black">
+          <div className="relative flex items-center bg-black lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none">
             <span
-              className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-black"
+              className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-black lg:rounded-l-3xl"
             ></span>
 
             <div className="p-8 sm:p-16 lg:p-24">

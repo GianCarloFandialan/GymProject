@@ -35,17 +35,47 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST /users: CREA UN NUOVO UTENTE
-router.post("/", async (req, res) => {
-  // SI CREA UNA NUOVA ISTANZA DI USER CON I DATI DALLA RICHIESTA
-  const user = new User(req.body);
+router.post("/", cloudinaryUploader.single("avatar"), async (req, res) => {
   try {
-    // SI SALVA IL NUOVO UTENTE NEL DATABASE
-    const newUserr = await user.save();
-    // SI INVIA IL NUOVO UTENTE CREATO COME RISPOSTA JSON CON STATUS 201 (CREATED)
-    res.status(201).json(newUserr);
-  } catch (err) {
-    // IN CASO DI ERRORE (ES. VALIDAZIONE FALLITA),SI INVIA UNA RISPOSTA DI ERRORE
-    res.status(400).json({ message: err.message });
+    const usertData = req.body;
+    if (req.file) {
+      usertData.avatar = req.file.path; // CLOUDINARY RESTITUIRÀ DIRETTAMENTE IL SUO URL
+    }
+    const newUser = new User(usertData);
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// PATCH /users/userId/avatar: CARICA UN'IMMAGINE COVER IL CONTENUTO SPECIFICATO
+router.patch("/:id/avatar", cloudinaryUploader.single("avatar"), async (req, res) => {
+  try {
+    // SI VERIFICA SE È STATO CARICATO UN FILE, SE NON É STATO CARICATO, SI RISPONDE CON UN 400
+    if (!req.file) {
+      return res.status(400).json({ message: "Nessun file caricato" });
+    }
+
+    // SI CERCA IL CONTENUTO SPECIFICO PER ID
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      // SE L'UTENTE NON VIENE TROVATO, SI INVIA UNA RISPOSTA 404
+      return res.status(404).json({ message: "Utente non trovato" });
+    }
+
+    // SI AGGIORNA L'URL DELL'AVATAR DELL'UTENTE CON L'URL FORNITO DA CLOUDINARY
+    user.avatar = req.file.path;
+
+    // SI SALVANO LE MODIFICHE NEL DB
+    await user.save();
+
+    // SI INVIA LA RISPOSTA CON IL CONTENUTO AGGIORNATO
+    res.json(user);
+  } catch (error) {
+    console.error("Errore durante l'aggiornamento dell'avatar:", error);
+    res.status(500).json({ message: "Errore interno del server" });
   }
 });
 

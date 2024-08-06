@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-function ClassSectionRight( { lesson } ) {
+function TrainerSectionRight( { trainer } ) {
 
   return(
     <motion.section 
@@ -23,20 +23,23 @@ function ClassSectionRight( { lesson } ) {
 
             <div className="p-8 sm:p-16 lg:p-24">
               <h2 className="text-2xl font-bold lg:text-6xl md:text-4xl font-NCLMonsterBeast text-white">
-                {lesson.name}
+                  {trainer.nome} {trainer.cognome}
               </h2>
 
-              <p className="mt-4 text-white md:text-2xl">
-                {lesson.description}
-              </p>
-
-              <p className="mt-4 text-white md:text-2xl">
-                Giorno: {lesson.day}
-              </p>
-
-              <p className="mt-4 text-white md:text-2xl">
-                Orario: {lesson.hour}
-              </p>
+              <ul role="list" className="pt-6 mt-6 space-y-6 border-t">
+                {trainer.spcialization.map(spcialization => {
+                  return (
+                    <li className="flex" >
+                      <div className="inline-flex items-center min-w-6 h-6 bg-white rounded-full">
+                        <svg className="flex-shrink-0 w-4 h-4 mx-auto text-neutral-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                      </div>
+                      <span className="ml-3 text-white lg:text-2xl">{spcialization}</span>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
           </div>
 
@@ -44,7 +47,7 @@ function ClassSectionRight( { lesson } ) {
             <div className="relative h-64 sm:h-80 lg:h-full">
               <img
                 alt=""
-                src={`${lesson.cover}`}
+                src={`${trainer.avatar}`}
                 className="absolute inset-0 h-full w-full object-cover rounded-b-3xl lg:rounded-3xl"
               />
             </div>
@@ -56,4 +59,4 @@ function ClassSectionRight( { lesson } ) {
   )
 }
 
-export default ClassSectionRight
+export default TrainerSectionRight

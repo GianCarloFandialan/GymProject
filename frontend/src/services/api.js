@@ -7,6 +7,24 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
+// Aggiungi un interceptor per includere il token in tutte le richieste
+api.interceptors.request.use(
+  (config) => {
+    // Recupera il token dalla memoria locale
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Se il token esiste, aggiungilo all'header di autorizzazione
+      config.headers["Authorization"] = `Bearer ${token}`;
+      console.log("Token inviato:", token); // Log del token inviato per debugging
+    }
+    return config; // Restituisce la configurazione aggiornata
+  },
+  (error) => {
+    // Gestisce eventuali errori durante l'invio della richiesta
+    return Promise.reject(error);
+  }
+);
+
 //FUNZIONI RIGUARDANTI LE CLASSI
 export const getClasses = () => api.get('/classes');
 export const getSingleClass = (id) => api.get(`/classes/${id}`);

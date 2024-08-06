@@ -95,7 +95,7 @@ router.patch("/:id/cover", cloudinaryUploader.single("cover"), async (req, res) 
     // SI INVIA LA RISPOSTA CON IL CONTENUTO AGGIORNATO
     res.json(content);
   } catch (error) {
-    console.error("Errore durante l'aggiornamento dell'avatar:", error);
+    console.error("Errore durante l'aggiornamento della cover:", error);
     res.status(500).json({ message: "Errore interno del server" });
   }
 });
