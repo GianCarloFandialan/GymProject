@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { HomePageContext } from "../../services/context"
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function HomeSection() {
 
@@ -38,12 +39,14 @@ function HomeSection() {
                 {sectionContent[0].description}
               </p>
 
-              <button
-                href="#"
-                className="mt-8 inline-block rounded bg-black px-12 py-3 text-lg font-bold text-white transition hover:bg-gray-800 focus:outline-none focus:ring focus:ring-yellow-400"
-              >
-                ISCRIVITI
-              </button>
+              <Link to="/registrazione">
+                <button
+                  href="#"
+                  className="mt-8 inline-block rounded bg-black px-12 py-3 text-lg font-bold text-white transition hover:bg-gray-800 focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  ISCRIVITI
+                </button>
+              </Link>
             </div>
           </div>
         </div>

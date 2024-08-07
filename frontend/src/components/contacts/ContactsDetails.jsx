@@ -28,7 +28,7 @@ function ContactDetails( {contact } ) {
     <motion.details
       variants={linkItemVariants}
       className="group border-s-4 border-black bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden w-[75vw] lg:w-[90vw] mx-auto my-4"
-      close
+      close="true"
     >
       <summary className="flex cursor-pointer items-center justify-between gap-1.5">
         <h2 className="text-lg font-medium text-gray-900">

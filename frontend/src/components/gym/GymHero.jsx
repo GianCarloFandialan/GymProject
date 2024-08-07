@@ -3,6 +3,7 @@ import { getContents } from "../../services/api"
 import FullPageSpinner from "../spinners/FullPageSpinner"
 import { motion } from "framer-motion";
 import "./GymHero.css"
+import { Link } from "react-router-dom";
 
 function GymHero() {
 
@@ -78,12 +79,14 @@ function GymHero() {
               <div 
                 className="flex flex-row justify-center space-y-0 "
               >
-                <a 
-                  href="#" 
-                  className="inline-flex justify-center hover:text-gray-900 items-center md:py-3 px-5 sm:ms-4 text-base font-bold text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400 py-2 md:text-2xl"
-                >
-                  ISCRIVITI
-                </a>  
+                <Link to="/registrazione">
+                  <button 
+                    href="#" 
+                    className="inline-flex justify-center hover:text-gray-900 items-center md:py-3 px-5 sm:ms-4 text-base font-bold text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400 py-2 md:text-2xl"
+                  >
+                    ISCRIVITI
+                  </button>  
+                </Link>
               </div>
             </div>
           </div>

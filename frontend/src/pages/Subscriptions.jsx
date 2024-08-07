@@ -57,10 +57,10 @@ function Subscriptions() {
           >
             ABBONAMENTI
           </motion.h2>
-          <div class="relative items-center w-full mx-auto md:px-12 lg:px-16 max-w-7xl">
+          <div className="relative items-center w-full mx-auto md:px-12 lg:px-16 max-w-7xl">
             <div>
               <div 
-                class="relative p-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 rounded-xl"
+                className="relative p-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 rounded-xl"
               >      
                 {subscriptions.map((subscription, index) => {
                   if (index % 2 === 0) {

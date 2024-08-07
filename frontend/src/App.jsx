@@ -14,6 +14,7 @@ import Classes from "./pages/Classes";
 import Trainers from "./pages/Trainers";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="/classi" element={<Classes />} />
               <Route path="/trainers" element={<Trainers />} />
               <Route path="/contatti" element={<Contacts />} />
+              <Route path="/registrazione" element={<Register />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
