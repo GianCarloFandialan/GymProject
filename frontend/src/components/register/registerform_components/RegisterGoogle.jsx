@@ -1,8 +1,18 @@
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 function RegisterGoogle() {
+
+  //FUNZIONE PER GESTIRE LA REGISTRAZIONE TRAMITE GOOGLE
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    // REINDIRIZZIAMO L'UTENTE ALL'ENDPOINT DEL BACKEND CHE INIZIA IL PROCESSO DI AUTENTICAZIONE GOOGLE
+    window.location.href = `${API_URL}/api/auth/google`;
+  };
+
   return (
     <button 
-      type="submit" 
       className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      onClick={handleGoogleLogin}
     >
       <div className="flex items-center justify-center">
         <svg 

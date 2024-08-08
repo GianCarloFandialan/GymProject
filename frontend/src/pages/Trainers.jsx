@@ -24,7 +24,8 @@ function Trainers() {
       try {
         // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I TRAINERS
         const response = await getUsers();
-        console.log(response.data.filter(trainer => trainer.isTrainer === true));  
+        console.log(response.data.filter(trainer => trainer.isTrainer === true)); 
+        console.log(response.data);         
         // AGGIORNA LO STATO CON I DATI DEI TRAINERS
         setTrainers(response.data.filter(trainer => trainer.isTrainer === true));
         //AGGIORNO LO STATO DELLO SPINNER

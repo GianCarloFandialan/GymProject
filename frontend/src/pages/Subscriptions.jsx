@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 
 function Subscriptions() {
 
-    
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true)
 

@@ -3,11 +3,12 @@ import NavbarHamburger from "./navbar_components/NavbarHamburger";
 import NavList from "./navbar_components/NavList";
 import NavLogo from "./navbar_components/NavLogo";
 import NavSubscription from "./navbar_components/NavSubscription";
-import NavUserIcon from "./navbar_components/NavUserIcon";
+
 import Sidebar from "./sidebar/Sidebar";
 import NavbarX from "./navbar_components/NavbarX";
 import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "react-router-dom";
+import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
 
 function Navbar() {
 
@@ -26,16 +27,16 @@ function Navbar() {
   const navLinksVariants = {
     hidden: {},
     visible: {
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.3,
-        },
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
     },
     exit: {
-        transition: {
-            staggerChildren: 0.05,
-            staggerDirection: -1,
-        },
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
     },
   };
 
@@ -43,21 +44,20 @@ function Navbar() {
   const linkItemVariants = {
     hidden: { opacity: 0, y: '50%' },
     visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            ease: "easeOut" // Add ease-out easing function
-
-        },
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" // Add ease-out easing function
+      },
     },
     exit: {
-        opacity: 0,
-        y: '50%',
-        transition: {
-            duration: 0.1,
-            ease: "easeOut" // Add ease-out easing function
-        }
+      opacity: 0,
+      y: '50%',
+      transition: {
+        duration: 0.1,
+        ease: "easeOut" // Add ease-out easing function
+      }
     },
   };
 

@@ -1,7 +1,9 @@
+import RegisterModalError from "../components/register/registerform_components/RegisterModalError";
+
 function NotFound() {
   return (
     <>
-      Not found
+      <RegisterModalError/>
     </>
   )
 }

@@ -11,7 +11,10 @@ const userSchema = new mongoose.Schema({
   trainerId: { type: String , default: null  }, 
   isTrainer: { type: Boolean , default: false }, 
   isAdmin: { type: Boolean , default: false }, 
-  SubscriptionId: { type: String},
+  Subscription: { 
+    id: { type: String },
+    start: { type: Date }
+  },
   googleId: { type: String },
   spcialization: { type: Array, default: [] }
 }, {
