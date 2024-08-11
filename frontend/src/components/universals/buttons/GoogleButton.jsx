@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
-function RegisterGoogle() {
+function GoogleButton( {  text } ) {
 
   //FUNZIONE PER GESTIRE LA REGISTRAZIONE TRAMITE GOOGLE
   const handleGoogleLogin = (e) => {
@@ -32,10 +32,10 @@ function RegisterGoogle() {
           <path clipPath="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
           <path clipPath="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
         </svg>
-        <span className="ml-4"> Registrati con Google</span>
+        <span className="ml-4"> {text} con Google</span>
       </div>
     </button>
   )
 }
 
-export default RegisterGoogle
+export default GoogleButton

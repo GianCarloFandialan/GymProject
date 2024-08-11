@@ -96,3 +96,30 @@ export const createMessageSpecial = (postData) => api.post(`/messages`, postData
   }
 });
 export const deleteMessage = (id) => api.delete(`/messages/${id}`);
+
+//FUNZIONE PER EFFETTUARE IL LOGIN
+export const loginUser = async (credentials) => {
+  try {
+    const response = await api.post("/auth/login", credentials); 
+    console.log("Risposta API login:", response.data); 
+    return response.data; 
+  } catch (error) {
+    console.error("Errore nella chiamata API di login:", error); 
+    throw error; 
+  }
+};
+
+//FUNZIONE PER OTTENERE I DATI DELL'UTENTE ATTUALMENTE AUTENTICATO
+export const getMe = () =>
+  api.get("/auth/me").then((response) => response.data);
+
+//FUNZIONE PER OTTENERE I DATI DELL'UTENTE ATTUALMENTE AUTENTICATO
+export const getUserData = async () => {
+  try {
+    const response = await api.get("/auth/me");
+    return response.data; 
+  } catch (error) {
+    console.error("Errore nel recupero dei dati utente:", error); 
+    throw error; 
+  }
+};

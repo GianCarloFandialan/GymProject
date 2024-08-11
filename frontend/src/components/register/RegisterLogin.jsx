@@ -1,4 +1,6 @@
-function RegisterLogin(params) {
+import { Link } from "react-router-dom"
+
+function RegisterLogin() {
   return (
     <>
       <div className="relative my-4">
@@ -13,7 +15,7 @@ function RegisterLogin(params) {
       <div>
         <p className="px-2 text-neutral-600 bg-white text-center">
           Hai già un account? 
-          <a href="#" className="text-gray-700 underline"> Log in</a>.
+          <Link to={"/login"} className="text-gray-700 underline"> Log in</Link>.
         </p>
       </div>  
     </>

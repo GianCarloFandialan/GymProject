@@ -15,6 +15,7 @@ import Trainers from "./pages/Trainers";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="/trainers" element={<Trainers />} />
               <Route path="/contatti" element={<Contacts />} />
               <Route path="/registrazione" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

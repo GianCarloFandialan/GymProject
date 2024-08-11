@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 function NavUserIconOption({ text, Icon, setOpen }) {
 
@@ -27,17 +28,18 @@ function NavUserIconOption({ text, Icon, setOpen }) {
   };
 
   return (
-    <motion.li
-
+    <Link to={`/${text}`}>
+      <motion.li
       variants={itemVariants}
       onClick={() => setOpen(false)}
       className="flex items-center gap-2 w-full p-4 text-lg font-medium whitespace-nowrap rounded-md hover:bg-gray-100 text-white hover:text-gray-800 transition-colors cursor-pointer"
-    >
+      >
       <motion.span variants={actionIconVariants}>
         <Icon />
       </motion.span>
       <span>{text}</span>
-    </motion.li>
+      </motion.li>
+    </Link>
   );
 };
 

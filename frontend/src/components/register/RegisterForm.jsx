@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import RegisterBirthDate from "./registerform_components/RegisterBirthDate"
-import RegisterGoogle from "./registerform_components/RegisterGoogle"
 import RegisterSubscription from "./registerform_components/RegisterSubscription"
-import { useNavigate } from "react-router-dom"
 import { createUser } from "../../services/api"
-import RegisterModalError from "./registerform_components/RegisterModalError"
+import GoogleButton from "../universals/buttons/GoogleButton"
+import ModalSuccess from "../universals/modals/ModalSuccess"
+import { useNavigate } from "react-router-dom"
+import RegisterModalError from "../universals/modals/RegisterModalError"
 
 function RegisterForm() {
 
@@ -41,8 +42,11 @@ function RegisterForm() {
   //CREO UNO STATO PER POTERMI GESTIRE L'ALERT NEL CASO LE PASSWORD INSERITE NON COMBACINO
   const [ passwordError, setPasswordError ] = useState(false)
 
-  //CREO UNO STATO PER POTERMI GESTIRE L'ALERT NEL CASO LE PASSWORD INSERITE NON COMBACINO
+  //CREO UNO STATO PER POTERMI GESTIRE IL MODALE NEL CASO L'EMAIL SIA STATA UTILIZZATA PRECEDENTEMENTE
   const [ existingError, setExistingError ] = useState(false)
+
+  //CREO UNO STATO PER POTERMI GESTIRE IL MODALE NEL CASO LA REGSITRAZIONE SIA AVVENUTA CON SUCCESSSO
+  const [ success, setSuccess] = useState(null)
 
   //CREO UNA FUNZIONE PER GESTIRE IL SUBMIT DEL FORM CHE MI ESEGUE LA FUNZIONE CREATA CON AXIOS
   const handleSubmit = async (e) => {
@@ -56,8 +60,8 @@ function RegisterForm() {
     try {
       await createUser(newUser)
       console.log(newUser);     
-      setPasswordError(false)
-      navigate("/");
+      setPasswordError(false);
+      setSuccess(true)
     } catch (error) {
       if (error.response.data.message == `E11000 duplicate key error collection: gymproject.users index: email_1 dup key: { email: \"${newUser.email}\" }`) {
         setExistingError(true)
@@ -67,8 +71,16 @@ function RegisterForm() {
     }
   };
 
+  //USEEFFECT CHE REINDERIZZA NELLA HOMEPAGE SOLO NEL CASO LA REGISTRAZIONE SIA AVVENUTA CON SUCCESSO
+  useEffect(() => {
+    if (success == false) {
+      navigate("/")
+    }
+  }, [success])
+
   return (
     <>
+    {success && <ModalSuccess setSuccess={setSuccess} textHeader={"Benvenuto nella GYMPROJECT!"} textBody={"La registrazione è avvenuta con successo!"}/>}
     <form className="mt-16 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
       <div className="col-span-6 sm:col-span-3">
         <label htmlFor="nome" className="block text-sm font-medium text-gray-700">
@@ -105,7 +117,7 @@ function RegisterForm() {
       </div>
 
       <div className="col-span-6 sm:col-span-3">
-        {existingError && <RegisterModalError existingError={existingError} setExistingError={setExistingError}/>}
+        {existingError && <RegisterModalError text={"L'email con cui stai provando a registrarti è già in uso"} setExistingError={setExistingError}/>}
         
         <label htmlFor="email" className="block text-sm font-medium text-gray-700"> Email </label>
 
@@ -195,7 +207,7 @@ function RegisterForm() {
           /
         </div>
 
-        <RegisterGoogle/>
+        <GoogleButton text={"Registrati "}/>
 
       </div>
     </form>

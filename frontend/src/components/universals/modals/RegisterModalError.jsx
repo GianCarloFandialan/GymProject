@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 
-function RegisterModalError( { existingError, setExistingError } ) {
+function RegisterModalError( { setExistingError, text } ) {
 
   return (
     <AnimatePresence>
@@ -9,7 +9,7 @@ function RegisterModalError( { existingError, setExistingError } ) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setIsOpen(false)}
+        onClick={() => {setExistingError(false)}}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
@@ -27,11 +27,11 @@ function RegisterModalError( { existingError, setExistingError } ) {
               Errore!
             </h3>
             <p className="text-center mb-6">
-              L'email con cui stai provando a registrarti è già in uso
+              {text}
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => setExistingError(false)}
+                onClick={() => {setExistingError(false)}}
                 className="bg-white hover:opacity-90 transition-opacity text-red-700 font-semibold w-full py-2 rounded"
               >
                 Chiudi

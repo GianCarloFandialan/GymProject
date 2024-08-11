@@ -3,7 +3,7 @@ import NavUserIconOption from "./NavUserIconOption";
 import { useState } from "react";
 import { FiEdit,} from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import { RiLogoutCircleLine } from "react-icons/ri";
+import { RiLogoutCircleLine, RiLoginCircleLine } from "react-icons/ri";
 
 
 
@@ -66,9 +66,10 @@ function NavUserIcon() {
             style={{ originY: "top", translateX: "-90%" }}
             className="flex flex-col gap-2 rounded-lg bg-gray-800 p-2 shadow-xl absolute top-[120%] left-[50%] overflow-hidden "
           >
-            <NavUserIconOption setOpen={setOpen} Icon={FiEdit} text="Il mio account" />
+            {/* <NavUserIconOption setOpen={setOpen} Icon={FiEdit} text="Il mio account" />
             <NavUserIconOption setOpen={setOpen} Icon={IoChatbubblesOutline} text="Chat" />
-            <NavUserIconOption setOpen={setOpen} Icon={RiLogoutCircleLine} text="Logout" />
+            <NavUserIconOption setOpen={setOpen} Icon={RiLogoutCircleLine} text="Logout" /> */}
+            <NavUserIconOption setOpen={setOpen} Icon={RiLoginCircleLine } text="Login" />
           </motion.ul>
         </motion.div>
       </div>
