@@ -2,10 +2,12 @@ import FullPageSpinner from "../components/spinners/FullPageSpinner";
 import { useEffect, useState } from "react";
 import { getContents } from "../services/api";
 import HomeHero from "../components/home/HomeHero";
-import { HomePageContext } from "../services/context";
+import { HomePageContext, IsLoggedInContext, LogoutSuccessContext } from "../services/context";
 import HomeCarousel from "../components/home/HomeCarousel";
 import HomeSection from "../components/home/HomeSection";
 import Closer from "../components/footer/Closer";
+import { useContext } from "react";
+import LogoutModal from "../components/universals/modals/LogoutModal";
 
 function Home() {
 
@@ -38,6 +40,26 @@ function Home() {
     fetchContent();
   }, [])
 
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
+
+  //USE EFFECT CHE GESTISCE IL MODALE DI BENVENUTO UNA VOLTA ESEGUITO L'ACCESSP
+  useEffect(() => {
+    if (isLoggedIn == true) {
+      
+    }
+  }, [isLoggedIn])
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE IL MODALE NEL CASO DI LOGOUT AVVENUTO CON SUCCESSO
+  const { logoutSuccess, setLogoutSuccess } = useContext(LogoutSuccessContext)
+
+  //USEEFFECT CHE REINDERIZZA RIMUOVE IL TOKEN DI ACCESSO UNA VOLTA ESEGUITO IL LOGOUT
+  useEffect(() => {
+    if (logoutSuccess == false) {
+      localStorage.removeItem("token");
+    }
+  }, [logoutSuccess])
+
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
@@ -53,6 +75,7 @@ function Home() {
             <HomeCarousel/>
             <HomeSection/>
             <Closer/>
+            {logoutSuccess && <LogoutModal setLogoutSuccess={setLogoutSuccess}/>}
           </div>
         </HomePageContext.Provider>
       }

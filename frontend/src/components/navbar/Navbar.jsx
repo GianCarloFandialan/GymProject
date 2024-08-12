@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavbarHamburger from "./navbar_components/NavbarHamburger";
 import NavList from "./navbar_components/NavList";
 import NavLogo from "./navbar_components/NavLogo";
 import NavSubscription from "./navbar_components/NavSubscription";
-
 import Sidebar from "./sidebar/Sidebar";
 import NavbarX from "./navbar_components/NavbarX";
 import { AnimatePresence, motion } from "framer-motion"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
+import { IsLoggedInContext } from "../../services/context";
 
 function Navbar() {
 
@@ -61,6 +61,47 @@ function Navbar() {
     },
   };
 
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
+
+  //HOOK PER LA NAVIGAZIONE
+  const navigate = useNavigate()
+
+   //USE EFFECT CHE SI ATTIVA ALL'ACCESSO O LOGOUT DELL'UTENTE 
+   useEffect(() => {
+
+    const checkLoginStatus = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          // fetchUser()
+          setIsLoggedIn(true);
+        } catch (error) {
+          console.error("Token non valido:", error);
+          localStorage.removeItem("token");
+          setIsLoggedIn(false);
+        }
+      } else {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkLoginStatus();
+
+    //EVENT LISTENER PER CONTROLLARE LO STATO DI LOGIN
+    window.addEventListener("storage", checkLoginStatus);
+    // EVENTO PER IL CAMBIO DI STATO
+    window.addEventListener("loginStateChange", checkLoginStatus);
+
+    //RIMUOVO L'EVENT LISTENER QUANDO IL COMPONENTE VIENE SMONTATO
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+      window.removeEventListener("loginStateChange", checkLoginStatus);
+    };
+
+
+  }, [isLoggedIn]);
+
   return(
     <motion.nav 
       initial={{ y:-79 }} 
@@ -98,13 +139,13 @@ function Navbar() {
         {/* BOTTONO PER ABBONARSI OPPURE PER L'INTERFACCIA DELLA PAGINA UTENTE VISIBILI SOLO A SCHERMO LARGO GRAZIE ALLE CLASSI TAILWIND */}
         <div className="hidden lg:flex items-center gap-3">
           <NavUserIcon/>
-          <NavSubscription/>
+          {!isLoggedIn && <NavSubscription/>}     
         </div>
 
         {/* SE LA SIDEBAR NON È APERTA, A SCHERMO MEDIO è PRESENTE IL BOTTONE PER ABBONARSI */}
         {!openSidebar && 
           <div className="hidden sm:block lg:hidden -ms-16">
-            <NavSubscription/>
+            {!isLoggedIn && <NavSubscription/>}     
           </div>
         }
         
@@ -132,7 +173,7 @@ function Navbar() {
               handleLinkSidebar={handleLinkSidebar}
             />
             <div className="flex justify-center mt-10">
-            <NavSubscription/>
+            {!isLoggedIn && <NavSubscription/>}           
             </div>
           </Sidebar>
         }

@@ -2,7 +2,6 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 
 function NavUserIconOption({ text, Icon, setOpen }) {
-
   // VARIABILI DELLE ANIMAZIONI PER OGNI ELEMENTO DELLA LISTA DEL DROPDOWN
   const itemVariants = {
     open: {

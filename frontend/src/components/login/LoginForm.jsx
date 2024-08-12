@@ -79,7 +79,7 @@ function LoginForm() {
       //SI DISPATCHA UN EVENTO 'STORAGE' PER AGGIORNARE ALTRI COMPONENTI CHE POTREBBERO DIPENDERE DAL TOKEN
       window.dispatchEvent(new Event("storage"));
       window.dispatchEvent(new Event("loginStateChange"));
-      //SI NAVIGA ALLA HOME PAGE
+      // //SI NAVIGA ALLA HOME PAGE
       navigate("/");
     }
   }, [location, navigate]);
