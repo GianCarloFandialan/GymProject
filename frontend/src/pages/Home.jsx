@@ -7,7 +7,7 @@ import HomeCarousel from "../components/home/HomeCarousel";
 import HomeSection from "../components/home/HomeSection";
 import Closer from "../components/footer/Closer";
 import { useContext } from "react";
-import LogoutModal from "../components/universals/modals/LogoutModal";
+import LogoutModal from "../components/navbar/navbar_components/usericon_components/logout_components/LogoutModal";
 
 function Home() {
 
@@ -42,13 +42,6 @@ function Home() {
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
   const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
-
-  //USE EFFECT CHE GESTISCE IL MODALE DI BENVENUTO UNA VOLTA ESEGUITO L'ACCESSP
-  useEffect(() => {
-    if (isLoggedIn == true) {
-      
-    }
-  }, [isLoggedIn])
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE IL MODALE NEL CASO DI LOGOUT AVVENUTO CON SUCCESSO
   const { logoutSuccess, setLogoutSuccess } = useContext(LogoutSuccessContext)

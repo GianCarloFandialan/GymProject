@@ -3,9 +3,9 @@ import NavUserIconOption from "./NavUserIconOption";
 import { useContext, useState } from "react";
 import { FiEdit,} from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import { RiLogoutCircleLine, RiLoginCircleLine } from "react-icons/ri";
+import { RiLoginCircleLine } from "react-icons/ri";
 import { IsLoggedInContext } from "../../../../services/context";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./logout_components/LogoutButton";
 
 
 
@@ -73,12 +73,12 @@ function NavUserIcon() {
           >
             {isLoggedIn ?
               <>
-                <NavUserIconOption setOpen={setOpen} Icon={FiEdit} text="Il mio account" />
-                <NavUserIconOption setOpen={setOpen} Icon={IoChatbubblesOutline} text="Chat" />
+                <NavUserIconOption setOpen={setOpen} Icon={FiEdit} text="Il mio account" link="account"/>
+                <NavUserIconOption setOpen={setOpen} Icon={IoChatbubblesOutline} text="Chat" link="Chat"/>
                 <LogoutButton setOpen={setOpen}/> 
               </>
               :
-              <NavUserIconOption setOpen={setOpen} Icon={RiLoginCircleLine } text="Login" />
+              <NavUserIconOption setOpen={setOpen} Icon={RiLoginCircleLine } text="Login" link="Login"/>
             }
             
           </motion.ul>

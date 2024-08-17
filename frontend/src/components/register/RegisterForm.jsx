@@ -5,7 +5,7 @@ import { createUser } from "../../services/api"
 import GoogleButton from "../universals/buttons/GoogleButton"
 import ModalSuccess from "../universals/modals/ModalSuccess"
 import { useNavigate } from "react-router-dom"
-import RegisterModalError from "../universals/modals/RegisterModalError"
+import RegisterModalError from "./RegisterModalError"
 
 function RegisterForm() {
 

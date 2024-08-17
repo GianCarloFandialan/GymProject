@@ -1,8 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useContext } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { IsLoggedInContext } from "../../../../../services/context";
 
-function LoginModalSuccess( { setLoginSuccess } ) {
+function LogoutModal( { setLogoutSuccess } ) {
+
+  //HOOK PER LA NAVIGAZIONE
+  const navigate = useNavigate();
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
+
+  //CREO UNA FUNZIONE PER GESTIRMI IL LOGOUT
+  const handleLogoutClick = () => {
+    // setOpen(false)
+    setLogoutSuccess(false)
+    localStorage.removeItem("token");
+    navigate("/")
+    setIsLoggedIn(false);
+  };
 
   return (
     <AnimatePresence>
@@ -10,7 +27,7 @@ function LoginModalSuccess( { setLoginSuccess } ) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setLoginSuccess(false)}
+        onClick={handleLogoutClick}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
@@ -25,14 +42,14 @@ function LoginModalSuccess( { setLoginSuccess } ) {
               <FiAlertCircle />
             </div>
             <h3 className="text-3xl font-bold text-center mb-2">
-              Bentornato in GYMPROJECT ...!
+              Successo!
             </h3>
             <p className="text-center mb-6">
-              Il login è avvenuto con successo!
+              Logout avvenuto con successo!
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => {setLoginSuccess(false)}}
+                onClick={handleLogoutClick}
                 className="bg-white hover:opacity-90 transition-opacity text-green-700 font-semibold w-full py-2 rounded"
               >
                 Chiudi
@@ -45,4 +62,4 @@ function LoginModalSuccess( { setLoginSuccess } ) {
   );
 }
 
-export default LoginModalSuccess
+export default LogoutModal

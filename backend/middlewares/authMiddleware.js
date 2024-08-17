@@ -20,7 +20,7 @@ export const authMiddleware = async (req, res, next) => {
     
     // SE L'UTENTE NON VIENE TROVATO NEL DATABASE, RESTITUISCE UN ERRORE 401
     if (!user) {
-      return res.status(401).send('Autore non trovato');
+      return res.status(401).send('Utente non trovato');
     }
 
     // SI L'OGGETTO USER ALLA RICHIESTA

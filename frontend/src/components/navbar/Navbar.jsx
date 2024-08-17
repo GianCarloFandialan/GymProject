@@ -6,9 +6,10 @@ import NavSubscription from "./navbar_components/NavSubscription";
 import Sidebar from "./sidebar/Sidebar";
 import NavbarX from "./navbar_components/NavbarX";
 import { AnimatePresence, motion } from "framer-motion"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
-import { IsLoggedInContext } from "../../services/context";
+import { IsLoggedInContext, UserDataContext } from "../../services/context";
+import { getUserData } from "../../services/api";
 
 function Navbar() {
 
@@ -62,29 +63,38 @@ function Navbar() {
   };
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
-  const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext)
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
+  const { userData, setUserData } = useContext(UserDataContext)
 
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate()
 
-   //USE EFFECT CHE SI ATTIVA ALL'ACCESSO O LOGOUT DELL'UTENTE 
-   useEffect(() => {
-
-    const checkLoginStatus = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        try {
-          // fetchUser()
-          setIsLoggedIn(true);
-        } catch (error) {
-          console.error("Token non valido:", error);
-          localStorage.removeItem("token");
-          setIsLoggedIn(false);
-        }
-      } else {
+  //FUNZIONE PER GESTIRE IL LOGIN
+  const checkLoginStatus = async () => {
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      try {
+        const response = await getUserData();
+        setUserData(response);        
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("Token non valido:", error);
+        localStorage.removeItem("token");
         setIsLoggedIn(false);
       }
-    };
+    } else {
+      setIsLoggedIn(false);
+    }
+  };
+
+  // HOOK PER ACCEDERE AI PARAMETRI DELL'URL CORRENTE
+  const location = useLocation();
+
+   //USE EFFECT CHE SI ATTIVA ALL'ACCESSO O LOGOUT DELL'UTENTE 
+   useEffect(() => {
 
     checkLoginStatus();
 
@@ -99,8 +109,13 @@ function Navbar() {
       window.removeEventListener("loginStateChange", checkLoginStatus);
     };
 
-
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (!userData.hasOwnProperty('Subscription')) {
+      // navigate('/abbonamenti')
+    }
+  },[])
 
   return(
     <motion.nav 
@@ -132,8 +147,13 @@ function Navbar() {
             duration: 0.8,
             ease: "backInOut",
           }} 
-          className="hidden lg:block">
-          <NavList listItems={listItems}/>
+          className="hidden lg:block"
+        >
+          <NavList 
+            listItems={listItems} 
+            linkItemVariants={linkItemVariants}               
+            navLinksVariants={navLinksVariants} 
+          />
         </motion.div>
   
         {/* BOTTONO PER ABBONARSI OPPURE PER L'INTERFACCIA DELLA PAGINA UTENTE VISIBILI SOLO A SCHERMO LARGO GRAZIE ALLE CLASSI TAILWIND */}

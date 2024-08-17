@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import ModalSuccess from "../universals/modals/ModalSuccess";
 import { loginUser } from "../../services/api";
-import LoginModalError from "../universals/modals/LoginModalError";
+import LoginModalError from "./LoginModalError";
+import { IsLoggedInContext } from "../../services/context";
 
 function LoginForm() {
 
@@ -54,9 +55,13 @@ function LoginForm() {
     }
   };
 
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext)
+
   //USEEFFECT CHE REINDERIZZA NELLA HOMEPAGE SOLO NEL CASO IL LOGIN SIA AVVENUTO CON SUCCESSO
   useEffect(() => {
     if (success == false) {
+      setIsLoggedIn(true)
       navigate("/")
     }
   }, [success])
@@ -69,6 +74,8 @@ function LoginForm() {
 
     //SI ESTRAGGONO I PARAMETRI DALL'URL
     const params = new URLSearchParams(location.search);
+    console.log("params", params);
+    
     //SI CERCA UN PARAMETRO 'TOKEN' NELL'URL
     const token = params.get("token");
     console.log('Received token:', token);
@@ -79,7 +86,7 @@ function LoginForm() {
       //SI DISPATCHA UN EVENTO 'STORAGE' PER AGGIORNARE ALTRI COMPONENTI CHE POTREBBERO DIPENDERE DAL TOKEN
       window.dispatchEvent(new Event("storage"));
       window.dispatchEvent(new Event("loginStateChange"));
-      // //SI NAVIGA ALLA HOME PAGE
+      //SI NAVIGA ALLA HOME PAGE
       navigate("/");
     }
   }, [location, navigate]);
@@ -122,7 +129,7 @@ function LoginForm() {
               />
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4">
             <div className="flex items-center flex-[4]">
               <p className="text-center text-sm text-gray-500">
                 Non hai un account? 
@@ -131,7 +138,7 @@ function LoginForm() {
             </div>
             <button 
               type="submit" 
-              className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-black rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex-1"
+              className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-black rounded-xl hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex-1"
             >
               Entra
             </button>

@@ -2,8 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-function ModalSuccess( { setSuccess, textHeader, textBody } ) {
-
+function ModalSuccess({ setSuccess, textHeader, textBody }) {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
@@ -30,12 +29,12 @@ function ModalSuccess( { setSuccess, textHeader, textBody } ) {
             <h3 className="text-3xl font-bold text-center mb-2">
               {textHeader}
             </h3>
-            <p className="text-center mb-6">
-              {textBody}
-            </p>
+            <p className="text-center mb-6">{textBody}</p>
             <div className="flex gap-2">
               <button
-                onClick={() => {setSuccess(false), navigate("/")}}
+                onClick={() => {
+                  setSuccess(false), navigate("/");
+                }}
                 className="bg-white hover:opacity-90 transition-opacity text-green-700 font-semibold w-full py-2 rounded"
               >
                 Homepage
@@ -48,4 +47,4 @@ function ModalSuccess( { setSuccess, textHeader, textBody } ) {
   );
 }
 
-export default ModalSuccess
+export default ModalSuccess;

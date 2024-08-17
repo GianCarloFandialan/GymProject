@@ -1,10 +1,7 @@
 import { motion } from "framer-motion"
 import { RiLogoutCircleLine } from "react-icons/ri";
-import { useEffect, useState } from "react";
-import ModalSuccess from "../../../universals/modals/ModalSuccess";
-import LogoutModal from "../../../universals/modals/LogoutModal";
 import { useContext } from "react";
-import { LogoutSuccessContext } from "../../../../services/context";
+import { LogoutSuccessContext } from "../../../../../services/context";
 import { useNavigate } from "react-router-dom";
 
 function LogoutButton( { setOpen } ) {
@@ -36,6 +33,9 @@ function LogoutButton( { setOpen } ) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE IL MODALE NEL CASO DI LOGOUT AVVENUTO CON SUCCESSO
   const { logoutSuccess, setLogoutSuccess } = useContext(LogoutSuccessContext)
 
+  //HOOK PER LA NAVIGAZIONE
+  const navigate = useNavigate()
+
   return (
     <>
       <motion.li
@@ -43,6 +43,7 @@ function LogoutButton( { setOpen } ) {
         onClick={() => {
           setLogoutSuccess(true)
           setOpen(false)
+          navigate('/')
         }}
         className="flex items-center gap-2 w-full p-4 text-lg font-medium whitespace-nowrap rounded-md hover:bg-gray-100 text-white hover:text-gray-800 transition-colors cursor-pointer"
       >

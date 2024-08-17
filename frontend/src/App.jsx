@@ -18,6 +18,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { IsLoggedInContext, LogoutSuccessContext, UserDataContext } from "./services/context";
 import { useState } from "react";
+import MyAccount from "./pages/MyAccount";
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //SI CREA UNO STATO PER POTER GESTIRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
-  const [userLogged, setUserLogged] = useState("");
+  const [userData, setUserData] = useState("");
 
   //CREO UNO STATO PER POTERMI GESTIRE IL MODALE NEL CASO IL LOGOUT SIA AVVENUTO CON SUCCESSSO
   const [logoutSuccess, setLogoutSuccess] = useState(null)
@@ -33,7 +34,7 @@ function App() {
   return (
     <>
       <IsLoggedInContext.Provider value = { { isLoggedIn, setIsLoggedIn } }>
-        <UserDataContext.Provider value = { { userLogged, setUserLogged } }>
+        <UserDataContext.Provider value = { { userData, setUserData } }>
           <LogoutSuccessContext.Provider value = { { logoutSuccess, setLogoutSuccess } }>
             {/* ROUTER AVVOLGE L'INTERA APPLICAZIONE, ABILITANDO IL ROUTING */}
             <Router>
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/contatti" element={<Contacts />} />
                     <Route path="/registrazione" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/account" element={<MyAccount />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

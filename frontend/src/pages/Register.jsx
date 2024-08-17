@@ -2,10 +2,16 @@ import RegisterForm from "../components/register/RegisterForm"
 import RegisterHeroImg from "../components/register/RegisterHeroImg"
 import RegisterHeroTxt from "../components/register/RegisterHeroTxt"
 import RegisterLogin from "../components/register/RegisterLogin"
+import { motion } from "framer-motion";
 
 function Register() {
   return (
-    <section className="bg-white lg:-mt-[80px]">
+    <motion.section 
+      initial={{ opacity:0, y:'-35vh' }} 
+      whileInView={{ opacity:1, y:'0' }}
+      transition={{duration: 1.4,}}
+      className="bg-white lg:-mt-[80px]"
+    >
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
 
         <RegisterHeroImg/>
@@ -23,7 +29,7 @@ function Register() {
           </div>
         </main>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

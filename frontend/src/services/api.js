@@ -15,7 +15,7 @@ api.interceptors.request.use(
     if (token) {
       // Se il token esiste, aggiungilo all'header di autorizzazione
       config.headers["Authorization"] = `Bearer ${token}`;
-      console.log("Token inviato:", token); // Log del token inviato per debugging
+      // console.log("Token inviato:", token); // Log del token inviato per debugging
     }
     return config; // Restituisce la configurazione aggiornata
   },
