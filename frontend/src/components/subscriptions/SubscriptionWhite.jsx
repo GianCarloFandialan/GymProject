@@ -7,7 +7,11 @@ import SWRegisterButton from "./SubscriptionWhite_components/SWRegisterButton";
 import SWSubscribeButton from "./SubscriptionWhite_components/SWSubscribeButton";
 import SWCheck from "./SubscriptionWhite_components/SWCheck";
 
-function SubscriptionWhite({ subscription }) {
+function SubscriptionWhite({
+  subscription,
+  setOpenModal,
+  setSelectedSubscription,
+}) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
@@ -65,11 +69,20 @@ function SubscriptionWhite({ subscription }) {
             {userData.hasOwnProperty("Subscription") ? (
               <SWModifyButton />
             ) : (
-              <SWSubscribeButton />
+              <SWSubscribeButton
+                setOpenModal={setOpenModal}
+                setSelectedSubscription={setSelectedSubscription}
+                id={subscription._id}
+              />
             )}
           </>
         ) : (
-          <SWRegisterButton />
+          // <SWRegisterButton />
+          <SWSubscribeButton
+            setOpenModal={setOpenModal}
+            setSelectedSubscription={setSelectedSubscription}
+            id={subscription._id}
+          />
         )}
       </div>
     </motion.div>

@@ -39,6 +39,12 @@ function Subscriptions() {
     fetchSubscriptions();
   }, []);
 
+  //SI CREA UNO STATO PER GESTIRE IL MODALE PER ABBONARSI
+  const [openModal, setOpenModal] = useState(false);
+
+  //SI CREA UNO STATO PER POTER GESTIRE QUALE ABBONAMENTO È STATO SELEZIONATO PER FARE L'ABBONAMENTO
+  const [selectedSubscription, setSelectedSubscription] = useState("");
+
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
@@ -48,7 +54,12 @@ function Subscriptions() {
         </div>
       ) : (
         <div className="">
-          <NewSubscriptionModal />
+          {openModal && (
+            <NewSubscriptionModal
+              setOpenModal={setOpenModal}
+              subscriptionId={selectedSubscription}
+            />
+          )}
           <motion.h2
             initial={{ opacity: 0, y: "-10vh" }}
             whileInView={{ opacity: 1, y: "0" }}
@@ -66,6 +77,8 @@ function Subscriptions() {
                       <SubscriptionWhite
                         subscription={subscription}
                         key={subscription._id}
+                        setOpenModal={setOpenModal}
+                        setSelectedSubscription={setSelectedSubscription}
                       />
                     );
                   } else {
@@ -73,6 +86,8 @@ function Subscriptions() {
                       <SubscriptionBlack
                         subscription={subscription}
                         key={subscription._id}
+                        setOpenModal={setOpenModal}
+                        setSelectedSubscription={setSelectedSubscription}
                       />
                     );
                   }

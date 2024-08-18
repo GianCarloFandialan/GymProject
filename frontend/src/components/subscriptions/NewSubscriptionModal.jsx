@@ -4,15 +4,15 @@ import PaypalButton from "./newsubscriptionmodal_components/PaypalButton";
 import AppleButton from "./newsubscriptionmodal_components/AppleButton";
 import NSMForm from "./newsubscriptionmodal_components/NSMForm";
 
-function NewSubscriptionModal() {
+function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        // onClick={() => setSuccess(false)}
-        className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+        onClick={() => setOpenModal(false)}
+        className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center cursor-pointer"
       >
         <motion.div
           initial={{ scale: 0, rotate: "12.5deg" }}
@@ -21,7 +21,7 @@ function NewSubscriptionModal() {
           onClick={(e) => e.stopPropagation()}
           className="flex items-center justify-center [&amp;>div]:w-full bg-black rounded-xl"
         >
-          <div className="rounded-xl border bg-card text-card-foreground shadow">
+          <div className="rounded-xl border bg-card text-card-foreground shadow lg:w-[30vw]">
             <div className="flex flex-col space-y-1.5 p-6">
               <h3 className="font-semibold leading-none tracking-tight text-white">
                 Metodo di pagamento
@@ -36,11 +36,14 @@ function NewSubscriptionModal() {
                 style={{ outline: "none" }}
               >
                 <CardButton />
-                <PaypalButton />
-                <AppleButton />
+                <PaypalButton setOpenModal={setOpenModal} subscriptionId={subscriptionId}/>
+                <AppleButton setOpenModal={setOpenModal} subscriptionId={subscriptionId}/>
               </div>
             </div>
-            <NSMForm />
+            <NSMForm
+              setOpenModal={setOpenModal}
+              subscriptionId={subscriptionId}
+            />
           </div>
         </motion.div>
       </motion.div>

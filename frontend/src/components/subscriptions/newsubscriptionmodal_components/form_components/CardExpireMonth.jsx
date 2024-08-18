@@ -1,6 +1,22 @@
+import { useState } from "react";
 import Label from "./Label";
 
-function CardExpireMonth(params) {
+function CardExpireMonth() {
+  const [months, setMonths] = useState([
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre",
+  ]);
+
   return (
     <div className="grid gap-2">
       <Label html={"month"} content={"Scadenza"} />
@@ -10,12 +26,17 @@ function CardExpireMonth(params) {
         placeholder="Month"
         id="month"
       >
-        <option value="Prova" className="bg-black text-white rounded-md">
-          prova
-        </option>
-        <option value="Prova" className="bg-black text-white rounded-md">
-          prova2
-        </option>
+        {months.map((month) => {
+          return (
+            <option
+              value={`${month}`}
+              className="bg-black text-white rounded-md"
+              key={month}
+            >
+              {month}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

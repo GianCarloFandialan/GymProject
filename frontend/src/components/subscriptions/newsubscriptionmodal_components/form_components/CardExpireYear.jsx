@@ -1,6 +1,27 @@
+import { useEffect, useState } from "react";
 import Label from "./Label";
 
 function CardExpireYear() {
+  //SI CREA UNO STATO PER POTER GESTIRE IL NUMERO DI OPZION ICHE SI POSSONO SELEZIONARE DEGLI ANNI
+  const [years, setYears] = useState("");
+
+  //CREO UNO STATO PER POTERMI GESTIRE IL CARICAMENTO NEL FRATTEMPO CHE SI DEFINISCONO BENE GLI ANNI NELLE OPTION
+  const [isLoading, setIsLoading] = useState(true);
+
+  var currentYear = new Date().getFullYear();
+
+  let yearArray = [];
+
+  for (let i = 0; i < 11; i++) {
+    yearArray.push(currentYear + i);
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    setYears(yearArray);
+    setIsLoading(false);
+  }, []);
+
   return (
     <div className="grid gap-2">
       <Label html={"year"} content={"Anno"} />
@@ -10,12 +31,23 @@ function CardExpireYear() {
         placeholder="Month"
         id="year"
       >
-        <option value="Prova" className="bg-black text-white rounded-md">
-          prova
-        </option>
-        <option value="Prova" className="bg-black text-white rounded-md">
-          prova2
-        </option>
+        {isLoading ? (
+          <>Loading </>
+        ) : (
+          <>
+            {years.map((year) => {
+              return (
+                <option
+                  value={`${year}`}
+                  className="bg-black text-white rounded-md"
+                  key={year}
+                >
+                  {year}
+                </option>
+              );
+            })}
+          </>
+        )}
       </select>
     </div>
   );

@@ -1,4 +1,59 @@
-function AppleButton() {
+import { useContext, useEffect, useState } from "react";
+import { updateUser } from "../../../services/api";
+import { UserDataContext } from "../../../services/context";
+
+function AppleButton({ setOpenModal, subscriptionId }) {
+  //VARIBAILI CHE MI SERVONO PER INSERIE LA DATA DI INIZIO DELLA SOTTOSCRIZIONE DELL'ABBONAMENTO
+  var date = new Date();
+  var dd = date.getDate();
+  var mm = date.getMonth() + 1;
+  var yyyy = date.getFullYear();
+
+  //SI AGGIUNE UNO ZERO NEL CASO FOSSE SOLO AD UNA CIFRA
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  //SI AGGIUNE UNO ZERO NEL CASO FOSSE SOLO AD UNA CIFRA
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+
+  var date = yyyy + "-" + mm + "-" + dd;
+
+  //SI CREA UNO STATO PER POTER SALVARE IL PAGAMENTO VIA PAYPAL
+  const [appleData, setAppleData] = useState({
+    id: subscriptionId,
+    start: "",
+    method: {
+      type: "paypal",
+    },
+  });
+
+  //CREO UNO STATO PER POTERMI GESTIRE IL CARICAMENTO NEL FRATTEMPO CHE SI DEFINISCE LA DATA
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setAppleData({ ...appleData, start: date });
+    setIsLoading(false);
+  }, []);
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
+  const { userData, setUserData } = useContext(UserDataContext);
+
+  //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE
+  const handleClick = async () => {
+    try {
+      // const response = updateUser(userData._id, appleData);
+      // console.log(response);
+      setOpenModal(false);
+    } catch (error) {
+      // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error("Errore nella fetch delle classi:", error);
+    }
+  };
+
   return (
     <div>
       <button
@@ -7,6 +62,7 @@ function AppleButton() {
         value="apple"
         className="aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 peer sr-only"
         id="apple"
+        onClick={handleClick}
       ></button>
       <label
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&amp;:has([data-state=checked])]:border-primary text-white cursor-pointer"

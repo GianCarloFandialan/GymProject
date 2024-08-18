@@ -2,11 +2,15 @@ import { useContext, useState } from "react";
 import { UserDataContext, IsLoggedInContext } from "../../services/context";
 import SBModifyButton from "./SubscriptionBlack_components/SBModifyButton";
 import SBRegisterButton from "./SubscriptionBlack_components/SBRegisterButton";
-import SBSubscribeButton from "./SubscriptionBlack_components/SBMSubscribeButton";
+import SBSubscribeButton from "./SubscriptionBlack_components/SBSubscribeButton";
 import SBCheck from "./SubscriptionBlack_components/SBCheck";
 import { motion } from "framer-motion";
 
-function SubscriptionBlack({ subscription }) {
+function SubscriptionBlack({
+  subscription,
+  setOpenModal,
+  setSelectedSubscription,
+}) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
@@ -70,11 +74,20 @@ function SubscriptionBlack({ subscription }) {
             {userData.hasOwnProperty("Subscription") ? (
               <SBModifyButton />
             ) : (
-              <SBSubscribeButton />
+              <SBSubscribeButton
+                setOpenModal={setOpenModal}
+                setSelectedSubscription={setSelectedSubscription}
+                id={subscription._id}
+              />
             )}
           </>
         ) : (
-          <SBRegisterButton />
+          <SBSubscribeButton
+            setOpenModal={setOpenModal}
+            setSelectedSubscription={setSelectedSubscription}
+            id={subscription._id}
+          />
+          // <SBRegisterButton />
         )}
       </div>
     </motion.div>
