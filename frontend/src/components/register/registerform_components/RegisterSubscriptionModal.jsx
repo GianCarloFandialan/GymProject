@@ -1,17 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
-import CardButton from "./newsubscriptionmodal_components/CardButton";
-import PaypalButton from "./newsubscriptionmodal_components/PaypalButton";
-import AppleButton from "./newsubscriptionmodal_components/AppleButton";
-import NSMForm from "./newsubscriptionmodal_components/NSMForm";
+import CardButton from "../../subscriptions/newsubscriptionmodal_components/CardButton";
+import RegisterPaypalButton from "./registersubscriptionmodal_components/RegisterPaypalButton";
+import RegisterAppleButton from "./registersubscriptionmodal_components/RegisterAppleButton";
+import RSMForm from "./registersubscriptionmodal_components/RSMForm";
 
-function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
+function RegisterSubscriptionModal({
+  setOpenModal,
+  setSelectedSubscription,
+  newUser,
+  setNewUser,
+}) {
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setOpenModal(false)}
+        onClick={() => {
+          setOpenModal(false);
+          setSelectedSubscription("");
+        }}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center cursor-pointer"
       >
         <motion.div
@@ -36,19 +44,22 @@ function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
                 style={{ outline: "none" }}
               >
                 <CardButton />
-                <PaypalButton
+                <RegisterPaypalButton
                   setOpenModal={setOpenModal}
-                  subscriptionId={subscriptionId}
+                  newUser={newUser}
+                  setNewUser={setNewUser}
                 />
-                <AppleButton
+                <RegisterAppleButton
                   setOpenModal={setOpenModal}
-                  subscriptionId={subscriptionId}
+                  newUser={newUser}
+                  setNewUser={setNewUser}
                 />
               </div>
             </div>
-            <NSMForm
+            <RSMForm
               setOpenModal={setOpenModal}
-              subscriptionId={subscriptionId}
+              newUser={newUser}
+              setNewUser={setNewUser}
             />
           </div>
         </motion.div>
@@ -57,4 +68,4 @@ function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
   );
 }
 
-export default NewSubscriptionModal;
+export default RegisterSubscriptionModal;
