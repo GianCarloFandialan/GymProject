@@ -1,55 +1,26 @@
-import { useContext, useEffect, useState } from "react";
-import { UserDataContext } from "../../../services/context";
+import { useContext } from "react";
+import { UserDataContext } from "../../../../services/context";
+import { updateUser } from "../../../../services/api";
 
-function PaypalButton({ setOpenModal, subscriptionId }) {
-  //VARIBAILI CHE MI SERVONO PER INSERIE LA DATA DI INIZIO DELLA SOTTOSCRIZIONE DELL'ABBONAMENTO
-  var date = new Date();
-  var dd = date.getDate();
-  var mm = date.getMonth() + 1;
-  var yyyy = date.getFullYear();
-
-  //SI AGGIUNE UNO ZERO NEL CASO FOSSE SOLO AD UNA CIFRA
-  if (dd < 10) {
-    dd = "0" + dd;
-  }
-
-  //SI AGGIUNE UNO ZERO NEL CASO FOSSE SOLO AD UNA CIFRA
-  if (mm < 10) {
-    mm = "0" + mm;
-  }
-
-  var date = yyyy + "-" + mm + "-" + dd;
-
-  //SI CREA UNO STATO PER POTER SALVARE IL PAGAMENTO VIA PAYPAL
-  const [paypalData, setPaypalData] = useState({
-    id: subscriptionId,
-    start: "",
-    method: {
-      type: "paypal",
-    },
-  });
-
-  //CREO UNO STATO PER POTERMI GESTIRE IL CARICAMENTO NEL FRATTEMPO CHE SI DEFINISCE LA DATA
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setPaypalData({ ...paypalData, start: date });
-    setIsLoading(false);
-  }, []);
-
+function CPMPaypalButton({ setOpenModal }) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
-  //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE
+  //SI CREA UNA FUNZIONE PER POTER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = async () => {
     try {
-      // const response = updateUser(userData._id, paypalData);
-      // console.log(response);
+      const response = await updateUser(userData._id, {
+        ...userData,
+        Subscription: {
+          ...userData.Subscription,
+          method: { type: "paypal" },
+        },
+      });
+      console.log(response.data);
+      setUserData(response.data);
       setOpenModal(false);
     } catch (error) {
-      // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
-      console.error("Errore nella fetch delle classi:", error);
+      console.error(error);
     }
   };
 
@@ -78,4 +49,4 @@ function PaypalButton({ setOpenModal, subscriptionId }) {
   );
 }
 
-export default PaypalButton;
+export default CPMPaypalButton;

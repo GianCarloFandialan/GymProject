@@ -11,4 +11,4 @@ export const IsLoggedInContext = createContext(null);
 export const UserDataContext = createContext(null);
 
 //CONTEXT PER POTER GESTIRE IL MODALE NEL CASO SIA AVVENUTO CON SUCCESSO IL LOGOUT
-export const LogoutSuccessContext = createContext(null)
+export const LogoutSuccessContext = createContext(null);

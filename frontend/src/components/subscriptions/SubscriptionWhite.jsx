@@ -77,12 +77,7 @@ function SubscriptionWhite({
             )}
           </>
         ) : (
-          // <SWRegisterButton />
-          <SWSubscribeButton
-            setOpenModal={setOpenModal}
-            setSelectedSubscription={setSelectedSubscription}
-            id={subscription._id}
-          />
+          <SWRegisterButton />
         )}
       </div>
     </motion.div>

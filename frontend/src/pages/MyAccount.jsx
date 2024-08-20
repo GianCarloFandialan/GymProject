@@ -1,14 +1,17 @@
-import { useContext } from "react"
-import { UserDataContext } from "../services/context"
+import Closer from "../components/footer/Closer";
+import MyAccounFirstSection from "../components/myaccount/MyAccountFirstSection";
+import MyAccountSecondSection from "../components/myaccount/MyAccountSecondSection";
 
 function MyAccount() {
-
-  //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
-  const { userData, setUserData } = useContext(UserDataContext)
-
   return (
-    <>ciao</>
-  )
+    <>
+      <main className="-mb-20">
+        <MyAccounFirstSection />
+        <MyAccountSecondSection />
+      </main>
+      <Closer />
+    </>
+  );
 }
 
-export default MyAccount
+export default MyAccount;

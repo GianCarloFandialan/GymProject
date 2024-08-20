@@ -4,20 +4,18 @@ import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { IsLoggedInContext } from "../../../../../services/context";
 
-function LogoutModal( { setLogoutSuccess } ) {
-
+function LogoutModal({ setLogoutSuccess }) {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
-  const { isLoggedIn, setIsLoggedIn} = useContext(IsLoggedInContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
 
   //CREO UNA FUNZIONE PER GESTIRMI IL LOGOUT
   const handleLogoutClick = () => {
-    // setOpen(false)
-    setLogoutSuccess(false)
+    setLogoutSuccess(false);
     localStorage.removeItem("token");
-    navigate("/")
+    navigate("/");
     setIsLoggedIn(false);
   };
 
@@ -41,12 +39,8 @@ function LogoutModal( { setLogoutSuccess } ) {
             <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-green-700 grid place-items-center mx-auto">
               <FiAlertCircle />
             </div>
-            <h3 className="text-3xl font-bold text-center mb-2">
-              Successo!
-            </h3>
-            <p className="text-center mb-6">
-              Logout avvenuto con successo!
-            </p>
+            <h3 className="text-3xl font-bold text-center mb-2">Successo!</h3>
+            <p className="text-center mb-6">Logout avvenuto con successo!</p>
             <div className="flex gap-2">
               <button
                 onClick={handleLogoutClick}
@@ -62,4 +56,4 @@ function LogoutModal( { setLogoutSuccess } ) {
   );
 }
 
-export default LogoutModal
+export default LogoutModal;

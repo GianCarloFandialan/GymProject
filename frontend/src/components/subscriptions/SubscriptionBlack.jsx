@@ -82,12 +82,7 @@ function SubscriptionBlack({
             )}
           </>
         ) : (
-          <SBSubscribeButton
-            setOpenModal={setOpenModal}
-            setSelectedSubscription={setSelectedSubscription}
-            id={subscription._id}
-          />
-          // <SBRegisterButton />
+          <SBRegisterButton />
         )}
       </div>
     </motion.div>
