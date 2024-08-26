@@ -6,6 +6,7 @@ import SubscriptionWhite from "../components/subscriptions/SubscriptionWhite";
 import Closer from "../components/footer/Closer";
 import { motion } from "framer-motion";
 import NewSubscriptionModal from "../components/subscriptions/NewSubscriptionModal";
+import ChangeSubscriptionModal from "../components/subscriptions/ChangeSubscriptionModal";
 
 function Subscriptions() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -42,6 +43,9 @@ function Subscriptions() {
   //SI CREA UNO STATO PER GESTIRE IL MODALE PER ABBONARSI
   const [openModal, setOpenModal] = useState(false);
 
+  //SI CREA UNO STATO PER GESTIRE IL MODALE PER CAMBIARE L'ABBONAMENTO
+  const [openChangeModal, setOpenChangeModal] = useState(false);
+
   //SI CREA UNO STATO PER POTER GESTIRE QUALE ABBONAMENTO È STATO SELEZIONATO PER FARE L'ABBONAMENTO
   const [selectedSubscription, setSelectedSubscription] = useState("");
 
@@ -58,6 +62,13 @@ function Subscriptions() {
             <NewSubscriptionModal
               setOpenModal={setOpenModal}
               subscriptionId={selectedSubscription}
+            />
+          )}
+          {openChangeModal && (
+            <ChangeSubscriptionModal
+              setOpenChangeModal={setOpenChangeModal}
+              subscriptionId={selectedSubscription}
+              subscriptions={subscriptions}
             />
           )}
           <motion.h2
@@ -79,6 +90,7 @@ function Subscriptions() {
                         key={subscription._id}
                         setOpenModal={setOpenModal}
                         setSelectedSubscription={setSelectedSubscription}
+                        setOpenChangeModal={setOpenChangeModal}
                       />
                     );
                   } else {
@@ -88,6 +100,7 @@ function Subscriptions() {
                         key={subscription._id}
                         setOpenModal={setOpenModal}
                         setSelectedSubscription={setSelectedSubscription}
+                        setOpenChangeModal={setOpenChangeModal}
                       />
                     );
                   }
