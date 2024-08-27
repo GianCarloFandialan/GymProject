@@ -8,11 +8,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        NCLMonsterBeast:["NCLMonsterBeast"],
-        ZENOVAXENO:["ZENOVAXENO"],
-      }
+        NCLMonsterBeast: ["NCLMonsterBeast"],
+        ZENOVAXENO: ["ZENOVAXENO"],
+      },
     },
   },
-  plugins: [],
-}
-
+  plugins: [
+    require("tailwind-scrollbar")({ preferredStrategy: "pseudoelements" }),
+  ],
+};

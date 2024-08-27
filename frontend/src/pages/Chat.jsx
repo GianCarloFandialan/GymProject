@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
+import ChatSidebar from "../components/chat/ChatSidebar";
 import { getUsers } from "../services/api";
 import FullPageSpinner from "../components/spinners/FullPageSpinner";
-import TrainersCard from "../components/trainers/TrainersSectionLeft";
-import TrainersSectionLeft from "../components/trainers/TrainersSectionLeft";
-import Closer from "../components/footer/Closer";
-import TrainerSectionRight from "../components/trainers/TrainerSectionRight";
+import ChatContent from "../components/chat/ChatContent";
+import ChatSidebarWelcome from "../components/chat/ChatSidebarWelcome";
 
-function Trainers() {
+function Chat() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,6 +22,9 @@ function Trainers() {
       try {
         // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I TRAINERS
         const response = await getUsers();
+        console.log(
+          response.data.filter((trainer) => trainer.isTrainer === true)
+        );
         // AGGIORNA LO STATO CON I DATI DEI TRAINERS
         setTrainers(
           response.data.filter((trainer) => trainer.isTrainer === true)
@@ -39,6 +41,9 @@ function Trainers() {
     fetchTrainers();
   }, []);
 
+  //SI CREA UNO STATO PER POTER GESTIRE CON QUALE UTENTE SI STA CHATTANDO E DI CONSEGUENZA QUALE CHAT APRIRE
+  const [chatter, setChatter] = useState(null);
+
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
@@ -47,23 +52,17 @@ function Trainers() {
           <FullPageSpinner />
         </div>
       ) : (
-        <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center md:mx-auto">
-          {trainers.map((trainer, index) => {
-            if (index % 2 === 0) {
-              return (
-                <TrainersSectionLeft trainer={trainer} key={trainer._id} />
-              );
-            } else {
-              return (
-                <TrainerSectionRight trainer={trainer} key={trainer._id} />
-              );
-            }
-          })}
-          <Closer />
+        <div className="h-[calc(100vh_-_80px)] flex w-full relative">
+          <ChatSidebar trainers={trainers} setChatter={setChatter} />
+          {chatter ? (
+            <ChatContent chatter={chatter} setChatter={setChatter} />
+          ) : (
+            <ChatSidebarWelcome />
+          )}
         </div>
       )}
     </>
   );
 }
 
-export default Trainers;
+export default Chat;
