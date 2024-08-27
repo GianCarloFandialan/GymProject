@@ -7,7 +7,7 @@ import { RiLoginCircleLine } from "react-icons/ri";
 import { IsLoggedInContext } from "../../../../services/context";
 import LogoutButton from "./logout_components/LogoutButton";
 
-function NavUserIcon() {
+function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
   // SI CREA UNO STATO PER POTER GESTIRE IL DROPDOWN MENU AL CLICK SULL'ICONA DELL'UTENTE
   const [open, setOpen] = useState(false);
 
@@ -72,6 +72,7 @@ function NavUserIcon() {
             variants={wrapperVariants}
             style={{ originY: "top", translateX: "-90%" }}
             className="flex flex-col gap-2 rounded-lg bg-gray-800 p-2 shadow-xl absolute top-[120%] left-[50%] overflow-hidden "
+            onClick={() => setOpenSidebar(!openSidebar)}
           >
             {isLoggedIn ? (
               <>
@@ -104,4 +105,4 @@ function NavUserIcon() {
   );
 }
 
-export default NavUserIcon;
+export default NavUserIconMobile;

@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
 import { IsLoggedInContext, UserDataContext } from "../../services/context";
 import { getUserData } from "../../services/api";
+import NavUserIconMobile from "./navbar_components/usericon_components/NavUserIconMobile";
 
 function Navbar() {
   //SI IMPOSTA UNA COSTANTE CON GLI ELEMENTI DELLA LISTA CONTENUTI NELLA NAVBAR
@@ -169,17 +170,23 @@ function Navbar() {
         )}
 
         {/* SE LA SIDEBAR È APERTA FUORIESCE L'HAMBURGER PER APRIRLA AL CLICK, ALTRIMENTI, SE APERTA ESCONO L'ICONA DELL'UTENTE E L'ICONA "X" PER CHIUDERE LA SIDEBAR */}
-        <div
-          className="block lg:hidden"
-          onClick={() => setOpenSidebar(!openSidebar)}
-        >
+        <div className="block lg:hidden">
           {openSidebar ? (
             <div className="flex gap-3">
-              <NavUserIcon />
-              <NavbarX />
+              <NavUserIconMobile
+                setOpenSidebar={setOpenSidebar}
+                openSidebar={openSidebar}
+              />
+              <NavbarX
+                setOpenSidebar={setOpenSidebar}
+                openSidebar={openSidebar}
+              />
             </div>
           ) : (
-            <NavbarHamburger />
+            <NavbarHamburger
+              setOpenSidebar={setOpenSidebar}
+              openSidebar={openSidebar}
+            />
           )}
         </div>
       </div>

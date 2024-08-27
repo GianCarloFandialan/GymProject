@@ -9,6 +9,7 @@ import MASSSubButton from "./myaccountsecondsection_components/MASSSubButton";
 import MASSBenefits from "./MASSBenefits";
 import MASSSubData from "./MASSSubData";
 import ChangePaymentModal from "./myaccountsecondsection_components/ChangePaymentModal";
+import { motion } from "framer-motion";
 
 function MyAccountSecondSection() {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
@@ -60,7 +61,20 @@ function MyAccountSecondSection() {
       ) : (
         <>
           {openModal && <ChangePaymentModal setOpenModal={setOpenModal} />}
-          <section className="relative py-16">
+          <motion.section
+            initial={{
+              scale: 0,
+            }}
+            animate={{
+              scale: 1,
+            }}
+            exit={{ scale: 0 }}
+            transition={{
+              duration: 1.5,
+              ease: "backInOut",
+            }}
+            className="relative py-4"
+          >
             <div className="container mx-auto px-4">
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                 <div className="px-6">
@@ -84,7 +98,7 @@ function MyAccountSecondSection() {
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
         </>
       )}
     </>
