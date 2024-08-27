@@ -33,7 +33,11 @@ function ChatBarForm({ chatter, setChatMessages, chatmessages }) {
         newNormalMessagge={newNormalMessagge}
         setNewNormalMessage={setNewNormalMessage}
       />
-      <ChatInputFile />
+      <ChatInputFile
+        chatter={chatter}
+        setChatMessages={setChatMessages}
+        chatmessages={chatmessages}
+      />
       <ChatSubmit />
     </form>
   );
