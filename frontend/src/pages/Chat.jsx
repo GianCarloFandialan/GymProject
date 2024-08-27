@@ -52,7 +52,7 @@ function Chat() {
           <FullPageSpinner />
         </div>
       ) : (
-        <div className="h-[calc(100vh_-_80px)] flex w-full relative">
+        <div className="h-[calc(100vh_-_80px)] flex w-full absolute bottom-0 left-0 right-0 top-[80px]">
           <ChatSidebar trainers={trainers} setChatter={setChatter} />
           {chatter ? (
             <ChatContent chatter={chatter} setChatter={setChatter} />

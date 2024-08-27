@@ -4,15 +4,12 @@ import { getMessages } from "../../../services/api";
 import FullPageSpinner from "../../spinners/FullPageSpinner";
 import ChatMessagesList from "./chatmessages_components/ChatMessagesList";
 
-function ChatMessages({ chatter }) {
+function ChatMessages({ chatter, chatmessages, setChatMessages }) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
   //SI CREA UNO STATO PER POTER GESTIRE TUTTI I MESSAGGI IN TOTO
   const [messages, setMessages] = useState([]);
-
-  //SI CREA UNO STATO IN CUI POTER GESTIRE SOLO I MESSAGGI DELLA CHAT PRECISA
-  const [chatmessages, setChatMessages] = useState([]);
 
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
@@ -59,17 +56,17 @@ function ChatMessages({ chatter }) {
 
     // CHIAMIAMO LA FUNZIONE fetchTrainers
     fetchMessages();
-  }, []);
+  }, [chatter]);
 
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
       {isLoading ? (
-        <div className="h-screen relative overflow-hidden">
+        <div className="h-screen relative overflow-hidden bg-white">
           <FullPageSpinner />
         </div>
       ) : (
-        <div className="flex-grow bg-white border-y-[1px] border-gray-300 p-7">
+        <div className="flex-grow bg-white border-y-[1px] border-gray-300 p-7 h-[calc(100vh_-_250px)] overflow-y-scroll">
           <ChatMessagesList chatmessages={chatmessages} />
         </div>
       )}

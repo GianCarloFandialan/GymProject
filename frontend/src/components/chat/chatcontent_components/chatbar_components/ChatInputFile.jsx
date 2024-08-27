@@ -35,7 +35,7 @@ const ChatInputFile = () => {
         onClick={handleButtonClick}
         className="bg-white hover:bg-gray-700 font-bold py-2 px-4 rounded-3xl h-10"
       >
-        <GoPaperclip />
+        <GoPaperclip className="text-2xl" />
       </button>
     </div>
   );
