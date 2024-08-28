@@ -82,11 +82,17 @@ function SubscriptionWhite({
                 )}
               </>
             ) : (
-              <SWSubscribeButton
-                setOpenModal={setOpenModal}
-                setSelectedSubscription={setSelectedSubscription}
-                id={subscription._id}
-              />
+              <>
+                {userData.isTrainer ? (
+                  <></>
+                ) : (
+                  <SWSubscribeButton
+                    setOpenModal={setOpenModal}
+                    setSelectedSubscription={setSelectedSubscription}
+                    id={subscription._id}
+                  />
+                )}
+              </>
             )}
           </>
         ) : (

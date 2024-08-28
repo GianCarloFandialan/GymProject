@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     dataDiNascita: { type: String },
     avatar: { type: String },
     password: { type: String },
-    trainerId: { type: String, default: null },
+    trainerId: { type: Array, default: [] },
     isTrainer: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
     Subscription: {

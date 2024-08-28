@@ -5,6 +5,8 @@ import TrainersCard from "../components/trainers/TrainersSectionLeft";
 import TrainersSectionLeft from "../components/trainers/TrainersSectionLeft";
 import Closer from "../components/footer/Closer";
 import TrainerSectionRight from "../components/trainers/TrainerSectionRight";
+import AddTrainerModal from "../components/trainers/AddTrainerModal";
+import AddSuccessModal from "../components/trainers/AddSuccessModal";
 
 function Trainers() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -39,6 +41,15 @@ function Trainers() {
     fetchTrainers();
   }, []);
 
+  //SI CREA UNO STATO PER GESTIRE IL MODALE PER GESTIRE L'AGGIUNTA DEL NUOVO TRAINER
+  const [openModal, setOpenModal] = useState(false);
+
+  //SI CREA UNO STATO PER GESTIRE IL TRAINER CHE VIENE SELEZIONATO
+  const [selectedTrainer, setSelectedTrainer] = useState("");
+
+  //SI CREA UNO STATO PER GESTIRE IL MODALE DELLA CONFERMA DEL NUOVO TRAINER
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+
   return (
     <>
       {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
@@ -48,14 +59,34 @@ function Trainers() {
         </div>
       ) : (
         <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center md:mx-auto">
+          {openModal && (
+            <AddTrainerModal
+              setOpenModal={setOpenModal}
+              selectedTrainer={selectedTrainer}
+              setOpenSuccessModal={setOpenSuccessModal}
+            />
+          )}
+          {openSuccessModal && (
+            <AddSuccessModal setOpenSuccessModal={setOpenSuccessModal} />
+          )}
           {trainers.map((trainer, index) => {
             if (index % 2 === 0) {
               return (
-                <TrainersSectionLeft trainer={trainer} key={trainer._id} />
+                <TrainersSectionLeft
+                  trainer={trainer}
+                  key={trainer._id}
+                  setOpenModal={setOpenModal}
+                  setSelectedTrainer={setSelectedTrainer}
+                />
               );
             } else {
               return (
-                <TrainerSectionRight trainer={trainer} key={trainer._id} />
+                <TrainerSectionRight
+                  trainer={trainer}
+                  key={trainer._id}
+                  setOpenModal={setOpenModal}
+                  setSelectedTrainer={setSelectedTrainer}
+                />
               );
             }
           })}

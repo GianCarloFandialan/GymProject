@@ -87,11 +87,17 @@ function SubscriptionBlack({
                 )}
               </>
             ) : (
-              <SBSubscribeButton
-                setOpenModal={setOpenModal}
-                setSelectedSubscription={setSelectedSubscription}
-                id={subscription._id}
-              />
+              <>
+                {userData.isTrainer ? (
+                  <></>
+                ) : (
+                  <SBSubscribeButton
+                    setOpenModal={setOpenModal}
+                    setSelectedSubscription={setSelectedSubscription}
+                    id={subscription._id}
+                  />
+                )}
+              </>
             )}
           </>
         ) : (

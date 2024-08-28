@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 import { useContext } from "react";
-import { UserDataContext } from "../../services/context";
+import { IsLoggedInContext, UserDataContext } from "../../services/context";
 import { Link } from "react-router-dom";
+import ChatTrainerButton from "./ChatTrainerButton";
+import AddTrainerButton from "./AddTrainerButton";
 
-function TrainerSectionRight({ trainer }) {
+function TrainerSectionRight({ trainer, setOpenModal, setSelectedTrainer }) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
+  console.log(userData.trainerId);
 
   return (
     <motion.section
@@ -57,13 +64,22 @@ function TrainerSectionRight({ trainer }) {
                 })}
               </ul>
 
-              {!userData.isTrainer && (
-                <Link
-                  to={"/chat"}
-                  className="bg-white font-black px-5 py-3 rounded-xl text-xl"
-                >
-                  CHAT
-                </Link>
+              {isLoggedIn && (
+                <>
+                  {!userData.isTrainer && (
+                    <>
+                      {userData.trainerId.includes(trainer._id) ? (
+                        <ChatTrainerButton />
+                      ) : (
+                        <AddTrainerButton
+                          trainer={trainer}
+                          setOpenModal={setOpenModal}
+                          setSelectedTrainer={setSelectedTrainer}
+                        />
+                      )}
+                    </>
+                  )}
+                </>
               )}
             </div>
           </div>

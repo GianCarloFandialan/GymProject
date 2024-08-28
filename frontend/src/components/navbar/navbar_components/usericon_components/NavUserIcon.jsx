@@ -4,7 +4,10 @@ import { useContext, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { RiLoginCircleLine } from "react-icons/ri";
-import { IsLoggedInContext } from "../../../../services/context";
+import {
+  IsLoggedInContext,
+  UserDataContext,
+} from "../../../../services/context";
 import LogoutButton from "./logout_components/LogoutButton";
 
 function NavUserIcon() {
@@ -31,6 +34,11 @@ function NavUserIcon() {
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
+  const { userData, setUserData } = useContext(UserDataContext);
+
+  console.log(userData);
 
   return (
     <>
@@ -75,12 +83,14 @@ function NavUserIcon() {
           >
             {isLoggedIn ? (
               <>
-                <NavUserIconOption
-                  setOpen={setOpen}
-                  Icon={FiEdit}
-                  text="Il mio account"
-                  link="account"
-                />
+                {!userData.isTrainer && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={FiEdit}
+                    text="Il mio account"
+                    link="account"
+                  />
+                )}
                 <NavUserIconOption
                   setOpen={setOpen}
                   Icon={IoChatbubblesOutline}
