@@ -72,7 +72,7 @@ function ChatSidebar({ setChatter }) {
         </div>
       ) : (
         <div className="w-screen md:w-[40vw] lg:w-[27vw] absolute overflow-y-scroll h-full">
-          <ul className="h-full flex flex-col justify-between bg-white">
+          <ul className="h-full flex flex-col bg-white">
             {users.map((user, index) => {
               return (
                 <div key={index}>
