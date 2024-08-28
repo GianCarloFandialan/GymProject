@@ -1,8 +1,25 @@
+import { useContext, useEffect } from "react";
 import LoginForm from "../components/login/LoginForm";
 import GoogleButton from "../components/universals/buttons/GoogleButton";
 import { motion } from "framer-motion";
+import { IsLoggedInContext } from "../services/context";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
+  //HOOK PER LA NAVIGAZIONE
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
+
   return (
     <>
       <motion.section
