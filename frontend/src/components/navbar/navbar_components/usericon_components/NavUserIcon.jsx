@@ -91,12 +91,22 @@ function NavUserIcon() {
                     link="account"
                   />
                 )}
-                <NavUserIconOption
-                  setOpen={setOpen}
-                  Icon={IoChatbubblesOutline}
-                  text="Chat"
-                  link="Chat"
-                />
+                {userData.hasOwnProperty("Subscription") && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={IoChatbubblesOutline}
+                    text="Chat"
+                    link="Chat"
+                  />
+                )}
+                {userData.isTrainer && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={IoChatbubblesOutline}
+                    text="Chat"
+                    link="Chat"
+                  />
+                )}
                 <LogoutButton setOpen={setOpen} />
               </>
             ) : (

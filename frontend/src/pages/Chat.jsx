@@ -1,14 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import ChatSidebar from "../components/chat/ChatSidebar";
-import { getUsers } from "../services/api";
-import FullPageSpinner from "../components/spinners/FullPageSpinner";
 import ChatContent from "../components/chat/ChatContent";
 import ChatSidebarWelcome from "../components/chat/ChatSidebarWelcome";
-import { UserDataContext } from "../services/context";
+import { IsLoggedInContext } from "../services/context";
+import { useNavigate } from "react-router-dom";
 
 function Chat() {
   //SI CREA UNO STATO PER POTER GESTIRE CON QUALE UTENTE SI STA CHATTANDO E DI CONSEGUENZA QUALE CHAT APRIRE
   const [chatter, setChatter] = useState(null);
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
+  //HOOK PER LA NAVIGAZIONE
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>
