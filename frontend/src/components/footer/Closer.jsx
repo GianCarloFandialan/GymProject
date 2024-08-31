@@ -4,7 +4,7 @@ function Closer() {
       <li>
         <a
           target="_blank"
-          className="text-gray-700 transition hover:text-gray-700/75"
+          className="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span className="sr-only">Facebook</span>
           <svg
@@ -25,7 +25,7 @@ function Closer() {
       <li>
         <a
           target="_blank"
-          className="text-gray-700 transition hover:text-gray-700/75"
+          className="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span className="sr-only">Instagram</span>
           <svg
@@ -47,7 +47,7 @@ function Closer() {
         <a
           rel="noreferrer"
           target="_blank"
-          className="text-gray-700 transition hover:text-gray-700/75"
+          className="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span className="sr-only">Twitter</span>
           <svg

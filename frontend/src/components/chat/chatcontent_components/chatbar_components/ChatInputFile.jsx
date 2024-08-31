@@ -7,32 +7,35 @@ const ChatInputFile = ({ chatter, setChatMessages, chatmessages }) => {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
-  // CREA UN RIFERIMENTO ALL'ELEMENTO INPUT
+  //CREA UN RIFERIMENTO ALL'ELEMENTO INPUT
   const fileInputRef = useRef(null);
 
-  // FUNZIONE PER GESTIRE IL CLICK SUL PULSANTE
+  //FUNZIONE PER GESTIRE IL CLICK SUL PULSANTE
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
 
-  // FUNZIONE PER GESTIRE LA SELEZIONE DEL FILE
+  //FUNZIONE ASINCRONA PER GESTIRE LA SELEZIONE DEL FILE
   const handleFileChange = async (event) => {
+    //CREO UNO COSTANTE PER IDENTIFICARE IL FILE CARICATO
     const file = event.target.files[0];
+    //SE È STATO CARICATO UN FILE SI ESEGUE UNA CHIAMATA API
     if (file) {
-      // QUI PUOI GESTIRE IL FILE SELEZIONATO
-      console.log("File selezionato:", file.name);
       try {
+        //SI CREA UNA COSTANTE FORM DATA E SI SALVANO I VARI DATI NECESSARI PER ESEGUIRE LA CHIAMATA CORRETTAMENTE
         const formData = new FormData();
         formData.append("sender", userData._id);
         formData.append("reciever", chatter._id);
         formData.append("content", file);
 
+        //SI EFFETUA UNA RICHIESTA POST AL BACKEND PER AGGIUNGERE UN MESSAGGIO, IN QUESTO UN MESSAGGIO CONTENTE UN FILE
         const response = await createMessageSpecial(formData);
-        console.log(response.data);
 
+        //AGGIORNO LO STATO DEI MESSAGGI DELLA CHAT CON LA RISPOSTA ALLA CHIAMATA
         setChatMessages([...chatmessages, response.data]);
       } catch (error) {
-        console.error("Errore nel caricamento del messaggio: ", error);
+        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+        console.error("Errore nel caricamento del file del messaggio: ", error);
       }
     }
   };
@@ -47,7 +50,7 @@ const ChatInputFile = ({ chatter, setChatMessages, chatmessages }) => {
         className="hidden"
       />
 
-      {/* PULSANTE PERSONALIZZATO */}
+      {/* PULSANTE PERSONALIZZATO CHE AL CLICK RICHIAMA LA FUNZIONE PER CARICARE IL MESSAGGIO CON IL FILE */}
       <button
         type="button"
         onClick={handleButtonClick}

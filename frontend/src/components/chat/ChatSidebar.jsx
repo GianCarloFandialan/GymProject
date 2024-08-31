@@ -18,8 +18,9 @@ function ChatSidebar({ setChatter }) {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
+  //AL CARICAMENTO DEL COMPONENTE CARICO GLI INTERLOCUTORI DELL'UTENTE CHE HA EFFETTUATO L'ACCESSO, IN CASO DI ERRORE SI REINDERIZZA ALLA HOMEPAGE
   useEffect(() => {
-    //NEL CASO DI ERRORE RIPORTO L'UTENTE NELLA HOMEPAGE
+    //NEL CASO DI ERRORE NEL CARICAMENTO DEI DATI DELL'UTENTE CHE ESEGUITO L'ACCESSO, LO USEFFECT REINDERIZZA ALLA HOMEPAGE
     if (!userData) {
       setIsLoading(false);
       navigate("/");
@@ -29,19 +30,14 @@ function ChatSidebar({ setChatter }) {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    //SE L'UTENTE È UN TRAINER OTTENGO TUTTI I CLIENTI CHE HANNO COME TRAINER, IL TRAINER STESSO
+    //SE L'UTENTE CHE HA EFFETTUATO L'ACCESSO è UN TRAINER, SI EFFETTUA UNA CHIAMATA PER OTTENERE TUTTI GLI UTENTI CHE LO HANNO SCELTO
     if (userData.isTrainer) {
-      //  FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE I CLIENTI SPICIFICI
+      //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I CLIENTI SPICIFICI
       const fetchUsers = async () => {
         try {
-          // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI UTENTI
+          //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI UTENTI
           const response = await getUsers();
-          console.log(
-            response.data.filter((client) =>
-              client.trainerId.includes(userData._id)
-            )
-          );
-          // AGGIORNA LO STATO CON I DATI DEGLI UTENTI
+          //AGGIORNA LO STATO CON I DATI DEGLI UTENTI FILTRATI PER QUELLI CHE LO HANNO SCELTO COME TRAINER
           setUsers(
             response.data.filter((client) =>
               client.trainerId.includes(userData._id)
@@ -50,15 +46,20 @@ function ChatSidebar({ setChatter }) {
           //AGGIORNO LO STATO DELLO SPINNER
           setIsLoading(false);
         } catch (error) {
-          // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
-          console.error("Errore nella fetch dei trainers:", error);
+          //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+          console.error(
+            "Errore nella fetch dei clienti interlocutori: ",
+            error
+          );
         }
       };
 
-      // CHIAMIAMO LA FUNZIONE fetchUsers
+      //CHIAMIAMO LA FUNZIONE fetchUsers
       fetchUsers();
     } else {
+      //SE L'UTENTE CHE HA EFFETTUATO L'ACCESSO NON è UN TRAINER, SI AGGIORNA LO STATO USERS CON L'ID DEI TRAINERS INTERLOCUTORI SCELTI
       setUsers(userData.trainerId);
+      //AGGIORNO LO STATO DELLO SPINNER
       setIsLoading(false);
     }
   }, []);
@@ -73,9 +74,13 @@ function ChatSidebar({ setChatter }) {
       ) : (
         <div className="w-screen md:w-[40vw] lg:w-[27vw] absolute overflow-y-scroll h-full">
           <ul className="h-full flex flex-col bg-white">
+            {/* GLI ELEMENTI DELLA LISTA <li> SONO GLI INTERLOCUTORI SCELTI DALL'UTENTE */}
             {users.map((user, index) => {
               return (
                 <div key={index}>
+                  {/* DIFFERENZIO IL MODO IN CUI FORNISCO LA CHIAVE ALL'ELEMENTO "ChatSidebarUser" IN BASE AL TIPO DI UTENTE CHE HA EFFETTUATO L'ACCESSO PERCHÈ I TIPI DI DATI CHE GESTISCONO SONO LEGGERMENTE DIVERSI */}
+                  {/* SI PASSA COME PARAMETRO LA FUNZIONE SETCHATTER PER IMPOSTARE QUALE CHAT CARICARE NELLA PAGINA AL CLICK SULL'INTERLOCUTORE */}
+                  {/* SI PASSA COME OGGETTO L'INTERLOCUTORE NEL CASO L'UTENTE CHE HA ESEGUIO L'ACCESSO SIA UN TRAINER */}
                   {userData.isTrainer ? (
                     <ChatSidebarUser
                       key={user._id + "chat"}
@@ -83,6 +88,7 @@ function ChatSidebar({ setChatter }) {
                       setChatter={setChatter}
                     />
                   ) : (
+                    //SI PASSA COME STRINGA(ID) L'INTERLOCUTORE NEL CASO L'UTENTE CHE HA ESEGUIO L'ACCESSO SIA UN TRAINER
                     <ChatSidebarUser
                       key={user + "chat"}
                       user={user}

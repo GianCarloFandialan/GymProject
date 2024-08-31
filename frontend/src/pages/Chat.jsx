@@ -15,6 +15,7 @@ function Chat() {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
+  //AL CARICAMENTO DEL COMPONENTE SE L'UTENTE NON HA EFFETTUATO L'ACCESSO VIENE AUTOMATICAMENTE REINDIRIZZATO ALLA HOMEPAGE
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/");
@@ -23,8 +24,12 @@ function Chat() {
 
   return (
     <>
+      {/* CONTENITORE PRINCIPALE DEL COMPOENENTE*/}
       <div className="h-[calc(100vh_-_80px)] flex w-full absolute bottom-0 left-0 right-0 top-[80px]">
+        {/* SIDEBAR A CUI VIENE PASSATA COME PARAMETRO IL "setChatter" */}
         <ChatSidebar setChatter={setChatter} />
+
+        {/* AL CARICAMENTO DEL COMPONENTE SE NON È STATO SELEZIONATO ALCUN UTENTE CON CUI CHATTARE COMPARE LA PAGINA DI BENVENUTO ALLA CHAT */}
         {chatter ? (
           <ChatContent chatter={chatter} setChatter={setChatter} />
         ) : (

@@ -9,12 +9,15 @@ function ChatMessagesList({ chatmessages }) {
 
   return (
     <ul>
+      {/* I MESSAGGI VENGONO SUDDIVISI IN DUE COMPONENTI DIPENDEMENTE DALL'AUTORE */}
       {chatmessages.map((chatmessage) => {
+        //SE L'UTENTE HA MANDATO IL MESSAGGIO ESSO VIENE POSTO COME CONTENUTO DEL COMPONENTE "ChatUserMessage"
         if (chatmessage.sender == userData._id) {
           return (
             <ChatUserMessage key={chatmessage._id} chatmessage={chatmessage} />
           );
         } else {
+          //SE L'INTERLOCUTORE HA MANDATO IL MESSAGGIO ESSO VIENE POSTO COME CONTENUTO DEL COMPONENTE "ChatChatterMessage""
           return (
             <ChatChatterMessage
               key={chatmessage._id}

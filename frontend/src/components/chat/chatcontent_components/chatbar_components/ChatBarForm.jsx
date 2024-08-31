@@ -16,28 +16,38 @@ function ChatBarForm({ chatter, setChatMessages, chatmessages }) {
     reciever: chatter._id,
   });
 
+  //FUNZIONE PER GESTIRE IL SUBMIT DEL FORM E QUINDI L'INVIO DI UN MESSAGGIO NORMALE
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //SI EFFETUA UNA RICHIESTA POST AL BACKEND PER AGGIUNGERE UN MESSAGGIO
     try {
       const response = await createMessage(newNormalMessagge);
+      //AGGIORNO LO STATO DEI MESSAGGI DELLA CHAT CON LA RISPOSTA ALLA CHIAMATA
       setChatMessages([...chatmessages, response.data]);
     } catch (error) {
-      console.error("Errore nel caricamento del messaggio: ", error);
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error("Errore nell'aggiunta di un nuovo messaggio: ", error);
     }
   };
 
   return (
+    //IL FORM VIENE SUDDIVISO IN 3 COMPONENTI
     <form className="flex items-center flex-grow gap-4" onSubmit={handleSubmit}>
+      {/* CASELLA DI INPUT DI TESTO IN CUI INSERIRE IL CONENUTO DEL MESSAGGIO */}
+      {/* SI PASSANO COME PARAMETRI LO STATO DEL NUOVO MESSAGGGIO E LA FUNZIONE PER MODIFICARLO */}
       <ChatText
         newNormalMessagge={newNormalMessagge}
         setNewNormalMessage={setNewNormalMessage}
       />
+      {/* CASELLA DI INPUT PER AGIUNGERE EVENTUALI FILE ALLEGATI */}
+      {/* SI PASSANO COME PARAMETRI L'INTERLOCUTORE(chatter), LO SATO DEI MESSAGGI DELLA CHAT E LA SUA RISPETTIVA FUNZIONE */}
       <ChatInputFile
         chatter={chatter}
         setChatMessages={setChatMessages}
         chatmessages={chatmessages}
       />
+      {/* BOTTONE DI SUBMIT DEL FORM */}
       <ChatSubmit />
     </form>
   );

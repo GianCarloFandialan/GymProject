@@ -14,27 +14,30 @@ function ChatSidebarUser({ user, setChatter }) {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
+  //AL CARICAMENTO DEL COMPONENTE, SI EFFETTUA UNA CHIAMATA PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE SOLO NEL CASO IN CUI L'UTENTE CHE HA EFFETTUATO L'ACCESSO È UN TRAINER
   useEffect(() => {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    //  FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE I CONTATTI
+    //FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE
     const fetchSingleUser = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I TRAINERS
+        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I DATI SEL SINGOLO UTENTE INTERLOCUTORE
         const response = await getSingleUser(user);
-        console.log(response.data);
-        //AGGIORNO LO STATO DEI DATI SINGOLO UTENTE
+        //AGGIORNO LO STATO DEI DATI SINGOLO UTENTE INTERLOCUTORE
         setUserChatData(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
-        // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch dei trainers:", error);
+        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+        console.error(
+          "Errore nella fetch dei dati delsingolo utente interlocutore: ",
+          error
+        );
       }
     };
 
-    // CHIAMIAMO LA FUNZIONE fetchTrainers SOLO SE L'UTENTE CHE HA ESEGUITO L'ACCESSO NON E' UN TRAINER
+    //CHIAMIAMO LA FUNZIONE fetchTrainers SOLO SE L'UTENTE CHE HA ESEGUITO L'ACCESSO NON E' UN TRAINER
     if (!userData.isTrainer) {
       fetchSingleUser();
     } else {
@@ -52,7 +55,9 @@ function ChatSidebarUser({ user, setChatter }) {
         </div>
       ) : (
         <div>
+          {/* NEL CASO IN CUI L'UTENTE CHE HA EFFETTUATO L'ACCESSO SIA UN TRAINER IL COMPONENTE VIENE CARICATO AVENTE COME AVATAR UN'ICONA UTENTE BASE ALTRIMENTI CON UN'IMMAGINE AVATAR, AL CLICK DEL COMPONENTE USO IL PARAMETRO FORNITO DAL COMPONENTE GENITORE PER IMPOSTARE L'INTERLOCUTORE E APRIRNE LA CHAT */}
           {userData.isTrainer ? (
+            //SE L'UTENTE È UN TRAINER, IL PARAMETRO USER È DI DEFAULT UN OGGETTO
             <li
               className="flex-1 cursor-pointer"
               onClick={() => setChatter(user)}
@@ -69,6 +74,7 @@ function ChatSidebarUser({ user, setChatter }) {
               </div>
             </li>
           ) : (
+            //SE L'UTENTE NON È UN TRAINER, IL PARAMETRO USER È DI DEFAULT NON è UN OGGETTO E CON LO USEEFFECT LO SI TRASFORMA GRAZIE AL SUO ID
             <li
               className="flex-1 cursor-pointer"
               onClick={() => setChatter(userChatData)}
