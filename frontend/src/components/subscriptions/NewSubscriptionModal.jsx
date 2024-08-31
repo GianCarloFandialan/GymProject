@@ -8,6 +8,7 @@ function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTEonBlack
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -15,6 +16,7 @@ function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}
@@ -35,17 +37,24 @@ function NewSubscriptionModal({ setOpenModal, subscriptionId }) {
                 className="grid grid-cols-3 gap-4"
                 style={{ outline: "none" }}
               >
+                {/* BOTTONE PER L'OPZIONE CARTA COME METODO DI PAGAMENTO */}
                 <CardButton />
+                {/* BOTTONE PER L'OPZIONE PAYPAL COME METODO DI PAGAMENTO */}
+                {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE LO STATO CHE AIUTA A GESTIRE IL MODALE E L'ABBONAMENTO SELEZIONATO*/}
                 <PaypalButton
                   setOpenModal={setOpenModal}
                   subscriptionId={subscriptionId}
                 />
+                {/* BOTTONE PER L'OPZIONE APPLE PAY COME METODO DI PAGAMENTO */}
+                {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE LO STATO CHE AIUTA A GESTIRE IL MODALE E L'ABBONAMENTO SELEZIONATO*/}
                 <AppleButton
                   setOpenModal={setOpenModal}
                   subscriptionId={subscriptionId}
                 />
               </div>
             </div>
+            {/* FORM PER INSERIRE I DATI DELLA CARTA */}
+            {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE LO STATO CHE AIUTA A GESTIRE IL MODALE E L'ABBONAMENTO SELEZIONATO*/}
             <NSMForm
               setOpenModal={setOpenModal}
               subscriptionId={subscriptionId}

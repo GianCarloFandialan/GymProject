@@ -12,6 +12,7 @@ function CardNumber({ cardData, setCardData }) {
         min={1000000000000000}
         max={9999999999999999}
         type="number"
+        //AL MODIFICARSI DEL VALORE DELL'INPUT, CAMBIA PURE LO STATO
         value={cardData.method.CardNumber}
         onChange={(e) =>
           setCardData({

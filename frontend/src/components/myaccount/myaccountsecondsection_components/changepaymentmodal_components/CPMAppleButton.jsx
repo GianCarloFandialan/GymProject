@@ -9,7 +9,7 @@ function CPMAppleButton({ setOpenModal }) {
   //SI CREA UNA FUNZIONE PER POTER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = async () => {
     try {
-      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER OTTENERE AGGIORNARE IL METODO DI PAGAMENTO IN APPLE PAY
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL METODO DI PAGAMENTO IN APPLE PAY
       const response = await updateUser(userData._id, {
         ...userData,
         Subscription: {

@@ -22,15 +22,22 @@ function NSMForm({ setOpenModal, subscriptionId }) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
+  //FUNZIONE PER GESTIRE IL SUBMIT DEL FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //const response = updateUser(userData._id, cardData);
-      //console.log(response);
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL METODO DI PAGAMENTO IN CARD
+      const response = updateUser(userData._id, cardData);
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
+      setUserData(response.data);
+      //SI CHIUDE IL MODALE
       setOpenModal(false);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-      console.error("Errore nella fetch delle classi:", error);
+      console.error(
+        "Errore nell'aggiungere il metodo di pagamento in card: ",
+        error
+      );
     }
   };
 
@@ -46,14 +53,21 @@ function NSMForm({ setOpenModal, subscriptionId }) {
             required
           />
         </div>
+        {/* INPUT IN CUI SI INSERISCE IL NUMERO DELLA CARTA */}
+        {/* SI PASSANO COME PARAMETRI LO STATO DELLA CARD E LA RELATIVA FUNZIONE */}
         <CardNumber cardData={cardData} setCardData={setCardData} />
         <div className="grid grid-cols-3 gap-4">
+          {/* INPUNT IN CUI INSERIRE L'ANNO DI SCADENZA DELLA CARTA */}
           <CardExpireYear />
+          {/* INPUNT IN CUI INSERIRE IL MESE DI SCANDENZA DELLA CARTA */}
           <CardExpireMonth />
+          {/* INPUNT IN CUI INSERIRE IL CVC */}
           <CardCVC />
         </div>
       </div>
       <div className="flex items-center p-6 pt-0">
+        {/* BOTTONE DI SUBMIT DEL FORM */}
+        {/* SI PASSANO COME PARAMETRI LO STATO DELLA CARD E LA RELATIVA FUNZIONE */}
         <SubmitButton cardData={cardData} setCardData={setCardData} />
       </div>
     </form>

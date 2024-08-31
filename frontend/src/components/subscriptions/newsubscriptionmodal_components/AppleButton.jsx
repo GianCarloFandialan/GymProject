@@ -33,6 +33,7 @@ function AppleButton({ setOpenModal, subscriptionId }) {
   //CREO UNO STATO PER POTERMI GESTIRE IL CARICAMENTO NEL FRATTEMPO CHE SI DEFINISCE LA DATA
   const [isLoading, setIsLoading] = useState(true);
 
+  //USEEFFECT CHE AL CARICAMENTO DEL COMPONENTE AGGIORNA LO STATO DEL METODO DI PAGAMENTO
   useEffect(() => {
     setIsLoading(true);
     setAppleData({ ...appleData, start: date });
@@ -45,12 +46,18 @@ function AppleButton({ setOpenModal, subscriptionId }) {
   //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = async () => {
     try {
-      //const response = updateUser(userData._id, appleData);
-      //console.log(response);
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL METODO DI PAGAMENTO IN PAYPAL
+      const response = updateUser(userData._id, appleData);
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
+      setUserData(response.data);
+      //SI CHIUDE IL MODALE
       setOpenModal(false);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-      console.error("Errore nella fetch delle classi:", error);
+      console.error(
+        "Errore nell'aggiungere il metodo di pagamento in apple pay: ",
+        error
+      );
     }
   };
 

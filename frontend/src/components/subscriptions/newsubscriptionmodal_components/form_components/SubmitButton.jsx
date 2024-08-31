@@ -4,6 +4,7 @@ function SubmitButton({ cardData, setCardData }) {
   //CREO UNO STATO PER POTERMI GESTIRE IL CARICAMENTO NEL FRATTEMPO CHE SI DEFINISCE LA DATA
   const [isLoading, setIsLoading] = useState(true);
 
+  //AL CARICAMENTO DEL COMPOENNTE IMPOSTA LA DATA DI SOTTOSCRIZIONE ODIERNA
   useEffect(() => {
     setIsLoading(true);
     setCardData({ ...cardData, start: date });
@@ -26,6 +27,7 @@ function SubmitButton({ cardData, setCardData }) {
     mm = "0" + mm;
   }
 
+  //SI IMPOSTA LA DATA ODIERNA
   var date = yyyy + "-" + mm + "-" + dd;
 
   return (

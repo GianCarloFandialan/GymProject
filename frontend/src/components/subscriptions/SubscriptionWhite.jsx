@@ -21,6 +21,7 @@ function SubscriptionWhite({
 
   return (
     <motion.div
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       whileHover="hover"
       transition={{
         duration: 0.5,
@@ -65,8 +66,10 @@ function SubscriptionWhite({
         </ul>
       </div>
       <div className="mt-6 rounded-lg">
+        {/* SE L'UTENTE HA ESEGUITO L'ACCESSO SI MOSTRA IL BOTTONE PER REGISTRARSI */}
         {isLoggedIn ? (
           <>
+            {/* SE L'UTENTE È ABBONATO SI MOSTRA L BOTTONE MOSTRANTE QUALE ABBOANEMNTO È ATTUALE E NEGLI ALTRI IL BOTTONE PER MODIFICARE L'ABBONAMENTO */}
             {userData.hasOwnProperty("Subscription") ? (
               <>
                 {userData.Subscription.id == subscription._id ? (
@@ -74,6 +77,8 @@ function SubscriptionWhite({
                     ABBONAMENTO ATTUALE
                   </button>
                 ) : (
+                  //BOTTONE DI MODIFICA
+                  //SI PASSANO COME PARAMETRI: L'ID DELL'ABBONAMENTO, LA FUNZIONE PER GESTIRE LO STATO DEL MODALE E ANCHE LA FUNZIONE PER GESTIRE LO STATO DELL'ABBONAMENTO SELEZIONATO
                   <SWModifyButton
                     id={subscription._id}
                     setSelectedSubscription={setSelectedSubscription}
@@ -83,9 +88,12 @@ function SubscriptionWhite({
               </>
             ) : (
               <>
+                {/* SE PERO L'UTENTE È UN TRAINER NON COMPARE NULLA ALTRIMENTI ESCEIL BOTTONE PER REGISTRARSI */}
                 {userData.isTrainer ? (
                   <></>
                 ) : (
+                  //BOTTONE DI SOTTOSCRIZIONE
+                  //SI PASSANO COME PARAMETRI: L'ID DELL'ABBONAMENTO, LA FUNZIONE PER GESTIRE LO STATO DEL MODALE E ANCHE LA FUNZIONE PER GESTIRE LO STATO DELL'ABBONAMENTO SELEZIONATO
                   <SWSubscribeButton
                     setOpenModal={setOpenModal}
                     setSelectedSubscription={setSelectedSubscription}

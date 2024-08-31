@@ -1,7 +1,9 @@
 function SBModifyButton({ id, setOpenChangeModal, setSelectedSubscription }) {
   //FUNZIONE PER POTER GESTIRE IL CLICK
   const handleClick = () => {
+    //IMPOSTA L'ABBONAMENTO COME QUELLO SELEZIONATO
     setSelectedSubscription(id);
+    //APRE IL MODALE PER CAMBAIRE ABBONAMENTO
     setOpenChangeModal(true);
   };
 

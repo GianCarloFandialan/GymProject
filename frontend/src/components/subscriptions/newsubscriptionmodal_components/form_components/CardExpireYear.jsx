@@ -16,6 +16,7 @@ function CardExpireYear() {
     yearArray.push(currentYear + i);
   }
 
+  //AL CARICAMENTO DEL COMPONENTE IMPOSTA LE OPZIONI DEGLI ANNI
   useEffect(() => {
     setIsLoading(true);
     setYears(yearArray);

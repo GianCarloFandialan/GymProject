@@ -39,6 +39,7 @@ function RSMForm({ setOpenModal, newUser, setNewUser }) {
           />
         </div>
         {/* INPUT IN CUI SI INSERISCE IL NUMERO DELLA CARTA */}
+        {/* SI PASSANO COME PARAMETRI LO STATO DELLA CARD E LA RELATIVA FUNZIONE */}
         <RegisterCardNumber card={card} setCard={setCard} />
         <div className="grid grid-cols-3 gap-4">
           {/* INPUNT IN CUI INSERIRE L'ANNO DI SCADENZA DELLA CARTA */}

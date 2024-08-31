@@ -20,23 +20,22 @@ function Subscriptions() {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
+    //FUNZIONE CHE ESEGUE UNA CHIAMATA GET PER OTTENERE GLI ABBONAMENTI
     const fetchSubscriptions = async () => {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI ABBONAMENTI
         const response = await getSubscriptions();
-        console.log(response.data);
         //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptions(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch degli abbonamenti:", error);
+        console.error("Errore nella fetch degli abbonamenti: ", error);
       }
     };
 
-    //CHIAMIAMO LA FUNZIONE fetchContacts
+    //CHIAMIAMO LA FUNZIONE fetchSubscriptions
     fetchSubscriptions();
   }, []);
 
@@ -58,12 +57,16 @@ function Subscriptions() {
         </div>
       ) : (
         <div className="">
+          {/* MODALE PER LA SOTTOSCRIZIONE DI UN ABBONAMENTO */}
+          {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE IL MODALE STESSO, L'ABBONAMENTO SELEZIONATO */}
           {openModal && (
             <NewSubscriptionModal
               setOpenModal={setOpenModal}
               subscriptionId={selectedSubscription}
             />
           )}
+          {/* MODALE PER CAMBIARE ABBONAMENTO */}
+          {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE IL MODALE STESSO, L'ABBONAMENTO SELEZIONATO E GLI ABBONAMENTI IN TOTO */}
           {openChangeModal && (
             <ChangeSubscriptionModal
               setOpenChangeModal={setOpenChangeModal}
@@ -72,6 +75,7 @@ function Subscriptions() {
             />
           )}
           <motion.h2
+            //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
             initial={{ opacity: 0, y: "-10vh" }}
             whileInView={{ opacity: 1, y: "0" }}
             transition={{ duration: 1 }}
@@ -82,6 +86,7 @@ function Subscriptions() {
           <div className="relative items-center w-full mx-auto md:px-12 lg:px-16 max-w-7xl">
             <div>
               <div className="relative p-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 rounded-xl">
+                {/* SI ALTERNANO GLI ABBONAMENTI IN MODO TALE DA OTTENERE UN EFFETTO A SCACCHI CON I COMPONENTI: "SubscriptionWhite" ED "SubscriptionBlack" */}
                 {subscriptions.map((subscription, index) => {
                   if (index % 2 === 0) {
                     return (

@@ -26,13 +26,12 @@ function ChangeSubscriptionModal({
     );
 
     setNewSub(subscriptions.filter((sub) => sub._id == subscriptionId)[0].name);
-
-    console.log(userData);
   }, []);
 
   //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE DI MODIFICA
   const handleChange = async () => {
     try {
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE L'ABBONAMENTO
       const response = await updateUser(userData._id, {
         ...userData,
         Subscription: {
@@ -40,25 +39,31 @@ function ChangeSubscriptionModal({
           id: subscriptionId,
         },
       });
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
       setUserData(response.data);
+      //SI CHIUDE IL MODALE
       setOpenChangeModal(false);
     } catch (error) {
-      console.error(error);
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error("Errore nell'aggiornamento dell'abbonamento: ", error);
     }
   };
 
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={() => {
+          //AL CLICK FUORI DAL MODALE, ESSO SI CHIUDE
           setOpenChangeModal(false);
         }}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}
@@ -81,6 +86,7 @@ function ChangeSubscriptionModal({
               <span className="font-black text-xl"> "{newSub}"</span>
             </p>
             <div className="flex gap-2">
+              {/* AL CLICK CHIUDE IL MODALE */}
               <button
                 onClick={() => {
                   setOpenChangeModal(false);

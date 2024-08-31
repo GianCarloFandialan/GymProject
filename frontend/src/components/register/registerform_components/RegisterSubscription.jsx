@@ -83,7 +83,7 @@ function RegisterSubscription({
       ) : (
         <div className="relative items-center col-span-6 mb-6 -mx-8">
           <div className="justify-center space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 xl:mx-0 xl:grid-cols-3">
-            {/* SI ALTERNANO GLI ABBONAMENTI IN MODO TALE DA OTTENERE UN EFFETTO A SCACCHI CON ICOMPONENTI: "RegisterSubWhite" ED "RegisterSubBlack" */}
+            {/* SI ALTERNANO GLI ABBONAMENTI IN MODO TALE DA OTTENERE UN EFFETTO A SCACCHI CON I COMPONENTI: "RegisterSubWhite" ED "RegisterSubBlack" */}
             {subscriptions.map((subscription, index) => {
               if (index % 2 === 0) {
                 return (
