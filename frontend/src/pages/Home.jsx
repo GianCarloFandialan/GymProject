@@ -74,7 +74,7 @@ function Home() {
           <HomeSection contents={contents} setContents={setContents} />
           {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
-          {logoutSuccess && <LogoutModal setLogoutSuccess={setLogoutSuccess} />}
+          {logoutSuccess && <LogoutModal />}
         </div>
       )}
     </>

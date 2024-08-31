@@ -6,7 +6,7 @@ import NavSubscription from "./navbar_components/NavSubscription";
 import Sidebar from "./sidebar/Sidebar";
 import NavbarX from "./navbar_components/NavbarX";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
 import { IsLoggedInContext, UserDataContext } from "../../services/context";
 import { getUserData } from "../../services/api";
@@ -26,8 +26,8 @@ function Navbar() {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   //FUNZIONE PER POTER CHIUDERE LA SIDEBAR OGNI VOLTA CHE SI PREME SU UN LINK NELLA TENDINA
-  const handleLinkSidebar = (prova) => {
-    setOpenSidebar(prova);
+  const handleLinkSidebar = () => {
+    setOpenSidebar(false);
   };
 
   //SI IMPOSTANO LE VARIBILI PER L'ANIMAZIONE DELLA LISTA DELLA NAVBAR
@@ -74,9 +74,6 @@ function Navbar() {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
-  //HOOK PER LA NAVIGAZIONE
-  const navigate = useNavigate();
-
   //FUNZIONE PER GESTIRE IL LOGIN
   const checkLoginStatus = async () => {
     const token = localStorage.getItem("token");
@@ -115,14 +112,9 @@ function Navbar() {
     };
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    if (!userData.hasOwnProperty("Subscription")) {
-      //navigate("/abbonamenti");
-    }
-  }, []);
-
   return (
     <motion.nav
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       initial={{ y: -79 }}
       whileInView={{ y: 0 }}
       transition={{ duration: 1 }}
@@ -136,6 +128,7 @@ function Navbar() {
 
         {/* LISTA DEI LINK DI REINDIRIZZAMENTO VISIBILE SOLO SE LO SCHERMO È LARGO TRAMITE LE CLASSI DI TAILWIND */}
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{
             scale: 0,
           }}
@@ -149,6 +142,8 @@ function Navbar() {
           }}
           className="hidden lg:block"
         >
+          {/* LISTA DELLA NAVBAR */}
+          {/* SI PASSANO COME PARAMETRI: GLI ELEMENTI E LE VARIANTI PER LE ANIMAZIONI*/}
           <NavList
             listItems={listItems}
             linkItemVariants={linkItemVariants}
@@ -156,7 +151,7 @@ function Navbar() {
           />
         </motion.div>
 
-        {/* BOTTONO PER ABBONARSI OPPURE PER L'INTERFACCIA DELLA PAGINA UTENTE VISIBILI SOLO A SCHERMO LARGO GRAZIE ALLE CLASSI TAILWIND */}
+        {/* BOTTONE PER ABBONARSI OPPURE PER L'INTERFACCIA DELLA PAGINA UTENTE VISIBILI SOLO A SCHERMO LARGO GRAZIE ALLE CLASSI TAILWIND */}
         <div className="hidden lg:flex items-center gap-3">
           <NavUserIcon />
           {!isLoggedIn && <NavSubscription />}
@@ -195,12 +190,15 @@ function Navbar() {
       <AnimatePresence>
         {openSidebar && (
           <Sidebar>
+            {/* LISTA DELLA NAVBAR */}
+            {/* SI PASSANO COME PARAMETRI: GLI ELEMENTI, FUNZIONE PER GESTIRE LO STATO DELLA SIDEBAR E LE VARIANTI PER LE ANIMAZIONI*/}
             <NavList
               listItems={listItems}
               linkItemVariants={linkItemVariants}
               navLinksVariants={navLinksVariants}
               handleLinkSidebar={handleLinkSidebar}
             />
+            {/* SE L'UTENTE NON È REGISTRATO COMPARE IL BOTTONE PER REGSISTRARSI */}
             <div className="flex justify-center mt-10">
               {!isLoggedIn && <NavSubscription />}
             </div>

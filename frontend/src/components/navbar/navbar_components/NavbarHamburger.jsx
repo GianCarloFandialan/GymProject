@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 
 function NavbarHamburger({ setOpenSidebar, openSidebar }) {
   return (
-    //ICONA DELL'HAMBURGER MENU CON ANNESSA ANIMAZIONE
+    //ICONA DELL'HAMBURGER MENU CON ANNESSA ANIMAZIONE, AL CLICK APRE LA SIDEBAR
     <motion.svg
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       initial={{
         scale: 0,
       }}
@@ -21,7 +22,7 @@ function NavbarHamburger({ setOpenSidebar, openSidebar }) {
       strokeWidth={1.5}
       stroke="currentColor"
       className="size-7 lg:hidden cursor-pointer"
-      onClick={() => setOpenSidebar(!openSidebar)}
+      onClick={() => setOpenSidebar(true)}
     >
       <path
         strokeLinecap="round"

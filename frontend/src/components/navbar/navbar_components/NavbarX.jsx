@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 
 function NavbarX({ setOpenSidebar, openSidebar }) {
   return (
-    //ICONA PER CHIUDERE LA SIDEBAR CON ANNESSA ANIMAZIONE
+    //ICONA PER CHIUDERE LA SIDEBAR CON ANNESSA ANIMAZIONE, AL CLICK CHIUDE LA SIDEBAR
     <motion.svg
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       initial={{
         scale: 0,
       }}
@@ -21,7 +22,7 @@ function NavbarX({ setOpenSidebar, openSidebar }) {
       strokeWidth={1.5}
       stroke="currentColor"
       className="size-7 cursor-pointer"
-      onClick={() => setOpenSidebar(!openSidebar)}
+      onClick={() => setOpenSidebar(false)}
     >
       <path
         strokeLinecap="round"

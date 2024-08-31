@@ -27,6 +27,7 @@ function NavUserIconOption({ text, Icon, setOpen, link }) {
   };
 
   return (
+    //AL CLICK REINDERIZZA ALLA PAGINA CORRISPETTIVA
     <Link to={`/${link}`}>
       <motion.li
         variants={itemVariants}

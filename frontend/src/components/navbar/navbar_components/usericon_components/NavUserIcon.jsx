@@ -38,17 +38,17 @@ function NavUserIcon() {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
-  console.log(userData);
-
   return (
     <>
       <div className="flex items-center justify-center ">
         {/* NEL CASO SI PREMA SULL'ICONA SI ATTIVA O MENO UN'ANIMAZIONE */}
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           animate={open ? "open" : "closed"}
           className="relative z-50"
         >
           <motion.svg
+            //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
             initial={{
               scale: 0,
             }}
@@ -76,13 +76,16 @@ function NavUserIcon() {
           </motion.svg>
 
           <motion.ul
+            //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
             initial={wrapperVariants.closed}
             variants={wrapperVariants}
             style={{ originY: "top", translateX: "-90%" }}
             className="flex flex-col gap-2 rounded-lg bg-gray-800 p-2 shadow-xl absolute top-[120%] left-[50%] overflow-hidden "
           >
+            {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
+                {/* SE L'UTENTE NON È UN TRAINER MOSTRO LA FINESTRA MY ACCOUNT */}
                 {!userData.isTrainer && (
                   <NavUserIconOption
                     setOpen={setOpen}
@@ -91,6 +94,7 @@ function NavUserIcon() {
                     link="account"
                   />
                 )}
+                {/* SE L'UTENTE È ABBONATO PUO ENTRARE NELLA SEZIONE CHAT */}
                 {userData.hasOwnProperty("Subscription") && (
                   <NavUserIconOption
                     setOpen={setOpen}
@@ -99,6 +103,7 @@ function NavUserIcon() {
                     link="Chat"
                   />
                 )}
+                {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
                 {userData.isTrainer && (
                   <NavUserIconOption
                     setOpen={setOpen}
@@ -110,6 +115,7 @@ function NavUserIcon() {
                 <LogoutButton setOpen={setOpen} />
               </>
             ) : (
+              //MOSTRO LA FINESTRA DI LOGIN
               <NavUserIconOption
                 setOpen={setOpen}
                 Icon={RiLoginCircleLine}

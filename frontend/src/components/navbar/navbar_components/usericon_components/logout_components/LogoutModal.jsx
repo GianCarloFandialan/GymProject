@@ -2,26 +2,37 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useContext } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { IsLoggedInContext } from "../../../../../services/context";
+import {
+  IsLoggedInContext,
+  LogoutSuccessContext,
+} from "../../../../../services/context";
 
-function LogoutModal({ setLogoutSuccess }) {
+function LogoutModal() {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
 
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE IL MODALE NEL CASO DI LOGOUT AVVENUTO CON SUCCESSO
+  const { logoutSuccess, setLogoutSuccess } = useContext(LogoutSuccessContext);
+
   //CREO UNA FUNZIONE PER GESTIRMI IL LOGOUT
   const handleLogoutClick = () => {
+    //SI MODIFICA LO STATO DEL CONTEXT EL CASO DI LOGOUT
     setLogoutSuccess(false);
+    //SI RIMUOVE IL TOKEN DI ACCESSO DAL LOCAL STORAGE
     localStorage.removeItem("token");
+    //SI REINDERIZZA ALLA HOMEPAGE
     navigate("/");
+    //SI MODIFICA LO STATO DI LOGIN IN FALSO
     setIsLoggedIn(false);
   };
 
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -29,6 +40,7 @@ function LogoutModal({ setLogoutSuccess }) {
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}

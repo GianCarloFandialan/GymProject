@@ -74,23 +74,40 @@ function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
             className="flex flex-col gap-2 rounded-lg bg-gray-800 p-2 shadow-xl absolute top-[120%] left-[50%] overflow-hidden "
             onClick={() => setOpenSidebar(!openSidebar)}
           >
+            {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                <NavUserIconOption
-                  setOpen={setOpen}
-                  Icon={FiEdit}
-                  text="Il mio account"
-                  link="account"
-                />
-                <NavUserIconOption
-                  setOpen={setOpen}
-                  Icon={IoChatbubblesOutline}
-                  text="Chat"
-                  link="Chat"
-                />
+                {/* SE L'UTENTE NON È UN TRAINER MOSTRO LA FINESTRA MY ACCOUNT */}
+                {!userData.isTrainer && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={FiEdit}
+                    text="Il mio account"
+                    link="account"
+                  />
+                )}
+                {/* SE L'UTENTE È ABBONATO PUO ENTRARE NELLA SEZIONE CHAT */}
+                {userData.hasOwnProperty("Subscription") && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={IoChatbubblesOutline}
+                    text="Chat"
+                    link="Chat"
+                  />
+                )}
+                {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
+                {userData.isTrainer && (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={IoChatbubblesOutline}
+                    text="Chat"
+                    link="Chat"
+                  />
+                )}
                 <LogoutButton setOpen={setOpen} />
               </>
             ) : (
+              //MOSTRO LA FINESTRA DI LOGIN
               <NavUserIconOption
                 setOpen={setOpen}
                 Icon={RiLoginCircleLine}

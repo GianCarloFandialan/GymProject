@@ -39,6 +39,7 @@ function LogoutButton({ setOpen }) {
     <>
       <motion.li
         variants={itemVariants}
+        //AL CLICK CAMBIA LO STATO DEL LOGOUT IN SUCCESSO, CHIUDE LA TENDINA E REINDERIZZA ALA HOMEPAGE
         onClick={() => {
           setLogoutSuccess(true);
           setOpen(false);
