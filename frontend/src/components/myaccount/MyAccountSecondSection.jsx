@@ -23,17 +23,17 @@ function MyAccountSecondSection() {
   //SI CREA UNO STATO PER POTER GESTIRE LA LISTA DEI BENEFIT DELL'ATTUALE ABBONAMENTO DELL'ASS.TO
   const [subscriptionBenefits, setSubscriptionBenefits] = useState("");
 
-  //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMTA API PER OTTENERE GLI ABBONAMENTI E SI FILTRA QUELLO DELL'ASS.TO
+  //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI E SI FILTRA QUELLO DELL'ASS.TO
   useEffect(() => {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    //  FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE GLI ABBONAMENTI
+    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
     const fetchSubscriptions = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI ABBONAMENTI
+        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI ABBONAMENTI
         const response = await getSubscriptions();
-        // AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
+        //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptionBenefits(
           response.data.filter(
             (subscription) => subscription._id == userData.Subscription.id
@@ -42,12 +42,12 @@ function MyAccountSecondSection() {
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
-        // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+        //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
         console.error("Errore nella fetch degli abbonamenti:", error);
       }
     };
 
-    // CHIAMIAMO LA FUNZIONE fetchContacts
+    //CHIAMIAMO LA FUNZIONE fetchContacts
     fetchSubscriptions();
   }, [userData]);
 

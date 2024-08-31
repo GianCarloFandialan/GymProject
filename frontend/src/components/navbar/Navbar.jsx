@@ -55,7 +55,7 @@ function Navbar() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut", // Add ease-out easing function
+        ease: "easeOut", //Add ease-out easing function
       },
     },
     exit: {
@@ -63,7 +63,7 @@ function Navbar() {
       y: "50%",
       transition: {
         duration: 0.1,
-        ease: "easeOut", // Add ease-out easing function
+        ease: "easeOut", //Add ease-out easing function
       },
     },
   };
@@ -96,7 +96,7 @@ function Navbar() {
     }
   };
 
-  // HOOK PER ACCEDERE AI PARAMETRI DELL'URL CORRENTE
+  //HOOK PER ACCEDERE AI PARAMETRI DELL'URL CORRENTE
   const location = useLocation();
 
   //USE EFFECT CHE SI ATTIVA ALL'ACCESSO O LOGOUT DELL'UTENTE
@@ -105,7 +105,7 @@ function Navbar() {
 
     //EVENT LISTENER PER CONTROLLARE LO STATO DI LOGIN
     window.addEventListener("storage", checkLoginStatus);
-    // EVENTO PER IL CAMBIO DI STATO
+    //EVENTO PER IL CAMBIO DI STATO
     window.addEventListener("loginStateChange", checkLoginStatus);
 
     //RIMUOVO L'EVENT LISTENER QUANDO IL COMPONENTE VIENE SMONTATO
@@ -117,7 +117,7 @@ function Navbar() {
 
   useEffect(() => {
     if (!userData.hasOwnProperty("Subscription")) {
-      // navigate("/abbonamenti");
+      //navigate("/abbonamenti");
     }
   }, []);
 

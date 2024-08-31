@@ -10,9 +10,9 @@ const classSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "classes"
-  },
+    collection: "classes",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'CLASSES' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'CLASSES' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Classes", classSchema);

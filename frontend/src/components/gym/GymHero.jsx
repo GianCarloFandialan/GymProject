@@ -17,24 +17,24 @@ function GymHero() {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    // FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE IL CONTENUTO OPPORTUNO
+    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE IL CONTENUTO OPPORTUNO
     const fetchContent = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I CONTENUTI
+        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I CONTENUTI
         const response = await getContents();
-        // AGGIORNA LO STATO CON I DATI DEI CONTENUTI
+        //AGGIORNA LO STATO CON I DATI DEI CONTENUTI
         setContents(
           response.data.filter((content) => content.category == "gyms")
         );
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
-        // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+        //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
         console.error("Errore nella fetch del contenuti:", error);
       }
     };
 
-    // CHIAMIAMO LA FUNZIONE fetchContent
+    //CHIAMIAMO LA FUNZIONE fetchContent
     fetchContent();
   }, []);
 
@@ -43,7 +43,7 @@ function GymHero() {
 
   return (
     <>
-      {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
+      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
       {isLoading ? (
         <div className="h-screen relative overflow-hidden">
           <FullPageSpinner />

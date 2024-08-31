@@ -9,9 +9,9 @@ const subscriptionSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "subscriptions"
-  },
+    collection: "subscriptions",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'SUBSCRIPTIONS' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'SUBSCRIPTIONS' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Subscription", subscriptionSchema);

@@ -8,9 +8,9 @@ const messageSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "messages"
-  },
+    collection: "messages",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'MESSAGES' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'MESSAGES' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Message", messageSchema);

@@ -10,9 +10,9 @@ const gymSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "gyms"
-  },
+    collection: "gyms",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'GYMS' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'GYMS' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Gym", gymSchema);

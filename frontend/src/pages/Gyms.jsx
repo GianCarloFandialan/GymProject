@@ -7,63 +7,58 @@ import GymHero from "../components/gym/GymHero";
 import Closer from "../components/footer/Closer";
 
 function Gyms() {
-
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   //STATO PER MOMEMORIZZARE L'ARRAY DELLE PALESTRE
-  const [gyms, setGyms] = useState([])
+  const [gyms, setGyms] = useState([]);
 
-  //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMTA API PER OTTENERE LE PALESTRE
+  //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE LE PALESTRE
   useEffect(() => {
     //AGGIORNO LO STATO DELLO SPINNER
-    setIsLoading(true)
+    setIsLoading(true);
 
-    //  FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE LE PALESTRE
+    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE LE PALESTRE
     const fetchGyms = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE PALESTRE
+        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE PALESTRE
         const response = await getGyms();
-        // AGGIORNA LO STATO CON I DATI DELLE PALESTRE
+        //AGGIORNA LO STATO CON I DATI DELLE PALESTRE
         setGyms(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
-        setIsLoading(false)        
+        setIsLoading(false);
       } catch (error) {
-        // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+        //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
         console.error("Errore nella fetch delle palestre:", error);
       }
     };
 
-    // CHIAMIAMO LA FUNZIONE fetchGyms
+    //CHIAMIAMO LA FUNZIONE fetchGyms
     fetchGyms();
-  }, [])
+  }, []);
 
   return (
     <>
-      {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
-        {isLoading ?
+      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
+      {isLoading ? (
         <div className="h-screen relative overflow-hidden">
-          <FullPageSpinner/>
+          <FullPageSpinner />
         </div>
-        :
+      ) : (
         <div>
-          <GymHero/>
+          <GymHero />
           {gyms.map((gym, index) => {
             if (index % 2 === 0) {
-              return(
-                <GymSectionLeft gym={gym} key={gym._id}/>
-              )
+              return <GymSectionLeft gym={gym} key={gym._id} />;
             } else {
-              return (
-                <GymSectionRight gym={gym} key={gym._id}/>
-              )
+              return <GymSectionRight gym={gym} key={gym._id} />;
             }
           })}
-          <Closer/>
+          <Closer />
         </div>
-      }
+      )}
     </>
-  )
+  );
 }
 
-export default Gyms
+export default Gyms;

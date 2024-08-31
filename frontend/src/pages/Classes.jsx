@@ -7,62 +7,59 @@ import ClassHero from "../components/classes/ClassHero";
 import Closer from "../components/footer/Closer";
 
 function Classes() {
-
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   //STATO PER MOMEMORIZZARE L'ARRAY DELLE PALESTRE
-  const [classes, setClasses] = useState([])
+  const [classes, setClasses] = useState([]);
 
   //AL CARICAMENTO DEL COMPONENTE ESEGUO LA CHIAMATA API PER OTTENERE LE CLASSI
   useEffect(() => {
     //AGGIORNO LO STATO DELLO SPINNER
-    setIsLoading(true)
+    setIsLoading(true);
 
+    //FUNZIONE ASINCRONA PER OTTENRE LE CLASSI
     const fetchClasses = async () => {
       try {
-        // EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE CLASSI
+        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI LE CLASSI
         const response = await getClasses();
-        console.log(response.data);
-        // AGGIORNA LO STATO CON I DATI DELLE CLASSI
+        //AGGIORNA LO STATO CON I DATI DELLE CLASSI
         setClasses(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
-        setIsLoading(false)        
+        setIsLoading(false);
       } catch (error) {
-        // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch delle classi:", error);
+        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+        console.error("Errore nella fetch delle classi: ", error);
       }
     };
-    // CHIAMIAMO LA FUNZIONE fetchClasses
+    //CHIAMIAMO LA FUNZIONE fetchClasses
     fetchClasses();
-  }, [])
+  }, []);
 
   return (
     <>
-      {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
-      {isLoading ?
+      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
+      {isLoading ? (
         <div className="h-screen relative overflow-hidden">
-          <FullPageSpinner/>
+          <FullPageSpinner />
         </div>
-        :
+      ) : (
         <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center md:mx-auto">
-          <ClassHero/>
+          {/* HERO DELLA SEZIONE */}
+          <ClassHero />
+          {/* PER DARE QUELL'EFFETTO ALTERNATO ALLA PAGINA FACCIO SI CHE IN MODO ALTERNATO LE CLASSI VENGANO SUDDIVIE IN ClassSectionLeft(DISPOSTE A SINISTRA) E IN ClassSectionRight(DISPOSTE A DESTRA) */}
           {classes.map((lesson, index) => {
             if (index % 2 === 0) {
-              return(
-                <ClassSectionLeft lesson={lesson} key={lesson._id}/>
-              )
+              return <ClassSectionLeft lesson={lesson} key={lesson._id} />;
             } else {
-              return (
-                <ClassSectionRight lesson={lesson} key={lesson._id}/>
-              )
+              return <ClassSectionRight lesson={lesson} key={lesson._id} />;
             }
           })}
-          <Closer/>
+          <Closer />
         </div>
-      }
+      )}
     </>
-  )
+  );
 }
 
-export default Classes
+export default Classes;

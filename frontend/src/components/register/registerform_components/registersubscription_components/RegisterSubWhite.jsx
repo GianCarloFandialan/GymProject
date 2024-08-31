@@ -6,7 +6,7 @@ function RegisterSubWhite({
   selectedSubscription,
   setOpenModal,
 }) {
-  // VARIANTI PER LE ANIMAZIONI DELLA CARD UNA VOLTA SELEZIONATO L'ABBONAMENTO
+  //VARIANTI PER LE ANIMAZIONI DELLA CARD UNA VOLTA SELEZIONATO L'ABBONAMENTO
   const cardVariants = {
     open: {
       scale: 1.2,

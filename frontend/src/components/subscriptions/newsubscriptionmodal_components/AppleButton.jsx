@@ -45,11 +45,11 @@ function AppleButton({ setOpenModal, subscriptionId }) {
   //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = async () => {
     try {
-      // const response = updateUser(userData._id, appleData);
-      // console.log(response);
+      //const response = updateUser(userData._id, appleData);
+      //console.log(response);
       setOpenModal(false);
     } catch (error) {
-      // SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+      //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
       console.error("Errore nella fetch delle classi:", error);
     }
   };

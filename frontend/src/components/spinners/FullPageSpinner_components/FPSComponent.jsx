@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 
-function FPSComponent( { text, radius, fontSize, letterSpacing } ) {
+function FPSComponent({ text, radius, fontSize, letterSpacing }) {
   const characters = text.split("");
 
   return (
-    // SINGOLO COMPONENTE SPINNER
-    <motion.div className="relative aspect-square" style={{ width: radius * 2 }}>
+    //SINGOLO COMPONENTE SPINNER
+    <motion.div
+      className="relative aspect-square"
+      style={{ width: radius * 2 }}
+    >
       <p aria-label={text} />
       <p aria-hidden="true" className="text">
         {characters.map((ch, i) => (
@@ -15,7 +18,7 @@ function FPSComponent( { text, radius, fontSize, letterSpacing } ) {
             style={{
               transformOrigin: `0 ${radius}px`,
               transform: `rotate(${i * letterSpacing}deg)`,
-              fontSize
+              fontSize,
             }}
           >
             {ch}
@@ -23,7 +26,7 @@ function FPSComponent( { text, radius, fontSize, letterSpacing } ) {
         ))}
       </p>
     </motion.div>
-  )
+  );
 }
 
-export default FPSComponent
+export default FPSComponent;

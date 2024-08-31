@@ -8,10 +8,10 @@ import { IsLoggedInContext } from "../../../../services/context";
 import LogoutButton from "./logout_components/LogoutButton";
 
 function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
-  // SI CREA UNO STATO PER POTER GESTIRE IL DROPDOWN MENU AL CLICK SULL'ICONA DELL'UTENTE
+  //SI CREA UNO STATO PER POTER GESTIRE IL DROPDOWN MENU AL CLICK SULL'ICONA DELL'UTENTE
   const [open, setOpen] = useState(false);
 
-  // VARIANTI PER LE ANIMAZIONI DEL WRAPPER DEL DROPDOWN MENU NEL CASO SIA APERTO O CHIUSO
+  //VARIANTI PER LE ANIMAZIONI DEL WRAPPER DEL DROPDOWN MENU NEL CASO SIA APERTO O CHIUSO
   const wrapperVariants = {
     open: {
       scaleY: 1,

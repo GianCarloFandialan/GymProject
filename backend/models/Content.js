@@ -9,9 +9,9 @@ const contentSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "contents"
-  },
+    collection: "contents",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'CONTENTS' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'CONTENTS' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Content", contentSchema);

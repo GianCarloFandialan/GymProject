@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function NavbarHamburger({ setOpenSidebar, openSidebar }) {
   return (
-    // ICONA DELL'HAMBURGER MENU CON ANNESSA ANIMAZIONE
+    //ICONA DELL'HAMBURGER MENU CON ANNESSA ANIMAZIONE
     <motion.svg
       initial={{
         scale: 0,

@@ -7,9 +7,9 @@ const contactSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: "contacts"
-  },
+    collection: "contacts",
+  }
 );
 
-// CREA ED ESPORTA IL MODELLO 'CONTACTS' BASATO SULLO SCHEMA DEFINITO
+//CREA ED ESPORTA IL MODELLO 'CONTACTS' BASATO SULLO SCHEMA DEFINITO
 export default mongoose.model("Contacts", contactSchema);

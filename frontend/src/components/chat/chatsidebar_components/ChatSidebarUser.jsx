@@ -19,7 +19,7 @@ function ChatSidebarUser({ user, setChatter }) {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
-    //FUNZIONE CHE ESEGUE UNA CHIAMTA API PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE
+    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE
     const fetchSingleUser = async () => {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I DATI SEL SINGOLO UTENTE INTERLOCUTORE
@@ -48,7 +48,7 @@ function ChatSidebarUser({ user, setChatter }) {
 
   return (
     <>
-      {/* SE LA CHIAMATA NON È ANCORA TERMIANTA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
+      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
       {isLoading ? (
         <div className="h-screen relative overflow-hidden">
           <FullPageSpinner />

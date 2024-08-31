@@ -1,31 +1,30 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
-function ContactDetails( {contact } ) {
-
+function ContactDetails({ contact }) {
   //SI IMPOSTANO LE VARIABILI PER LE ANIMAZIONI DEGLI ELEMENTI DELLA LISTA
   const linkItemVariants = {
-    hidden: { opacity: 0, y: '50%' },
+    hidden: { opacity: 0, y: "50%" },
     visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            ease: "easeOut" // Add ease-out easing function
-
-        },
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut", //Add ease-out easing function
+      },
     },
     exit: {
-        opacity: 0,
-        y: '50%',
-        transition: {
-            duration: 0.1,
-            ease: "easeOut" // Add ease-out easing function
-        }
+      opacity: 0,
+      y: "50%",
+      transition: {
+        duration: 0.1,
+        ease: "easeOut", //Add ease-out easing function
+      },
     },
   };
 
   return (
     <motion.details
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       variants={linkItemVariants}
       className="group border-s-4 border-black bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden w-[75vw] lg:w-[90vw] mx-auto my-4"
       close="true"
@@ -51,11 +50,9 @@ function ContactDetails( {contact } ) {
         </span>
       </summary>
 
-      <p className="mt-4 leading-relaxed text-gray-700">
-        {contact.answer}
-      </p>
+      <p className="mt-4 leading-relaxed text-gray-700">{contact.answer}</p>
     </motion.details>
-  )
+  );
 }
 
-export default ContactDetails
+export default ContactDetails;
