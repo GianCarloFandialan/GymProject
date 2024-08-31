@@ -19,6 +19,7 @@ function LoginForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    //SE IL VALORE CHE VIENE MODIFICATO È QUELLO DELLA EMAIL FACCIO SI CHE LA LETTERA INIZIALE SIA MINUSCOLA
     if (name === "email") {
       setLoginData({
         ...loginData,
@@ -44,14 +45,18 @@ function LoginForm() {
       localStorage.setItem("token", response.token); //MEMORIZZA IL TOKEN DI AUTENTICAZIONE NEL LOCALSTORAGE
 
       //TRIGGER L'EVENTO STORAGE PER AGGIORNARE LA NAVBAR
-      window.dispatchEvent(new Event("storage")); //SCATENA UN EVENTO DI STORAGE PER AGGIORNARE COMPONENTI COME LA NAVBAR
+      window.dispatchEvent(new Event("storage"));
+      //SCATENA UN EVENTO DI STORAGE PER AGGIORNARE COMPONENTI COME LA NAVBAR
 
+      //AGGIORNO LO STATO CHE MI AIUTA A GESTIRE IL MODALE DI ACCESSO CON SUCCESSO
       setSuccess(true);
     } catch (error) {
+      //SE L'ERRORE È RELATIVO ALLE CREDENZIALI, MODIFICO LO STATO CHE MI AIUTA AGESTIRE IL MODALE NEL CASO DI CREDENZIALI NON VALIDE
       if (error.response.data.message == `Credenziali non valide`) {
         setLoginError(true);
       } else {
-        console.error("Errore nella registrazione dell'utente", error);
+        //ALTRIMENTI SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+        console.error("Errore nel login dell'utente: ", error);
       }
     }
   };
@@ -70,15 +75,13 @@ function LoginForm() {
   //HOOK PER ACCEDERE AI PARAMETRI DELL'URL CORRENTE
   const location = useLocation();
 
-  //EFFECT CHE VIENE TRIGGERATO OGNI VOLTA LA OCATION E IL NAVIGATE CAMBIANO
+  //USEEFFECT CHE VIENE TRIGGERATO OGNI VOLTA LA LOCATION E IL NAVIGATE CAMBIANO
   useEffect(() => {
     //SI ESTRAGGONO I PARAMETRI DALL'URL
     const params = new URLSearchParams(location.search);
-    console.log("params", params);
 
     //SI CERCA UN PARAMETRO 'TOKEN' NELL'URL
     const token = params.get("token");
-    console.log("Received token:", token);
 
     if (token) {
       //SE SI TROVA UN TOKEN, SI SALVA NEL LOCALSTORAGE
@@ -93,6 +96,8 @@ function LoginForm() {
 
   return (
     <>
+      {/* MODALE DI SUCCESSO NEL LOGIN CHE SI APRE SOLO NEL CASO DI SUCCESSO */}
+      {/* PASSO COME PARAMETR: LA FUNZIONE PER MODIFICARE LO STATO CHE MI GESTISCE IL MODALE IN CASO DI SUCCESSO ED IL CONTENUTO DEL MODALE*/}
       {success && (
         <ModalSuccess
           setSuccess={setSuccess}
@@ -100,6 +105,8 @@ function LoginForm() {
           textBody={"Il login è avvenuto con successo!"}
         />
       )}
+      {/* MODALE NEL CASO DI ERRORE CAUSATO DA CREDENZIALI NON VALIDE NEL LOGIN */}
+      {/* PASSO COME PARAMETR: LA FUNZIONE PER MODIFICARE LO STATO CHE MI GESTISCE IL MODALE IN CASO DI ERRORE ED IL CONTENUTO DEL MODALE*/}
       {loginError && (
         <LoginModalError
           text={"Password o Email errata, ritenta"}
@@ -123,6 +130,7 @@ function LoginForm() {
               autoComplete="email"
               required=""
               placeholder="Inserisci l'email"
+              //IL VALORE È LEGATO ALLO STATO DEI DATI DI LOGIN, AL CAMBIAMENTO DEL VALORE DELLA CASELLA CAMBIA ANCHE LO STATO
               onChange={handleChange}
               value={loginData.email}
               className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
@@ -146,6 +154,7 @@ function LoginForm() {
               autoComplete="current-password"
               required=""
               placeholder="Inserisci la password"
+              //IL VALORE È LEGATO ALLO STATO DEI DATI DI LOGIN, AL CAMBIAMENTO DEL VALORE DELLA CASELLA CAMBIA ANCHE LO STATO
               onChange={handleChange}
               value={loginData.password}
               className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
@@ -156,6 +165,7 @@ function LoginForm() {
           <div className="flex items-center flex-[4]">
             <p className="text-center text-sm text-gray-500">
               Non hai un account?
+              {/* BOTTONE CHE REINDERIZZA ALLA PAGINE DI REGISTRAZIONE IN CASO L'UTENTE NON ABBIA ANCORA UN ACCOUNT */}
               <Link
                 to={"/registrazione"}
                 className="underline ml-1 font-bold"

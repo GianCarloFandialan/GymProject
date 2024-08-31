@@ -2,11 +2,7 @@ import FullPageSpinner from "../components/spinners/FullPageSpinner";
 import { useEffect, useState } from "react";
 import { getContents } from "../services/api";
 import HomeHero from "../components/home/HomeHero";
-import {
-  HomePageContext,
-  IsLoggedInContext,
-  LogoutSuccessContext,
-} from "../services/context";
+import { IsLoggedInContext, LogoutSuccessContext } from "../services/context";
 import HomeCarousel from "../components/home/HomeCarousel";
 import HomeSection from "../components/home/HomeSection";
 import Closer from "../components/footer/Closer";
@@ -14,7 +10,7 @@ import { useContext } from "react";
 import LogoutModal from "../components/navbar/navbar_components/usericon_components/logout_components/LogoutModal";
 
 function Home() {
-  //STATO PER MOMEMORIZZARE L'ARRAY DEI CONTENUTI
+  //STATO PER MEMORIZZARE L'ARRAY DEI CONTENUTI
   const [contents, setContents] = useState([]);
 
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -25,14 +21,12 @@ function Home() {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
+    //FUNZIONE ASINCRONA CHE EFFETTUA UNA CHIAMATA PER OTTENERE I CONENTUI DELLA HOMEPAGE
     const fetchContent = async () => {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I CONTENUTI
         const response = await getContents();
-        console.log(
-          response.data.filter((content) => content.category == "homepage")
-        );
-        //AGGIORNA LO STATO CON I DATI DEI CONTENUTI
+        //AGGIORNA LO STATO CON I DATI DEI CONTENUTI DELLA HOMEPAGE
         setContents(
           response.data.filter((content) => content.category == "homepage")
         );
@@ -40,7 +34,7 @@ function Home() {
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch del contenuti:", error);
+        console.error("Errore nella fetch del contenuti: ", error);
       }
     };
     //CHIAMIAMO LA FUNZIONE fetchContent
@@ -53,7 +47,7 @@ function Home() {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE IL MODALE NEL CASO DI LOGOUT AVVENUTO CON SUCCESSO
   const { logoutSuccess, setLogoutSuccess } = useContext(LogoutSuccessContext);
 
-  //USEEFFECT CHE REINDERIZZA RIMUOVE IL TOKEN DI ACCESSO UNA VOLTA ESEGUITO IL LOGOUT
+  //USEEFFECT CHE RIMUOVE IL TOKEN DI ACCESSO UNA VOLTA ESEGUITO IL LOGOUT
   useEffect(() => {
     if (logoutSuccess == false) {
       localStorage.removeItem("token");
@@ -68,17 +62,20 @@ function Home() {
           <FullPageSpinner />
         </div>
       ) : (
-        <HomePageContext.Provider value={{ contents, setContents }}>
-          <div>
-            <HomeHero />
-            <HomeCarousel />
-            <HomeSection />
-            <Closer />
-            {logoutSuccess && (
-              <LogoutModal setLogoutSuccess={setLogoutSuccess} />
-            )}
-          </div>
-        </HomePageContext.Provider>
+        <div>
+          {/* HERO DELLA HOMEPAGE */}
+          {/* PASSO COME PARAMETRI LO STATO DEI CONENUTI DELLA HOMEPAGE E LA USA RELATIVA FUNZIONE PER MODIFICARLO */}
+          <HomeHero contents={contents} setContents={setContents} />
+          {/* CAROSELLO CHE REINDERIZZA ALLA VARIE PAGINE */}
+          {/* PASSO COME PARAMETRI LO STATO DEI CONENUTI DELLA HOMEPAGE E LA USA RELATIVA FUNZIONE PER MODIFICARLO */}
+          <HomeCarousel contents={contents} setContents={setContents} />
+          {/* SEZIONE DELLA HOMEPAGE */}
+          {/* PASSO COME PARAMETRI LO STATO DEI CONENUTI DELLA HOMEPAGE E LA USA RELATIVA FUNZIONE PER MODIFICARLO */}
+          <HomeSection contents={contents} setContents={setContents} />
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
+          <Closer />
+          {logoutSuccess && <LogoutModal setLogoutSuccess={setLogoutSuccess} />}
+        </div>
       )}
     </>
   );

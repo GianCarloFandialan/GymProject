@@ -92,6 +92,7 @@ function Contacts() {
             </span>
             . Siamo qui per aiutarti con qualsiasi domanda o chiarimento!
           </p>
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </motion.div>
       )}

@@ -6,6 +6,7 @@ function NotFound() {
   return (
     <>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{
           scale: 0,
         }}
@@ -38,6 +39,7 @@ function NotFound() {
             Torna alla homepage
           </Link>
         </div>
+        {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
         <Closer />
       </motion.div>
     </>

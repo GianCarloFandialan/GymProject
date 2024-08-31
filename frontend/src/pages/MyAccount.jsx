@@ -15,7 +15,7 @@ function MyAccount() {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
-  //SE L'UTENTE NON HA ESEGUITO L'ACCESSO OPPURE è UN TRAINER VIENE REINDIRIZZATO ALLA HOMEPAGE
+  //USEEFFECT AL CARCIAMENTO DEL COMPONENTE CHE, NEL CASO IN CUI L'UTENTE NON HA ESEGUITO L'ACCESSO OPPURE È UN TRAINER REINDERIZZA ALLA HOMEPAGE
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/");
@@ -28,10 +28,14 @@ function MyAccount() {
 
   return (
     <>
+      {/* IL CONTENUTO PRINCIPALE VIENE SUDDIVISO IN DUE SEZIONI */}
       <main className="-mb-20">
+        {/* PRIMA SEZIONE */}
         <MyAccounFirstSection />
+        {/* SECONDA SEZIONE */}
         <MyAccountSecondSection />
       </main>
+      {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
       <Closer />
     </>
   );

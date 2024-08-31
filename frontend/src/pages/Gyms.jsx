@@ -10,7 +10,7 @@ function Gyms() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
-  //STATO PER MOMEMORIZZARE L'ARRAY DELLE PALESTRE
+  //STATO PER MEMORIZZARE L'ARRAY DELLE PALESTRE
   const [gyms, setGyms] = useState([]);
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE LE PALESTRE
@@ -29,11 +29,11 @@ function Gyms() {
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch delle palestre:", error);
+        console.error("Errore nella fetch delle palestre: ", error);
       }
     };
 
-    //CHIAMIAMO LA FUNZIONE fetchGyms
+    //SI CHIAMA LA FUNZIONE fetchGyms
     fetchGyms();
   }, []);
 
@@ -46,7 +46,10 @@ function Gyms() {
         </div>
       ) : (
         <div>
+          {/* HERO DELLA SEZIONE PALESTRE */}
           <GymHero />
+          {/* PER DARE QUELL'EFFETTO ALTERNATO ALLA PAGINA FACCIO SI CHE IN MODO ALTERNATO LE CLASSI VENGANO SUDDIVIE IN GymSectionLeft(DISPOSTE A SINISTRA) E IN GymSectionRight(DISPOSTE A DESTRA) */}
+          {/* SI PASSA COME PARAMETRO L'OGGETTO DEI CONENUTI DELLA PALESTRA */}
           {gyms.map((gym, index) => {
             if (index % 2 === 0) {
               return <GymSectionLeft gym={gym} key={gym._id} />;
@@ -54,6 +57,7 @@ function Gyms() {
               return <GymSectionRight gym={gym} key={gym._id} />;
             }
           })}
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </div>
       )}

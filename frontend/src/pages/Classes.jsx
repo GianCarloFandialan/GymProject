@@ -10,7 +10,7 @@ function Classes() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
-  //STATO PER MOMEMORIZZARE L'ARRAY DELLE PALESTRE
+  //STATO PER MEMORIZZARE L'ARRAY DELLE PALESTRE
   const [classes, setClasses] = useState([]);
 
   //AL CARICAMENTO DEL COMPONENTE ESEGUO LA CHIAMATA API PER OTTENERE LE CLASSI
@@ -48,6 +48,7 @@ function Classes() {
           {/* HERO DELLA SEZIONE */}
           <ClassHero />
           {/* PER DARE QUELL'EFFETTO ALTERNATO ALLA PAGINA FACCIO SI CHE IN MODO ALTERNATO LE CLASSI VENGANO SUDDIVIE IN ClassSectionLeft(DISPOSTE A SINISTRA) E IN ClassSectionRight(DISPOSTE A DESTRA) */}
+          {/* SI PASSA COME PARAMETRO L'OGGETTO DEI CONENUTI DELLA CLASSE */}
           {classes.map((lesson, index) => {
             if (index % 2 === 0) {
               return <ClassSectionLeft lesson={lesson} key={lesson._id} />;
@@ -55,6 +56,7 @@ function Classes() {
               return <ClassSectionRight lesson={lesson} key={lesson._id} />;
             }
           })}
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </div>
       )}

@@ -12,7 +12,7 @@ function Trainers() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
-  //STATO PER MOMEMORIZZARE L'ARRAY DEI TRAINERS
+  //STATO PER MEMORIZZARE L'ARRAY DEI TRAINERS
   const [trainers, setTrainers] = useState([]);
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE I TRAINERS
@@ -90,6 +90,7 @@ function Trainers() {
               );
             }
           })}
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </div>
       )}

@@ -9,6 +9,7 @@ function CPMPaypalButton({ setOpenModal }) {
   //SI CREA UNA FUNZIONE PER POTER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = async () => {
     try {
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER OTTENERE AGGIORNARE IL METODO DI PAGAMENTO IN PAYPAL
       const response = await updateUser(userData._id, {
         ...userData,
         Subscription: {
@@ -16,11 +17,16 @@ function CPMPaypalButton({ setOpenModal }) {
           method: { type: "paypal" },
         },
       });
-      console.log(response.data);
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
       setUserData(response.data);
+      //SI CHIUDE IL MODALE
       setOpenModal(false);
     } catch (error) {
-      console.error(error);
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error(
+        "Errore nell'aggiornamento del metodo di pagamento in paypal: ",
+        error
+      );
     }
   };
 

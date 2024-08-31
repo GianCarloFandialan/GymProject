@@ -12,9 +12,8 @@ function Login() {
   //HOOK PER LA NAVIGAZIONE
   const navigate = useNavigate();
 
+  //USEEFFECT CHE SI ATTIVA OGNI VOLTA CHE LO STATO DI LOGIN DELL'UTENTE CAMBIA, NEL CASO ESSO ABBIA FATTO L'ACCESSO, ESSO VIENE REINDIRIZZATO NELLA HOMEPAGE
   useEffect(() => {
-    console.log(isLoggedIn);
-
     if (isLoggedIn) {
       navigate("/");
     }
@@ -23,6 +22,7 @@ function Login() {
   return (
     <>
       <motion.section
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{
           scale: 0,
         }}
@@ -40,6 +40,7 @@ function Login() {
           Login
         </h2>
         <div className="w-[90vw] md:w-[60vw] lg:w-[30vw] p-10 rounded-3xl shadow-2xl">
+          {/* FORM IN CUI INSERIRE I DATI PER FARE IL LOGIN NORMALEMENTE */}
           <LoginForm />
           <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
@@ -50,6 +51,7 @@ function Login() {
             </div>
           </div>
           <div>
+            {/* BOTTONE CHE TI PERMETTE DI EFFETTUARE L'ACCESSO TRAMITE GOOGLE */}
             <GoogleButton text={"Login"} />
           </div>
         </div>

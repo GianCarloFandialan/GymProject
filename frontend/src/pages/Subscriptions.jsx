@@ -12,7 +12,7 @@ function Subscriptions() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
-  //STATO PER MOMEMORIZZARE L'ARRAY DEGLI ABBONAMENTI
+  //STATO PER MEMORIZZARE L'ARRAY DEGLI ABBONAMENTI
   const [subscriptions, setSubscriptions] = useState([]);
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
@@ -108,6 +108,7 @@ function Subscriptions() {
               </div>
             </div>
           </div>
+          {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </div>
       )}

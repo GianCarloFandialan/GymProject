@@ -15,10 +15,12 @@ function CPMForm({ setOpenModal }) {
   //SI CREA UNO STATO PER GESTIRE IL VALORE DEL NUMERO DELLA CARTA
   const [number, setNumber] = useState("");
 
-  //SI CREA UNA FUNZIONE PER POTER GESTIRE IL SUBMIT DEL FORM
+  //SI CREA UNA FUNZIONE ASINCRONA PER POTER GESTIRE IL SUBMIT DEL FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER OTTENERE AGGIORNARE IL METODO DI PAGAMENTO IN CARD CON IL NUMERO DI CARTA
       const response = await updateUser(userData._id, {
         ...userData,
         Subscription: {
@@ -26,11 +28,17 @@ function CPMForm({ setOpenModal }) {
           method: { type: "card", cardNumber: number },
         },
       });
-      console.log(response.data);
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
       setUserData(response.data);
+      //SI CHIUDE IL MODALE
+
       setOpenModal(false);
     } catch (error) {
-      console.error(error);
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error(
+        "Errore nell'aggiornamento del metodo di pagamento in card: ",
+        error
+      );
     }
   };
 
@@ -46,14 +54,20 @@ function CPMForm({ setOpenModal }) {
             required
           />
         </div>
+        {/* INPUT IN CUI INSERIRE IL NUMEROI DELLA CARTA */}
+        {/* SI PASSA COME PARAMETRO LO STATO DEL NUMERO DELLA CARTA E LA SUA RELATAIVA FUNZIONE */}
         <CPMCardNumber number={number} setNumber={setNumber} />
         <div className="grid grid-cols-3 gap-4">
+          {/* INPUNT IN CUI INSERIRE L'ANNO DI SCADENZA DELLA CARTA */}
           <CardExpireYear />
+          {/* INPUNT IN CUI INSERIRE IL MESE DI SCANDENZA DELLA CARTA */}
           <CardExpireMonth />
+          {/* INPUNT IN CUI INSERIRE IL CVC */}
           <CardCVC />
         </div>
       </div>
       <div className="flex items-center p-6 pt-0">
+        {/* BOTTONE DI SUBMIT DEL FORM */}
         <CPMSubmitButton />
       </div>
     </form>

@@ -1,26 +1,25 @@
-import { useContext, useState } from "react"
-import { HomePageContext } from "../../services/context"
+import { useState } from "react";
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-function HomeSection() {
-
-  //USO IL CONTEXT
-  const { contents, setContents } = useContext(HomePageContext)
-
-  //CREO UNO STATO PER GESTIRE SOLO I DATI DELL'HERO CHE MI SERVONO
-  const [ sectionContent, setSectionContent ] = useState(contents.filter(hero => hero.title == "CHI SIAMO?"))
+function HomeSection({ contents, setContents }) {
+  //CREO UNO STATO PER GESTIRE SOLO I DATI DELLA SEZIONE CHE MI SERVONO
+  const [sectionContent, setSectionContent] = useState(
+    contents.filter((hero) => hero.title == "CHI SIAMO?")
+  );
 
   return (
     <>
       <motion.section
-        initial={{ opacity:0, x: -60}} 
-        whileInView={{ opacity:1, x: 0 }}
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{
           amount: "all",
-          margin: "200px", 
+          margin: "200px",
         }}
-        transition={{duration: 1.5,}}
+        transition={{ duration: 1.5 }}
       >
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
@@ -33,7 +32,9 @@ function HomeSection() {
             </div>
 
             <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">{sectionContent[0].title}</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">
+                {sectionContent[0].title}
+              </h2>
 
               <p className="mt-4 text-gray-600 text-xl">
                 {sectionContent[0].description}
@@ -52,7 +53,7 @@ function HomeSection() {
         </div>
       </motion.section>
     </>
-  )
+  );
 }
 
-export default HomeSection
+export default HomeSection;

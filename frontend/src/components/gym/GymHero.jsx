@@ -10,7 +10,7 @@ function GymHero() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
   const [isLoading, setIsLoading] = useState(true);
 
-  //STATO PER MOMEMORIZZARE L'ARRAY DEI CONTENUTI
+  //STATO PER MEMORIZZARE L'ARRAY DEI CONTENUTI
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function GymHero() {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I CONTENUTI
         const response = await getContents();
-        //AGGIORNA LO STATO CON I DATI DEI CONTENUTI
+        //AGGIORNA LO STATO CON I DATI DEL CONTENUTO DELLA HERO
         setContents(
           response.data.filter((content) => content.category == "gyms")
         );
@@ -30,7 +30,7 @@ function GymHero() {
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch del contenuti:", error);
+        console.error("Errore nella fetch del contenuti: ", error);
       }
     };
 
@@ -50,6 +50,7 @@ function GymHero() {
         </div>
       ) : (
         <motion.section
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ opacity: 0, y: "-35vh" }}
           whileInView={{ opacity: 1, y: "0" }}
           transition={{ duration: 1.3 }}
@@ -76,6 +77,7 @@ function GymHero() {
                 {contents[0].description}
               </p>
               <div className="flex flex-row justify-center space-y-0 ">
+                {/* SE L'UTENTE NON HA EFFETTUATO L'ACCESSO COMPRARE IL BOTTONE PER ISCRIVERSI CHE REINDERIZZA ALLA PAGINA DI REGISTRAZIONE */}
                 {!isLoggedIn && (
                   <Link to="/registrazione">
                     <button
