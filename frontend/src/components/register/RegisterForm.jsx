@@ -12,6 +12,7 @@ import RegisterEmail from "./registerform_components/RegisterEmail";
 import RegisterPassword from "./registerform_components/RegisterPassword";
 import RegisterConfirmPassword from "./registerform_components/RegisterConfirmPassword";
 import RegisterSubscriptionModal from "./registerform_components/RegisterSubscriptionModal";
+import RegisterPasswordError from "./RegisterPasswordError";
 
 function RegisterForm() {
   //SI CREA UNO STATO PER POTERMI GESTIRE I DATI DEL NUOVO UTENTE CHE SI STA REGISTRANDO
@@ -160,6 +161,12 @@ function RegisterForm() {
           confirmPassword={confirmPassword}
           setConfirmPassword={setConfirmPassword}
         />
+        {passwordError && (
+          <RegisterPasswordError
+            text={"ATTENZIONE! Le due password inserite non corrispondono"}
+            setPasswordError={setPasswordError}
+          />
+        )}
 
         <div className="col-span-6">
           <label htmlFor="MarketingAccept" className="flex gap-4">
