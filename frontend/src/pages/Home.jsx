@@ -62,7 +62,7 @@ function Home() {
 
   return (
     <>
-      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTNEUTO */}
+      {/* SE LA CHIAMATA NON È ANCORA TERMINATA ESCE LO SPINNER ALTRIMENTI SI CARICA IL CONTENUTO */}
       {isLoading ? (
         <div className="h-screen relative overflow-hidden">
           <FullPageSpinner />
