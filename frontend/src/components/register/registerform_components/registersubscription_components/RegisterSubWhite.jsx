@@ -75,6 +75,7 @@ function RegisterSubWhite({
             {subscription.description}
           </span>
           <div className="mt-6">
+            {/* AL CLICK MODIFICA LO STATO DELL'ABBOANEMNTO SELEZIONATO ED IPMPOSTA QUELLO DI QUESTA CARD E APRE IL MODALE PER IL METODO DI PAGAMENTO */}
             <button
               className={
                 selectedSubscription == subscription._id

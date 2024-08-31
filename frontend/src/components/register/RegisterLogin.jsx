@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function RegisterLogin() {
   return (
@@ -14,12 +14,17 @@ function RegisterLogin() {
 
       <div>
         <p className="px-2 text-neutral-600 bg-white text-center">
-          Hai già un account? 
-          <Link to={"/login"} className="text-gray-700 underline"> Log in</Link>.
+          Hai già un account?
+          {/* AL LICK REINDERIZZA ALLA PAGINA DI LOGIN */}
+          <Link to={"/login"} className="text-gray-700 underline">
+            {" "}
+            Log in
+          </Link>
+          .
         </p>
-      </div>  
+      </div>
     </>
-  )
+  );
 }
 
-export default RegisterLogin
+export default RegisterLogin;

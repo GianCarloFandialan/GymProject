@@ -13,9 +13,11 @@ function RegisterSubscriptionModal({
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        //AL CLICK SI CHIUDE IL MODALE E SI IMPOSTA L'ABBONAMENTO SELEZIONA A NULLO
         onClick={() => {
           setOpenModal(false);
           setSelectedSubscription("");
@@ -43,12 +45,17 @@ function RegisterSubscriptionModal({
                 className="grid grid-cols-3 gap-4"
                 style={{ outline: "none" }}
               >
+                {/* BOTTONE PER L'OPZIONE CARTA COME METODO DI PAGAMENTO */}
                 <CardButton />
+                {/* BOTTONE PER L'OPZIONE PAYPAL COME METODO DI PAGAMENTO */}
+                {/* SI PASSA COME PARAMETRO: LA FUNZIONE PER GESTIRE LO STATO CHE AIUTA A GESTIRE IL MODALE PER CAMBIARE IL METODO DI PAGAMENTO, LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE  */}
                 <RegisterPaypalButton
                   setOpenModal={setOpenModal}
                   newUser={newUser}
                   setNewUser={setNewUser}
                 />
+                {/* BOTTONE PER L'OPZIONE APPLE PAY COME METODO DI PAGAMENTO */}
+                {/* SI PASSA COME PARAMETRO: LA FUNZIONE PER GESTIRE LO STATO CHE AIUTA A GESTIRE IL MODALE PER CAMBIARE IL METODO DI PAGAMENTO, LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
                 <RegisterAppleButton
                   setOpenModal={setOpenModal}
                   newUser={newUser}
@@ -56,6 +63,7 @@ function RegisterSubscriptionModal({
                 />
               </div>
             </div>
+            {/* FORM PER INSERIRE I DATI DELLA CARTA */}
             <RSMForm
               setOpenModal={setOpenModal}
               newUser={newUser}

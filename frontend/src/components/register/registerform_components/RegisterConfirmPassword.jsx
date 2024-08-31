@@ -15,6 +15,7 @@ function RegisterConfirmPassword({ confirmPassword, setConfirmPassword }) {
         placeholder="Reinserisci la password"
         required
         autoComplete="on"
+        //AL MODIFICARSI DEL VALORE DELL'INPUT, CAMBIA PURE LO STATO
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"

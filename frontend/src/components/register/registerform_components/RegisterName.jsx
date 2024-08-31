@@ -9,6 +9,7 @@ function RegisterName({ newUser, handleChange }) {
         type="text"
         name="nome"
         id="nome"
+        //AL MODIFICARSI DEL VALORE DELL'INPUT, CAMBIA PURE LO STATO
         value={newUser.nome}
         required
         placeholder="Inserisci il nome"

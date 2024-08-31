@@ -12,6 +12,7 @@ function RegisterSurname({ newUser, handleChange }) {
         type="text"
         name="cognome"
         id="cognome"
+        //AL MODIFICARSI DEL VALORE DELL'INPUT, CAMBIA PURE LO STATO
         value={newUser.cognome}
         required
         placeholder="Inserisci il cognome"

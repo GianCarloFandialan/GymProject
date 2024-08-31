@@ -1,6 +1,7 @@
 function RegisterPaypalButton({ setOpenModal, newUser, setNewUser }) {
   //FUNZIONE PER GESTIRE IL CLICK DEL BOTTONE
   const handleClick = () => {
+    //SI AGGIORNA LO STATO DEL NUOVO UTENTE
     setNewUser({
       ...newUser,
       Subscription: {

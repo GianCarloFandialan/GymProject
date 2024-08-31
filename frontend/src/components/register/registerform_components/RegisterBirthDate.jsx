@@ -1,5 +1,4 @@
-function RegisterBirthDate( { handleChange, newUser } ) {
-
+function RegisterBirthDate({ handleChange, newUser }) {
   //VARIBAILI CHE MI SERVONO PER AVERE COME INPUT UN'ETÀ MINIMA DI 18 ANNI
   var date = new Date();
   var dd = date.getDate();
@@ -16,13 +15,20 @@ function RegisterBirthDate( { handleChange, newUser } ) {
     mm = "0" + mm;
   }
 
-  var maxYear = yyyy - 18; //CALCOLO LA DATA MINIMA (>18)
+  var maxYear = yyyy - 18; //CALCOLO L'ANNO MINIMO (>18)
 
+  //CALCOLO LA DATA MINIMA
   var max = maxYear + "-" + mm + "-" + dd;
 
   return (
     <div className="col-span-6 sm:col-span-3">
-      <label htmlFor="dataDiNascita" className="block text-sm font-medium text-gray-700"> Data di Nascita </label>
+      <label
+        htmlFor="dataDiNascita"
+        className="block text-sm font-medium text-gray-700"
+      >
+        {" "}
+        Data di Nascita{" "}
+      </label>
 
       <input
         type="date"
@@ -31,11 +37,11 @@ function RegisterBirthDate( { handleChange, newUser } ) {
         required
         max={max}
         onChange={handleChange}
-        value={newUser.dataDiNascita} 
+        value={newUser.dataDiNascita}
         className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
       />
     </div>
-  )
+  );
 }
 
-export default RegisterBirthDate
+export default RegisterBirthDate;

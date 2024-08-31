@@ -15,6 +15,7 @@ function RegisterEmail({ children, newUser, handleChange }) {
         type="email"
         name="email"
         id="email"
+        //AL MODIFICARSI DEL VALORE DELL'INPUT, CAMBIA PURE LO STATO
         value={newUser.email}
         required
         placeholder="Inserisci l'email "

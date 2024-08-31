@@ -31,12 +31,14 @@ function RegisterForm() {
   function handleChange(e) {
     const { name, value } = e.target;
 
+    //NOME E COGNOME INIZIANO SEMPRE CON LA MAIUSCOLA
     if (name === "nome" || name === "cognome") {
       setNewUser({
         ...newUser,
         [name]: value.charAt(0).toUpperCase() + value.slice(1),
       });
     } else if (name === "email") {
+      //L'EMAIL INIZIA SEMPRE IN MINUSCOLO
       setNewUser({
         ...newUser,
         email: value.charAt(0).toLowerCase() + value.slice(1),
@@ -65,24 +67,29 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //SE LA PASSWORD PER CONFERMARE NON CORRISPONDE SI FA COMPARIRE L'ALERT DI NON CORRISPONDENZA DELLE PASSWORD
     if (confirmPassword !== newUser.password) {
       setPasswordError(true);
       return;
     }
 
     try {
+      //EFFETTUA UNA RICHIESTA POST AL BACKEND PER CREARE UN NUOVO UTENTE
       await createUser(newUser);
-      console.log(newUser);
+      //SI RIMUOVE L'ERRORE DI NON CORRSIPONDENZA DELLE PASSWORD
       setPasswordError(false);
+      //SI AGGIORNA LO STATO SI SUCCESSO DELLA REGISTRAZIONE
       setSuccess(true);
     } catch (error) {
+      //SE L'EMAIL è GIA STATA UTILIZZATA SI MODIFICA LO STATO PER MOSTRARE L'ERRORE
       if (
         error.response.data.message ==
         `E11000 duplicate key error collection: gymproject.users index: email_1 dup key: { email: \"${newUser.email}\" }`
       ) {
         setExistingError(true);
       } else {
-        console.error("Errore nella registrazione dell'utente", error);
+        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+        console.error("Errore nella registrazione dell'utente: ", error);
       }
     }
   };
@@ -99,6 +106,8 @@ function RegisterForm() {
 
   return (
     <>
+      {/* MODALE DI REGISTRAZIONE CON SUCCESSO */}
+      {/* SI PASSA COME PARAMETRO IL CONTENUTO DEL MODLAE E LA FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE STESSO */}
       {success && (
         <ModalSuccess
           setSuccess={setSuccess}
@@ -106,6 +115,8 @@ function RegisterForm() {
           textBody={"La registrazione è avvenuta con successo!"}
         />
       )}
+      {/* MODALE DI REGISTRAZIONE ABBOANAMENTO */}
+      {/* SI PASSANO COME PARAMETRI: IL CONTENUTO DEL MODLAE E LA FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE STESSO, LA FUNZONE DELLO STATO CHE GESTICE L'ABBONAMENTO SELEZIONATO, LO STATO DEL NUOVO UTENTE ELA SUA RELATIVA FUNZIONE  */}
       {openModal && (
         <RegisterSubscriptionModal
           setOpenModal={setOpenModal}
@@ -115,11 +126,18 @@ function RegisterForm() {
         />
       )}
       <form className="mt-16 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
+        {/* INPUT DI INSERIMENTO DEL NOME */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
         <RegisterName newUser={newUser} handleChange={handleChange} />
 
+        {/* INPUT DI INSERIMENTO DEL COGNOME */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
         <RegisterSurname newUser={newUser} handleChange={handleChange} />
 
+        {/* INPUT DI INSERIMENTO DELL'EMAIL */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
         <RegisterEmail newUser={newUser} handleChange={handleChange}>
+          {/* NEL CASO DI EMAIL GIà UTILIZZATA ESCE L'ERRORE */}
           {existingError && (
             <RegisterModalError
               text={"L'email con cui stai provando a registrarti è già in uso"}
@@ -128,10 +146,16 @@ function RegisterForm() {
           )}
         </RegisterEmail>
 
+        {/* INPUT DI INSERIMENTO DELLA DATA DI NASCITA */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
         <RegisterBirthDate handleChange={handleChange} newUser={newUser} />
 
+        {/* INPUT DI INSERIMENTO DELLA PASSWORD */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}
         <RegisterPassword handleChange={handleChange} newUser={newUser} />
 
+        {/* INPUT DI INSERIMENTO DELLA PASSWORD */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE LA CONFERMA DELLA PASSWORD E LA RELATIVA FUNZIONE */}
         <RegisterConfirmPassword
           confirmPassword={confirmPassword}
           setConfirmPassword={setConfirmPassword}
@@ -170,6 +194,8 @@ function RegisterForm() {
           </p>
         </div>
 
+        {/* SEZIONE PER SCEGLIERE L'ABBONAMENTO PER REGISTRARSI */}
+        {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE, LA FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE DI SELEZIONE DEL METODO DI PAGAMENTO, STATO PER SELEZIONE L'ABBONAMENTO E RELATIVA FUNZIONE */}
         <RegisterSubscription
           newUser={newUser}
           setNewUser={setNewUser}
@@ -188,6 +214,7 @@ function RegisterForm() {
 
           <div>/</div>
 
+          {/* BOTTONE PER REGISTRARSI TRAMITE GOOGLE */}
           <GoogleButton text={"Registrati "} />
         </div>
       </form>

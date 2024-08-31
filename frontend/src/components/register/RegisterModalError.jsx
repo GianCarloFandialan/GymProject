@@ -1,18 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 
-function RegisterModalError( { setExistingError, text } ) {
-
+function RegisterModalError({ setExistingError, text }) {
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => {setExistingError(false)}}
+        //AL CLICK FUORI DAL MODALE, ESSO SI CHIUDE
+        onClick={() => {
+          setExistingError(false);
+        }}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}
@@ -23,15 +27,14 @@ function RegisterModalError( { setExistingError, text } ) {
             <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-red-700 grid place-items-center mx-auto">
               <FiAlertCircle />
             </div>
-            <h3 className="text-3xl font-bold text-center mb-2">
-              Errore!
-            </h3>
-            <p className="text-center mb-6">
-              {text}
-            </p>
+            <h3 className="text-3xl font-bold text-center mb-2">Errore!</h3>
+            <p className="text-center mb-6">{text}</p>
             <div className="flex gap-2">
+              {/* //AL CLICK FUORI CHIUDE IL MODALE */}
               <button
-                onClick={() => {setExistingError(false)}}
+                onClick={() => {
+                  setExistingError(false);
+                }}
                 className="bg-white hover:opacity-90 transition-opacity text-red-700 font-semibold w-full py-2 rounded"
               >
                 Chiudi
@@ -44,4 +47,4 @@ function RegisterModalError( { setExistingError, text } ) {
   );
 }
 
-export default RegisterModalError
+export default RegisterModalError;

@@ -11,6 +11,7 @@ function RSMForm({ setOpenModal, newUser, setNewUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //SI AGGIORNA LO STATO DEL NUOVO UTENTE
     setNewUser({
       ...newUser,
       Subscription: {
@@ -37,14 +38,19 @@ function RSMForm({ setOpenModal, newUser, setNewUser }) {
             required
           />
         </div>
+        {/* INPUT IN CUI SI INSERISCE IL NUMERO DELLA CARTA */}
         <RegisterCardNumber card={card} setCard={setCard} />
         <div className="grid grid-cols-3 gap-4">
+          {/* INPUNT IN CUI INSERIRE L'ANNO DI SCADENZA DELLA CARTA */}
           <CardExpireYear />
+          {/* INPUNT IN CUI INSERIRE IL MESE DI SCANDENZA DELLA CARTA */}
           <CardExpireMonth />
+          {/* INPUNT IN CUI INSERIRE IL CVC */}
           <CardCVC />
         </div>
       </div>
       <div className="flex items-center p-6 pt-0">
+        {/* BOTTONE DI SUBMIT DEL FORM */}
         <RSMFormSubmitButton />
       </div>
     </form>

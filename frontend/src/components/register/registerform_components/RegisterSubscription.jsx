@@ -27,7 +27,6 @@ function RegisterSubscription({
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI GLI ABBONAMENTI
         const response = await getSubscriptions();
-        console.log(response.data);
         //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptions(response.data);
         //AGGIORNO LO STATO DELLO SPINNER
@@ -38,7 +37,7 @@ function RegisterSubscription({
       }
     };
 
-    //CHIAMIAMO LA FUNZIONE fetchContacts
+    //CHIAMIAMO LA FUNZIONE fetchSubscriptions
     fetchSubscriptions();
   }, []);
 
@@ -58,10 +57,12 @@ function RegisterSubscription({
     mm = "0" + mm;
   }
 
+  //SI IMPOSTA LA DATA ODIERNA
   var date = yyyy + "-" + mm + "-" + dd;
 
-  //OGNI VOLTA CHE SI SELEZIONA UN ABBONAMENTO, SI CAMBIA
+  //USEEFFECT OGNI VOLTA CHE SI SELEZIONA UN ABBONAMENTO
   useEffect(() => {
+    //SI AGGIORNA LO STATO DEL NUOVO UTENTE
     setNewUser({
       ...newUser,
       Subscription: {
@@ -82,6 +83,7 @@ function RegisterSubscription({
       ) : (
         <div className="relative items-center col-span-6 mb-6 -mx-8">
           <div className="justify-center space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 xl:mx-0 xl:grid-cols-3">
+            {/* SI ALTERNANO GLI ABBONAMENTI IN MODO TALE DA OTTENERE UN EFFETTO A SCACCHI CON ICOMPONENTI: "RegisterSubWhite" ED "RegisterSubBlack" */}
             {subscriptions.map((subscription, index) => {
               if (index % 2 === 0) {
                 return (
