@@ -29,7 +29,7 @@ function GymHero() {
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
-        //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
         console.error("Errore nella fetch del contenuti:", error);
       }
     };

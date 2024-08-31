@@ -48,7 +48,7 @@ function PaypalButton({ setOpenModal, subscriptionId }) {
       //console.log(response);
       setOpenModal(false);
     } catch (error) {
-      //SI LOGGANO EVENTUALI ERRORI NELLA CONSOLE
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
       console.error("Errore nella fetch delle classi:", error);
     }
   };
