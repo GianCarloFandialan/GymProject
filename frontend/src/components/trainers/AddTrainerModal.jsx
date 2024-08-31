@@ -12,30 +12,42 @@ function AddTrainerModal({
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
+  //FUNZIONE PER GESTIRE IL CLICK DI CONFERMA DI AGGIUNTA DELL'UTENTE
   const handleConfirmClick = async () => {
     try {
+      //EFFETTUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE I TRAINERS DELL'UTENTE
       const response = await updateUser(userData._id, {
         ...userData,
         trainerId: [...userData.trainerId, selectedTrainer._id],
       });
+      //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
       setUserData(response.data);
+      //SI CHIUDE IL MODALE
       setOpenModal(false);
+      //SI APRE IL MODALE DI AGGIUNTA CON SUCCESSO
       setOpenSuccessModal(true);
     } catch (error) {
-      console.error(error);
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error(
+        "Errore nell'aggiornamento dei trainer dell'utente: ",
+        error
+      );
     }
   };
 
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        //AL CLICK FUORI DAL MODALE, ESSO SI CHIUDE
         onClick={() => setOpenModal(false)}
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}
@@ -57,6 +69,7 @@ function AddTrainerModal({
               fra i propri trainer
             </p>
             <div className="flex gap-2">
+              {/* AL CLICK CHIUDE IL MODALE */}
               <button
                 onClick={() => {
                   setOpenModal(false);

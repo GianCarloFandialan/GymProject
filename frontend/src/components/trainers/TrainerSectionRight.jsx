@@ -12,10 +12,9 @@ function TrainerSectionRight({ trainer, setOpenModal, setSelectedTrainer }) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
 
-  console.log(userData.trainerId);
-
   return (
     <motion.section
+      //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
       initial={{ opacity: 0, x: 70 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{
@@ -64,10 +63,13 @@ function TrainerSectionRight({ trainer, setOpenModal, setSelectedTrainer }) {
                 })}
               </ul>
 
+              {/* SE L'UTENTE HA ESEGUITO L'ACCESSO */}
               {isLoggedIn && (
                 <>
+                  {/* SE L'UTENTE NON è UN TRAINER */}
                   {!userData.isTrainer && (
                     <>
+                      {/* SE L'UTENTE HA GIà AGGIUNTO IL TRAINER ESCE IL BOTTONE CHAT ALTRIMENTI QUQELLO PER AGGIUNGERLO */}
                       {userData.trainerId.includes(trainer._id) ? (
                         <ChatTrainerButton />
                       ) : (

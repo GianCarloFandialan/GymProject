@@ -9,6 +9,7 @@ function AddSuccessModal({ setOpenSuccessModal }) {
   return (
     <AnimatePresence>
       <motion.div
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -16,6 +17,7 @@ function AddSuccessModal({ setOpenSuccessModal }) {
         className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
       >
         <motion.div
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ scale: 0, rotate: "12.5deg" }}
           animate={{ scale: 1, rotate: "0deg" }}
           exit={{ scale: 0, rotate: "0deg" }}
@@ -29,6 +31,7 @@ function AddSuccessModal({ setOpenSuccessModal }) {
             <h3 className="text-3xl font-bold text-center mb-2">SUCCESSO</h3>
             <p className="text-center mb-6">Trainer aggiunto correttamente</p>
             <div className="flex gap-2">
+              {/* AL CLICK CHIUDE IL MODALE E REINDERIZZA ALLA PAGINA CHAT */}
               <button
                 onClick={() => {
                   setOpenSuccessModal(false), navigate("/chat");

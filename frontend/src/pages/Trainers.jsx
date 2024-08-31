@@ -33,7 +33,7 @@ function Trainers() {
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch dei trainers:", error);
+        console.error("Errore nella fetch dei trainers: ", error);
       }
     };
 
@@ -59,6 +59,8 @@ function Trainers() {
         </div>
       ) : (
         <div className=" lg:w-[calc(100vw_-_140px)] md:w-[calc(100vw_-_100px)] flex flex-col items-center md:mx-auto">
+          {/* MODALE DI CONFERMA DI AGGIUNTA DEL TRAINER */}
+          {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER GESTIRE LO STATO DEL MODALE, LO SATO DEL TRAINER SELEZIONATO E LA FUNZIONE PER GESTIRE LO STATO DEL MODALE NEL CASO DI SUCCESSO */}
           {openModal && (
             <AddTrainerModal
               setOpenModal={setOpenModal}
@@ -66,9 +68,12 @@ function Trainers() {
               setOpenSuccessModal={setOpenSuccessModal}
             />
           )}
+          {/* MODALE DI CONFERMA DI AGGIUNTA CON SUCCESSO DEL TRAINER */}
+          {/* SI PASSA COME PARAMETRO LA FUNZIONE PER GESTIRE LO STATO DEL MODALE NEL CASO DI SUCCESSO */}
           {openSuccessModal && (
             <AddSuccessModal setOpenSuccessModal={setOpenSuccessModal} />
           )}
+          {/* SI ALTERNANO I TRAINER PER EFFETTO VISIVO IN "TrainersSectionLeft" E "TrainerSectionRight" */}
           {trainers.map((trainer, index) => {
             if (index % 2 === 0) {
               return (
