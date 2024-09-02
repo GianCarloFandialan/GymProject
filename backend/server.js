@@ -35,7 +35,7 @@ const corsOptions = {
     //QUESTE SONO GLI URL DA CUI IL NOSTRO FRONTEND FARÀ RICHIESTE AL BACKEND.
     const whitelist = [
       "http://localhost:5173", //FRONTEND IN SVILUPPO
-      "https://gym-project-ygzb-gimpxdt85-giancarlofandialans-projects.vercel.app", //FRONTEND IN PRODUZIONE
+      "https://gym-project-ygzb.vercel.app", //FRONTEND IN PRODUZIONE
       "https://gymproject-ua1j.onrender.com", //URL DEL BACKEND
     ];
 
@@ -56,9 +56,10 @@ const corsOptions = {
 //PASSIAMO `corsOptions` a cors()
 app.use(cors(corsOptions));
 
+app.use(express.json()); //PARSING DEL CORPO DELLE RICHIESTE IN FORMATO JSON
+
 //APPLICAZIONE DEI MIDDLEWARE GLOBALI
 app.use(cors()); //Abilita CORS per tutte le rotte
-app.use(express.json()); //PARSING DEL CORPO DELLE RICHIESTE IN FORMATO JSON
 
 //CONFIGURAZIONE DELLA SESSIONE
 app.use(
@@ -95,6 +96,7 @@ app.use("/api/classes", classRoutes); //Rotte per le classi
 app.use("/api/subscriptions", subscriptionRoutes); //Rotte per gli abbonamenti
 app.use("/api/messages", messagesRoutes); //Rotte per i messaggi
 app.use("/api/contacts", contactRoutes); //Rotte per i contatti
+
 //DEFINIZIONE DELLA PORTA SU CUI IL SERVER ASCOLTERÀ
 const PORT = process.env.PORT || 5001;
 
