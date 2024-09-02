@@ -14,10 +14,7 @@ function MASSSubData({ start, method }) {
       </div>
       <div className="mb-2">
         <i className="fas fa-briefcase mr-2 text-lg">
-          -Metodo di pagamento:
-          {method == "card" ? " Carta di credito" : ""}
-          {method == "paypal" ? " Paypal" : ""}
-          {method == "applepay" ? " Apple Pay" : ""}
+          Metodo di pagamento: {method}
         </i>
       </div>
     </div>

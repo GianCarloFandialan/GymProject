@@ -80,7 +80,7 @@ function RegisterSubBlack({
               className={
                 selectedSubscription == subscription._id
                   ? "w-full items-center block px-10 py-3.5 text-base font-medium text-center text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                  : "w-full items-center block px-10 py-3.5 text-base font-medium text-center text-black transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                  : "flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-black rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-gray-800"
               }
               onClick={(e) => {
                 e.preventDefault();

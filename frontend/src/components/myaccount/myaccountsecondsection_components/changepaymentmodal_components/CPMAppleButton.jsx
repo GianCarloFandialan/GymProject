@@ -31,14 +31,13 @@ function CPMAppleButton({ setOpenModal }) {
   };
 
   return (
-    <div>
+    <div onClick={handleClick}>
       <button
         type="button"
         role="radio"
         value="apple"
         className="aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 peer sr-only"
         id="apple"
-        onClick={handleClick}
       ></button>
       <label
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&amp;:has([data-state=checked])]:border-primary text-white cursor-pointer"

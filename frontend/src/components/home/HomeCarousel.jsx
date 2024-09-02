@@ -21,7 +21,7 @@ const HomeCarousel = ({ contents, setContents }) => {
   return (
     <section
       ref={targetRef}
-      className="relative lg:h-[300vh] h-[130vh]  lg:-my-44 md:-my-72 -my-[300px]"
+      className="relative h-[170vh] lg:h-[300vh] md:h-[130vh] lg:-my-44 md:-my-72 -my-[200px]"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
