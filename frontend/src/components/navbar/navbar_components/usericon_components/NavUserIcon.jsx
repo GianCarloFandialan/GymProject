@@ -85,32 +85,30 @@ function NavUserIcon() {
             {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                {/* SE L'UTENTE NON È UN TRAINER MOSTRO LA FINESTRA MY ACCOUNT */}
-                {!userData.isTrainer && (
-                  <NavUserIconOption
-                    setOpen={setOpen}
-                    Icon={FiEdit}
-                    text="Il mio account"
-                    link="account"
-                  />
-                )}
-                {/* SE L'UTENTE È ABBONATO PUO ENTRARE NELLA SEZIONE CHAT */}
-                {userData.hasOwnProperty("Subscription") && (
-                  <NavUserIconOption
-                    setOpen={setOpen}
-                    Icon={IoChatbubblesOutline}
-                    text="Chat"
-                    link="Chat"
-                  />
-                )}
                 {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
-                {userData.isTrainer && (
+                {userData.isTrainer ? (
                   <NavUserIconOption
                     setOpen={setOpen}
                     Icon={IoChatbubblesOutline}
                     text="Chat"
                     link="Chat"
                   />
+                ) : (
+                  //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
+                  <>
+                    <NavUserIconOption
+                      setOpen={setOpen}
+                      Icon={FiEdit}
+                      text="Il mio account"
+                      link="account"
+                    />
+                    <NavUserIconOption
+                      setOpen={setOpen}
+                      Icon={IoChatbubblesOutline}
+                      text="Chat"
+                      link="Chat"
+                    />
+                  </>
                 )}
                 <LogoutButton setOpen={setOpen} />
               </>
