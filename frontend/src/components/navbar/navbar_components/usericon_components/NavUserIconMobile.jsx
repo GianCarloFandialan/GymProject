@@ -4,7 +4,10 @@ import { useContext, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { RiLoginCircleLine } from "react-icons/ri";
-import { IsLoggedInContext } from "../../../../services/context";
+import {
+  IsLoggedInContext,
+  UserDataContext,
+} from "../../../../services/context";
 import LogoutButton from "./logout_components/LogoutButton";
 
 function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
@@ -31,6 +34,9 @@ function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE LA PAGINE NEL CASO UN UTENTE ABBIA ESEGUITO L'ACCESSO
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext);
+
+  //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
+  const { userData, setUserData } = useContext(UserDataContext);
 
   return (
     <>
@@ -77,32 +83,30 @@ function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
             {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                {/* SE L'UTENTE NON È UN TRAINER MOSTRO LA FINESTRA MY ACCOUNT */}
-                {!userData.isTrainer && (
-                  <NavUserIconOption
-                    setOpen={setOpen}
-                    Icon={FiEdit}
-                    text="Il mio account"
-                    link="account"
-                  />
-                )}
-                {/* SE L'UTENTE È ABBONATO PUO ENTRARE NELLA SEZIONE CHAT */}
-                {userData.hasOwnProperty("Subscription") && (
-                  <NavUserIconOption
-                    setOpen={setOpen}
-                    Icon={IoChatbubblesOutline}
-                    text="Chat"
-                    link="Chat"
-                  />
-                )}
                 {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
-                {userData.isTrainer && (
+                {userData.isTrainer ? (
                   <NavUserIconOption
                     setOpen={setOpen}
                     Icon={IoChatbubblesOutline}
                     text="Chat"
                     link="Chat"
                   />
+                ) : (
+                  //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
+                  <>
+                    <NavUserIconOption
+                      setOpen={setOpen}
+                      Icon={FiEdit}
+                      text="Il mio account"
+                      link="account"
+                    />
+                    <NavUserIconOption
+                      setOpen={setOpen}
+                      Icon={IoChatbubblesOutline}
+                      text="Chat"
+                      link="Chat"
+                    />
+                  </>
                 )}
                 <LogoutButton setOpen={setOpen} />
               </>
