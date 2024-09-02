@@ -35,8 +35,8 @@ const corsOptions = {
     //QUESTE SONO GLI URL DA CUI IL NOSTRO FRONTEND FARÀ RICHIESTE AL BACKEND.
     const whitelist = [
       "http://localhost:5173", //FRONTEND IN SVILUPPO
-      "https://mern-blog-part-v.vercel.app/", //FRONTEND IN PRODUZIONE
-      "https://mern-blog-ctt3.onrender.com", //URL DEL BACKEND
+      "https://gym-project-ygzb.vercel.app/", //FRONTEND IN PRODUZIONE
+      "https://gymproject-ua1j.onrender.com", //URL DEL BACKEND
     ];
 
     if (process.env.NODE_ENV === "development") {
