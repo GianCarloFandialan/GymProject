@@ -28,6 +28,34 @@ dotenv.config();
 //SI CREA DELL'ISTANZA DELL'APPLICAZIONE EXPRESS
 const app = express();
 
+//CONFIGURAZIONE CORS
+const corsOptions = {
+  origin: function (origin, callback) {
+    //DEFINIAMO UNA WHITELIST DI ORIGINI CONSENTITE.
+    //QUESTE SONO GLI URL DA CUI IL NOSTRO FRONTEND FARÀ RICHIESTE AL BACKEND.
+    const whitelist = [
+      "http://localhost:5173", //FRONTEND IN SVILUPPO
+      "https://mern-blog-part-v.vercel.app/", //FRONTEND IN PRODUZIONE
+      "https://mern-blog-ctt3.onrender.com", //URL DEL BACKEND
+    ];
+
+    if (process.env.NODE_ENV === "development") {
+      //IN SVILUPPO, PERMETTIAMO ANCHE RICHIESTE SENZA ORIGINE (ES. POSTMAN)
+      callback(null, true);
+    } else if (whitelist.indexOf(origin) !== -1 || !origin) {
+      //IN PRODUZIONE, CONTROLLIAMO SE L'ORIGINE È NELLA WHITELIST
+      callback(null, true);
+    } else {
+      callback(new Error("PERMESSO NEGATO - CORS"));
+    }
+  },
+  credentials: true, //PERMETTE L'INVIO DI CREDENZIALI, COME NEL CASO DI AUTENTICAZIONE
+  //BASATA SU SESSIONI.
+};
+
+//PASSIAMO `corsOptions` a cors()
+app.use(cors(corsOptions));
+
 //APPLICAZIONE DEI MIDDLEWARE GLOBALI
 app.use(cors()); //Abilita CORS per tutte le rotte
 app.use(express.json()); //PARSING DEL CORPO DELLE RICHIESTE IN FORMATO JSON

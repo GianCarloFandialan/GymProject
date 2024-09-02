@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api";
+const API_URL = "https://gymproject-ua1j.onrender.com/api";
 
 //SI CONFIGURA UN'ISTANZA DI AXIOS CON L'URL DI BASE
 const api = axios.create({

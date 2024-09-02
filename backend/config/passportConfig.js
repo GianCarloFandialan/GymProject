@@ -10,7 +10,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       //L'URL A CUI GOOGLE REINDIZZERÀ DOPO L'AUTENTICAZIONE
-      callbackURL: `/api/auth/google/callback`,
+      callbackURL: `${process.env.BACKEND_URL}/api/auth/google/callback`,
     },
     //QUESTA FUNZIONE VIENE CHIAMATA QUANDO L'AUTENTICAZIONE GOOGLE HA SUCCESSO
     async (accessToken, refreshToken, profile, done) => {
