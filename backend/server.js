@@ -35,7 +35,7 @@ const corsOptions = {
     //QUESTE SONO GLI URL DA CUI IL NOSTRO FRONTEND FARÀ RICHIESTE AL BACKEND.
     const whitelist = [
       "http://localhost:5173", //FRONTEND IN SVILUPPO
-      "https://gym-project-ygzb.vercel.app/", //FRONTEND IN PRODUZIONE
+      "https://gym-project-ygzb-gimpxdt85-giancarlofandialans-projects.vercel.app", //FRONTEND IN PRODUZIONE
       "https://gymproject-ua1j.onrender.com", //URL DEL BACKEND
     ];
 
