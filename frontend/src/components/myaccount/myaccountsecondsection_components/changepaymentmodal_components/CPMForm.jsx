@@ -31,7 +31,6 @@ function CPMForm({ setOpenModal }) {
       //SI AGGIORNANO I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO CON LA RISPOSTA ALLA CHIAMATA
       setUserData(response.data);
       //SI CHIUDE IL MODALE
-
       setOpenModal(false);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

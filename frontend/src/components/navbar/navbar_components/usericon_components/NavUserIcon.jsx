@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import NavUserIconOption from "./NavUserIconOption";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { RiLoginCircleLine } from "react-icons/ri";
@@ -37,6 +37,16 @@ function NavUserIcon() {
 
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
+
+  //SI USA UNO STATO PER POTER GESTIRE LA PAGINA NEL CASO L'UTENTE CHE ABBIA FATTO L'ACCESSO SIA UN ADMIN
+  const [isAdmin, setIsAdmin] = useState();
+
+  //USEEFFECT CHE SI ATTIVA OGNI VOLTA CHE IL CONTEXT USERDATA SI MODIFICA
+  useEffect(() => {
+    if (userData.isAdmin) {
+      setIsAdmin(true);
+    } else setIsAdmin(false);
+  }, [userData]);
 
   return (
     <>
@@ -85,29 +95,34 @@ function NavUserIcon() {
             {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
-                {userData.isTrainer ? (
-                  <NavUserIconOption
-                    setOpen={setOpen}
-                    Icon={IoChatbubblesOutline}
-                    text="Chat"
-                    link="Chat"
-                  />
-                ) : (
-                  //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
+                {/* SE L'UTENTE È UN ADMIN PUO FARE SOLO IL LOGOUT */}
+                {!isAdmin && (
                   <>
-                    <NavUserIconOption
-                      setOpen={setOpen}
-                      Icon={FiEdit}
-                      text="Il mio account"
-                      link="account"
-                    />
-                    <NavUserIconOption
-                      setOpen={setOpen}
-                      Icon={IoChatbubblesOutline}
-                      text="Chat"
-                      link="Chat"
-                    />
+                    {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
+                    {userData.isTrainer ? (
+                      <NavUserIconOption
+                        setOpen={setOpen}
+                        Icon={IoChatbubblesOutline}
+                        text="Chat"
+                        link="Chat"
+                      />
+                    ) : (
+                      //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
+                      <>
+                        <NavUserIconOption
+                          setOpen={setOpen}
+                          Icon={FiEdit}
+                          text="Il mio account"
+                          link="account"
+                        />
+                        <NavUserIconOption
+                          setOpen={setOpen}
+                          Icon={IoChatbubblesOutline}
+                          text="Chat"
+                          link="Chat"
+                        />
+                      </>
+                    )}
                   </>
                 )}
                 <LogoutButton setOpen={setOpen} />

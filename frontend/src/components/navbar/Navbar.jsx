@@ -11,6 +11,7 @@ import NavUserIcon from "./navbar_components/usericon_components/NavUserIcon";
 import { IsLoggedInContext, UserDataContext } from "../../services/context";
 import { getUserData } from "../../services/api";
 import NavUserIconMobile from "./navbar_components/usericon_components/NavUserIconMobile";
+import NavSubscriptionSmall from "./navbar_components/NavSubscriptionSmall";
 
 function Navbar() {
   //SI IMPOSTA UNA COSTANTE CON GLI ELEMENTI DELLA LISTA CONTENUTI NELLA NAVBAR
@@ -200,7 +201,9 @@ function Navbar() {
             />
             {/* SE L'UTENTE NON È REGISTRATO COMPARE IL BOTTONE PER REGSISTRARSI */}
             <div className="flex justify-center mt-10">
-              {!isLoggedIn && <NavSubscription />}
+              {!isLoggedIn && (
+                <NavSubscriptionSmall setOpenSidebar={setOpenSidebar} />
+              )}
             </div>
           </Sidebar>
         )}

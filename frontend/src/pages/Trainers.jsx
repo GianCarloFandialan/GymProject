@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../services/api";
 import FullPageSpinner from "../components/spinners/FullPageSpinner";
-import TrainersCard from "../components/trainers/TrainersSectionLeft";
 import TrainersSectionLeft from "../components/trainers/TrainersSectionLeft";
 import Closer from "../components/footer/Closer";
 import TrainerSectionRight from "../components/trainers/TrainerSectionRight";
 import AddTrainerModal from "../components/trainers/AddTrainerModal";
 import AddSuccessModal from "../components/trainers/AddSuccessModal";
+import { motion } from "framer-motion";
 
 function Trainers() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -73,6 +73,15 @@ function Trainers() {
           {openSuccessModal && (
             <AddSuccessModal setOpenSuccessModal={setOpenSuccessModal} />
           )}
+          <motion.h2
+            //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
+            initial={{ opacity: 0, y: "-10vh" }}
+            whileInView={{ opacity: 1, y: "0" }}
+            transition={{ duration: 1 }}
+            className="lg:text-6xl md:text-5xl text-3xl font-NCLMonsterBeast text-center mt-4"
+          >
+            I NOSTRI TRAINERS
+          </motion.h2>
           {/* SI ALTERNANO I TRAINER PER EFFETTO VISIVO IN "TrainersSectionLeft" E "TrainerSectionRight" */}
           {trainers.map((trainer, index) => {
             if (index % 2 === 0) {
