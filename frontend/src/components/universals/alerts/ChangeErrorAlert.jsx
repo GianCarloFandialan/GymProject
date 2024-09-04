@@ -22,7 +22,7 @@ function ChangeErrorAlert({ setErrorAlert }) {
               <polyline points="11 12 12 12 12 16 13 16"></polyline>
             </svg>
             <p className="text-sm font-semibold tracking-wide uppercase">
-              <strong>Nota:</strong> Errore nella modifica del contenuto.
+              <strong>Nota:</strong> Errore nell'operazione.
             </p>
           </div>
           <button

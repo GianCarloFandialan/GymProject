@@ -64,7 +64,7 @@ function RegisterForm() {
   //SI CREA UNO STATO PER GESTIRE IL MODALE PER ABBONARSI
   const [openModal, setOpenModal] = useState(false);
 
-  //SI CREA UNA FUNZIONE PER GESTIRE IL SUBMIT DEL FORM CHE MI ESEGUE LA FUNZIONE CREATA CON AXIOS
+  //SI CREA UNA FUNZIONE PER GESTIRE IL SUBMIT DEL FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -116,6 +116,7 @@ function RegisterForm() {
           textBody={"La registrazione è avvenuta con successo!"}
         />
       )}
+
       {/* MODALE DI REGISTRAZIONE ABBOANAMENTO */}
       {/* SI PASSANO COME PARAMETRI: IL CONTENUTO DEL MODLAE E LA FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE STESSO, LA FUNZONE DELLO STATO CHE GESTICE L'ABBONAMENTO SELEZIONATO, LO STATO DEL NUOVO UTENTE ELA SUA RELATIVA FUNZIONE  */}
       {openModal && (
@@ -126,6 +127,7 @@ function RegisterForm() {
           setNewUser={setNewUser}
         />
       )}
+
       <form className="mt-16 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
         {/* INPUT DI INSERIMENTO DEL NOME */}
         {/* SI PASSANO COME PAMETRI: LO STATO PER GESTIRE IL NUOVO UTENTE E LA RELATIVA FUNZIONE */}

@@ -7,6 +7,7 @@ import TrainerSectionRight from "../components/trainers/TrainerSectionRight";
 import AddTrainerModal from "../components/trainers/AddTrainerModal";
 import AddSuccessModal from "../components/trainers/AddSuccessModal";
 import { motion } from "framer-motion";
+import AddTrainerContainer from "../components/trainers/trainersadmin_components/addtrainer_components/AddTrainerContainer";
 
 function Trainers() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -15,27 +16,31 @@ function Trainers() {
   //STATO PER MEMORIZZARE L'ARRAY DEI TRAINERS
   const [trainers, setTrainers] = useState([]);
 
+  //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I CONTATTI
+  const fetchTrainers = async () => {
+    try {
+      //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I TRAINERS
+      const response = await getUsers();
+      //AGGIORNA LO STATO CON I DATI DEI TRAINERS
+      setTrainers(
+        response.data.filter((trainer) => trainer.isTrainer === true)
+      );
+      console.log(
+        response.data.filter((trainer) => trainer.isTrainer === true)
+      );
+
+      //AGGIORNO LO STATO DELLO SPINNER
+      setIsLoading(false);
+    } catch (error) {
+      //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
+      console.error("Errore nella fetch dei trainers: ", error);
+    }
+  };
+
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE I TRAINERS
   useEffect(() => {
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
-
-    //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I CONTATTI
-    const fetchTrainers = async () => {
-      try {
-        //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I TRAINERS
-        const response = await getUsers();
-        //AGGIORNA LO STATO CON I DATI DEI TRAINERS
-        setTrainers(
-          response.data.filter((trainer) => trainer.isTrainer === true)
-        );
-        //AGGIORNO LO STATO DELLO SPINNER
-        setIsLoading(false);
-      } catch (error) {
-        //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch dei trainers: ", error);
-      }
-    };
 
     //CHIAMIAMO LA FUNZIONE fetchTrainers
     fetchTrainers();
@@ -68,11 +73,13 @@ function Trainers() {
               setOpenSuccessModal={setOpenSuccessModal}
             />
           )}
+
           {/* MODALE DI CONFERMA DI AGGIUNTA CON SUCCESSO DEL TRAINER */}
           {/* SI PASSA COME PARAMETRO LA FUNZIONE PER GESTIRE LO STATO DEL MODALE NEL CASO DI SUCCESSO */}
           {openSuccessModal && (
             <AddSuccessModal setOpenSuccessModal={setOpenSuccessModal} />
           )}
+
           <motion.h2
             //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
             initial={{ opacity: 0, y: "-10vh" }}
@@ -82,6 +89,9 @@ function Trainers() {
           >
             I NOSTRI TRAINERS
           </motion.h2>
+
+          <AddTrainerContainer setTrainers={setTrainers} trainers={trainers} />
+
           {/* SI ALTERNANO I TRAINER PER EFFETTO VISIVO IN "TrainersSectionLeft" E "TrainerSectionRight" */}
           {trainers.map((trainer, index) => {
             if (index % 2 === 0) {
@@ -91,6 +101,8 @@ function Trainers() {
                   key={trainer._id}
                   setOpenModal={setOpenModal}
                   setSelectedTrainer={setSelectedTrainer}
+                  setTrainers={setTrainers}
+                  trainers={trainers}
                 />
               );
             } else {
@@ -100,10 +112,13 @@ function Trainers() {
                   key={trainer._id}
                   setOpenModal={setOpenModal}
                   setSelectedTrainer={setSelectedTrainer}
+                  setTrainers={setTrainers}
+                  trainers={trainers}
                 />
               );
             }
           })}
+
           {/* SEZIONE CHE REINDERIZZA ALLE PAGINE SOCIAL DELLA PALESTRA */}
           <Closer />
         </div>

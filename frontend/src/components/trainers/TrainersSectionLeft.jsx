@@ -1,13 +1,21 @@
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { IsLoggedInContext, UserDataContext } from "../../services/context";
-import AddTrainerButton from "./AddTrainerButton";
-import ChatTrainerButton from "./ChatTrainerButton";
-import TrainerSpecializationList from "./TrainerSpecializationList";
+import AddTrainerButton from "./trainersection_components/AddTrainerButton";
+import ChatTrainerButton from "./trainersection_components/ChatTrainerButton";
+import TrainerSpecializationList from "./trainersection_components/TrainerSpecializationList";
 import FullPageSpinner from "../spinners/FullPageSpinner";
 import ChangeSpecializationsForm from "./trainersadmin_components/ChangeSpecializationsForm";
+import TrainerAvatar from "./trainersection_components/TrainerAvatar";
+import RemoveTrainerButton from "./trainersadmin_components/RemoveTrainerButton";
 
-function TrainersSectionLeft({ trainer, setOpenModal, setSelectedTrainer }) {
+function TrainersSectionLeft({
+  trainer,
+  setOpenModal,
+  setSelectedTrainer,
+  setTrainers,
+  trainers,
+}) {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
@@ -58,24 +66,22 @@ function TrainersSectionLeft({ trainer, setOpenModal, setSelectedTrainer }) {
         >
           <div className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
-              <div className="relative z-10 lg:py-16">
-                <div className="relative h-64 sm:h-80 lg:h-full">
-                  <img
-                    alt=""
-                    src={`${currentTrainer.avatar}`}
-                    className="absolute inset-0 h-full w-full object-cover rounded-t-3xl lg:rounded-3xl"
-                  />
-                </div>
-              </div>
+              {/* AVATAR DEL TRAINER */}
+              <TrainerAvatar
+                avatar={trainer.avatar}
+                rounded={"rounded-t-3xl"}
+              />
 
-              <div className="relative flex items-center bg-black lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none">
+              <div className="relative flex items-center bg-black lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none justify-center">
                 <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-black lg:rounded-l-3xl"></span>
 
-                <div className="p-8 sm:p-16 lg:p-24">
-                  <h2 className="text-2xl font-bold lg:text-6xl md:text-4xl font-NCLMonsterBeast text-white">
+                <div className="p-8 sm:p-16 lg:p-24 w-full">
+                  <h2 className="text-2xl font-bold lg:text-6xl md:text-4xl font-NCLMonsterBeast text-white text-center">
                     {currentTrainer.nome} {currentTrainer.cognome}
                   </h2>
 
+                  {/* SE L'UTENTE È UN ADMIN COMPARE UN FORM IN CUI È POSSIBILE ATTUARE DELLE MODIFICHE SUL TRAINER */}
+                  {/* SI PASSANO COME PARAMETRI LE SPECIALIZZAZIONI DEL TRAINER, IL TRAINER STESSO E LA FUNZIONE PER GESTIRE IL TRAINER SPECIFICO */}
                   {isAdmin ? (
                     <ChangeSpecializationsForm
                       specializations={trainer.spcialization}
@@ -109,6 +115,16 @@ function TrainersSectionLeft({ trainer, setOpenModal, setSelectedTrainer }) {
                         </>
                       )}
                     </>
+                  )}
+
+                  {/* SE L'UTENTE CHE HA ESEUITO L'ACCESSO È UN ADMIN, PUO RIMUOVERE IL TRAINER */}
+                  {/* SI PASSANO COME PARAMETRI: L'ID DEL TRAINER, LO STATO DEI TRAINER DELLA PAGINA CON ANESSA FUNZIONE */}
+                  {isAdmin && (
+                    <RemoveTrainerButton
+                      id={currentTrainer._id}
+                      setTrainers={setTrainers}
+                      trainers={trainers}
+                    />
                   )}
                 </div>
               </div>
