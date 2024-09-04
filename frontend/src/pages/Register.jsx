@@ -21,6 +21,11 @@ function Register() {
     }
   }, [isLoggedIn]);
 
+  //AL CARICAMENTO DEL COMPONENTE SI SCROLLA LA PAGINA SU
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.section
       //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE

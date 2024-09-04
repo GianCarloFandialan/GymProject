@@ -15,6 +15,9 @@ function Gyms() {
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE LE PALESTRE
   useEffect(() => {
+    //SI SCROLLA LA PAGINA SU
+    window.scrollTo(0, 0);
+
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 

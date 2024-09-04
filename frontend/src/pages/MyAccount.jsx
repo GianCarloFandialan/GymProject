@@ -17,6 +17,9 @@ function MyAccount() {
 
   //USEEFFECT AL CARCIAMENTO DEL COMPONENTE CHE, NEL CASO IN CUI L'UTENTE NON HA ESEGUITO L'ACCESSO OPPURE È UN TRAINER REINDERIZZA ALLA HOMEPAGE
   useEffect(() => {
+    //SI SCROLLA LA PAGINA SU
+    window.scrollTo(0, 0);
+
     if (!isLoggedIn) {
       navigate("/");
     }

@@ -17,6 +17,9 @@ function Subscriptions() {
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
   useEffect(() => {
+    //SI SCROLLA LA PAGINA SU
+    window.scrollTo(0, 0);
+
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 

@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Closer from "../components/footer/Closer";
+import { useEffect } from "react";
 
 function NotFound() {
+  //AL CARICAMENTO DEL COMPONENTE SI SCROLLA LA PAGINA SU
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <motion.div

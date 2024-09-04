@@ -15,6 +15,9 @@ function Classes() {
 
   //AL CARICAMENTO DEL COMPONENTE ESEGUO LA CHIAMATA API PER OTTENERE LE CLASSI
   useEffect(() => {
+    //SI SCROLLA LA PAGINA SU
+    window.scrollTo(0, 0);
+
     //AGGIORNO LO STATO DELLO SPINNER
     setIsLoading(true);
 
