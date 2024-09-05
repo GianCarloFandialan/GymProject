@@ -1,5 +1,5 @@
 import "../../../../subscriptions/newsubscriptionmodal_components/form_components/CardNumber.css";
-import Label from "../../../../subscriptions/newsubscriptionmodal_components/form_components/Label";
+import Label from "../../../../universals/forms_components/Label";
 
 function RegisterCardNumber({ card, setCard }) {
   return (

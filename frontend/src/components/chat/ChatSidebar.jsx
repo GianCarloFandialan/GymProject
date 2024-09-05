@@ -43,6 +43,12 @@ function ChatSidebar({ setChatter }) {
               client.trainerId.includes(userData._id)
             )
           );
+          console.log(
+            response.data.filter((client) =>
+              client.trainerId.includes(userData._id)
+            )
+          );
+
           //AGGIORNO LO STATO DELLO SPINNER
           setIsLoading(false);
         } catch (error) {

@@ -1,21 +1,25 @@
 import Label from "../../../universals/forms_components/Label";
-//import "./CardNumber.css";
 
-function CardCVC() {
+function ModifyClassInput({
+  element,
+  content,
+  handleChange,
+  classData,
+  value,
+}) {
   return (
     <div className="grid gap-2">
-      <Label html={"cvc"} content={"CVC"} />
-      <input
+      <Label html={element} content={content} />
+      <textarea
         className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-white"
-        id="cvc"
-        placeholder="CVC"
+        id={element}
         required
-        type="number"
-        min={100}
-        max={999}
+        name={element}
+        onChange={handleChange}
+        value={value}
       />
     </div>
   );
 }
 
-export default CardCVC;
+export default ModifyClassInput;

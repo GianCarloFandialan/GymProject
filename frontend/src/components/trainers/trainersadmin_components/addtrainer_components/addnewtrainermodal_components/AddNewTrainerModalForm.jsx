@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Label from "../../../../subscriptions/newsubscriptionmodal_components/form_components/Label";
+import Label from "../../../../universals/forms_components/Label";
 import NewTrainerSpecialization from "./NewTrainerSpecialization";
 import NewTrainerInput from "./NewTrainerInput";
-import NewTrainerButtonSection from "./NewTrainerButtonSection";
 import { createUser, updateUser } from "../../../../../services/api";
 import ChangeErrorAlert from "../../../../universals/alerts/ChangeErrorAlert";
+import ModalButtonSection from "../../../../universals/forms_components/ModalButtonSection";
 
 function AddNewTrainerModalForm({
   setOpenModal,
@@ -136,7 +136,7 @@ function AddNewTrainerModalForm({
           />
         </div>
 
-        <NewTrainerButtonSection setOpenModal={setOpenModal} />
+        <ModalButtonSection setOpenModal={setOpenModal} content={"Aggiungi"} />
       </form>
     </>
   );

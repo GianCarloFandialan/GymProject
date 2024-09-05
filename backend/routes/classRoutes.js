@@ -84,7 +84,11 @@ router.patch(
       }
 
       //SI CERCA LA CLASSE SPECIFICA PER ID
-      const singleClass = await Class.findById(req.params.id);
+      const singleClass = await Class.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true } //OPZIONE PER RESTITUIRE IL DOCUMENTO AGGIORNATO
+      );
       if (!singleClass) {
         //SE LA CLASSE NON VIENE TROVATA, SI INVIA UNA RISPOSTA 404
         return res.status(404).json({ message: "Classe non trovato" });

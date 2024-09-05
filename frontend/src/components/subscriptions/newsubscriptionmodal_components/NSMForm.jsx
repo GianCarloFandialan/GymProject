@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import CardCVC from "./form_components/CardCVC";
 import CardExpireMonth from "./form_components/CardExpireMonth";
 import CardExpireYear from "./form_components/CardExpireYear";
-import Label from "./form_components/Label";
+import Label from "../../universals/forms_components/Label";
 import SubmitButton from "./form_components/SubmitButton";
 import CardNumber from "./form_components/CardNumber";
 import { updateUser } from "../../../services/api";

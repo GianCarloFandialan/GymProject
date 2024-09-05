@@ -1,4 +1,4 @@
-import Label from "./Label";
+import Label from "../../../universals/forms_components/Label";
 import "./CardNumber.css";
 
 function CardNumber({ cardData, setCardData }) {

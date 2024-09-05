@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Label from "./Label";
+import Label from "../../../universals/forms_components/Label";
 
 function CardExpireMonth() {
   const [months, setMonths] = useState([

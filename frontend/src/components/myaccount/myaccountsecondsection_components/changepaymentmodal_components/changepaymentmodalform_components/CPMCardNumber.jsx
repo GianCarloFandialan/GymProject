@@ -1,4 +1,4 @@
-import Label from "../../../../subscriptions/newsubscriptionmodal_components/form_components/Label";
+import Label from "../../../../universals/forms_components/Label";
 import "../../../../subscriptions/newsubscriptionmodal_components/form_components/CardNumber.css";
 
 function CPMCardNumber({ number, setNumber }) {

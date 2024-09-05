@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Label from "./Label";
+import Label from "../../../universals/forms_components/Label";
 
 function CardExpireYear() {
   //SI CREA UNO STATO PER POTER GESTIRE IL NUMERO DI OPZION ICHE SI POSSONO SELEZIONARE DEGLI ANNI

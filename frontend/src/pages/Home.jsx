@@ -65,7 +65,7 @@ function Home() {
           <FullPageSpinner />
         </div>
       ) : (
-        <div>
+        <div data-testid="homepage">
           {/* HERO DELLA HOMEPAGE */}
           {/* PASSO COME PARAMETRI LO STATO DEI CONENUTI DELLA HOMEPAGE E LA USA RELATIVA FUNZIONE PER MODIFICARLO */}
           <HomeHero contents={contents} setContents={setContents} />

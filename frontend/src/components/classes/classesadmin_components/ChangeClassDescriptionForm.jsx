@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Label from "../../subscriptions/newsubscriptionmodal_components/form_components/Label";
+import Label from "../../universals/forms_components/Label";
 import { updateClass } from "../../../services/api";
 import ChangeSuccessAlert from "../../universals/alerts/ChangeSuccessAlert";
 import ChangeErrorAlert from "../../universals/alerts/ChangeErrorAlert";

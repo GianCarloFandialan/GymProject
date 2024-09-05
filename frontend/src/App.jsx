@@ -24,6 +24,7 @@ import {
 import { useState } from "react";
 import MyAccount from "./pages/MyAccount";
 import Chat from "./pages/Chat";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   //SI CREA UNO STATO PER POTER GESTIRE IL FATTO CHE CI SIA UN UTENTE CHE ABBIA FATTO L'ACCESSO O NO
@@ -74,6 +75,8 @@ function App() {
                   <Route path="/account" element={<MyAccount />} />
                   {/* ROTTA PER LA PAGINA DELLE CHAT */}
                   <Route path="/chat" element={<Chat />} />
+                  {/* ROTTA PER LA PAGINA ADMIN SIDE */}
+                  <Route path="/admin" element={<AdminPage />} />
                   {/* ROTTA PER LA PAGINA NOT FOUND NEL CASO UN UTENTE CERCHI DI ENTRARE IN ROTTE NON ESISTENTI */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

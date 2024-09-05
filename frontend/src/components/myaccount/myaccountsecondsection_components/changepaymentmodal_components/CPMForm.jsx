@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import CardCVC from "../../../subscriptions/newsubscriptionmodal_components/form_components/CardCVC";
 import CardExpireMonth from "../../../subscriptions/newsubscriptionmodal_components/form_components/CardExpireMonth";
 import CardExpireYear from "../../../subscriptions/newsubscriptionmodal_components/form_components/CardExpireYear";
-import Label from "../../../subscriptions/newsubscriptionmodal_components/form_components/Label";
+import Label from "../../../universals/forms_components/Label";
 import CPMCardNumber from "./changepaymentmodalform_components/CPMCardNumber";
 import CPMSubmitButton from "./changepaymentmodalform_components/CPMSubmitButton";
 import { UserDataContext } from "../../../../services/context";
