@@ -2,6 +2,8 @@ import { useState } from "react";
 import Label from "../../../universals/forms_components/Label";
 import ModifyInput from "../../ModifyInput";
 import ModalButtonSection from "../../../universals/forms_components/ModalButtonSection";
+import { updateUser, updateUserAvatar } from "../../../../services/api";
+import ChangeErrorAlert from "../../../universals/alerts/ChangeErrorAlert";
 
 function MTSModalForm({
   trainer,
@@ -59,15 +61,15 @@ function MTSModalForm({
         }
 
         // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
-        const response = await updateClassCover(lesson._id, formData);
+        const response = await updateUserAvatar(trainer._id, formData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
         //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
-        setClasses(
-          classes.map((lesson) =>
-            lesson._id === response.data._id ? response.data : lesson
+        setTrainers(
+          trainers.map((trainer) =>
+            trainer._id === response.data._id ? response.data : trainer
           )
         );
 
@@ -75,21 +77,21 @@ function MTSModalForm({
         setOpenModal(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella registrazione dell'utente: ", error);
+        console.error("Errore nella modifica dell'utente: ", error);
         setErrorAlert(true);
       }
     } else {
       try {
         // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
-        const response = await updateClass(lesson._id, classData);
+        const response = await updateUser(trainer._id, trainerData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
         //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
-        setClasses(
-          classes.map((lesson) =>
-            lesson._id === response.data._id ? response.data : lesson
+        setTrainers(
+          trainers.map((trainer) =>
+            trainer._id === response.data._id ? response.data : trainer
           )
         );
 
@@ -97,7 +99,7 @@ function MTSModalForm({
         setOpenModal(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella registrazione dell'utente: ", error);
+        console.error("Errore nella modifica dell'utente: ", error);
         setErrorAlert(true);
       }
     }
@@ -105,8 +107,8 @@ function MTSModalForm({
 
   return (
     <>
-      {/* {errorAlert && <ChangeErrorAlert setErrorAlert={setErrorAlert} />} */}
-      <form className="mt-4">
+      {errorAlert && <ChangeErrorAlert setErrorAlert={setErrorAlert} />}
+      <form className="mt-4" onSubmit={handleSubmit}>
         <div className="p-6 pt-0 grid gap-6">
           {/* INPUT PER IL NOME */}
           {/* SI PASSANO COME VARIABILI I DATI DELL'INPUT E LO STATO DEL NUOVO TRAINER CON RELATIVA FUNZIONE CHE CAMBIA IL SUO VALORE AL CAMBIAMENTO DEL VALORE DI INPUT*/}

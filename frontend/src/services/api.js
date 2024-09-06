@@ -96,8 +96,8 @@ export const createUser = (postData) =>
     },
   });
 export const updateUser = (id, postData) => api.put(`/users/${id}`, postData);
-export const updateUserCover = (id, postData) =>
-  api.patch(`/users/${id}/cover`, postData);
+export const updateUserAvatar = (id, postData) =>
+  api.patch(`/users/${id}/avatar`, postData);
 export const deleteUser = (id) => api.delete(`/users/${id}`);
 
 //FUNZIONI RIGUARDANTI I MESSAGGI

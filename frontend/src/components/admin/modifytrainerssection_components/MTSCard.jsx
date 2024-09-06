@@ -2,6 +2,7 @@ import { useState } from "react";
 import TrainerSpecializationCheck from "../../trainers/trainersection_components/TrainerSpecializationCheck";
 import ModifyButton from "../ModifyButton";
 import MTSModal from "./MTSModal";
+import ModifyModalSuccess from "../ModifyModalSuccess";
 
 function MTSCard({ trainer, trainers, setTrainers }) {
   //STATO PER POTER GESTIRE IL MODALE
@@ -44,7 +45,7 @@ function MTSCard({ trainer, trainers, setTrainers }) {
       <ModifyButton setOpenModal={setOpenModal} />
 
       {/* MODALE PER MODIFICARE IL TRAINER */}
-      {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DELLA LEZIONE */}
+      {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DEL TRAINER */}
       {openModal && (
         <MTSModal
           trainer={trainer}
@@ -53,6 +54,11 @@ function MTSCard({ trainer, trainers, setTrainers }) {
           setTrainers={setTrainers}
           setOpenModalSuccess={setOpenModalSuccess}
         />
+      )}
+
+      {/* MODALE DI MODIFICA CON SUCCESSO */}
+      {openModalSuccess && (
+        <ModifyModalSuccess setOpenModalSuccess={setOpenModalSuccess} />
       )}
     </div>
   );

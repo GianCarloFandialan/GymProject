@@ -71,7 +71,7 @@ function MCSModalForm({
         setOpenModal(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella registrazione dell'utente: ", error);
+        console.error("Errore nella modifica della classe: ", error);
         setErrorAlert(true);
       }
     } else {
