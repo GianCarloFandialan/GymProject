@@ -1,12 +1,6 @@
-import Label from "../../../universals/forms_components/Label";
+import Label from "../universals/forms_components/Label";
 
-function ModifyClassInput({
-  element,
-  content,
-  handleChange,
-  classData,
-  value,
-}) {
+function ModifyInput({ element, content, handleChange, value }) {
   return (
     <div className="grid gap-2">
       <Label html={element} content={content} />
@@ -22,4 +16,4 @@ function ModifyClassInput({
   );
 }
 
-export default ModifyClassInput;
+export default ModifyInput;

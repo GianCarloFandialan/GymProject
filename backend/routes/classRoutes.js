@@ -84,15 +84,14 @@ router.patch(
       }
 
       //SI CERCA LA CLASSE SPECIFICA PER ID
-      const singleClass = await Class.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true } //OPZIONE PER RESTITUIRE IL DOCUMENTO AGGIORNATO
-      );
+      const singleClass = await Class.findById(req.params.id);
       if (!singleClass) {
         //SE LA CLASSE NON VIENE TROVATA, SI INVIA UNA RISPOSTA 404
         return res.status(404).json({ message: "Classe non trovato" });
       }
+
+      // Aggiorna i dati della classe con i valori forniti nel body
+      Object.assign(singleClass, req.body);
 
       //SI AGGIORNA L'URL DELLA COVER DELLA CLASSE CON L'URL FORNITO DA CLOUDINARY
       singleClass.cover = req.file.path;

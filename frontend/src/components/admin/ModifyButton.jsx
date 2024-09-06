@@ -1,4 +1,4 @@
-function MSCCardModifyButton({ setOpenModal }) {
+function ModifyButton({ setOpenModal }) {
   return (
     <>
       <button
@@ -11,4 +11,4 @@ function MSCCardModifyButton({ setOpenModal }) {
   );
 }
 
-export default MSCCardModifyButton;
+export default ModifyButton;

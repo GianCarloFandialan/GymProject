@@ -1,9 +1,9 @@
 import { useState } from "react";
-import MCSModal from "./MCSModal";
+import TrainerSpecializationCheck from "../../trainers/trainersection_components/TrainerSpecializationCheck";
 import ModifyButton from "../ModifyButton";
-import ModifyModalSuccess from "../ModifyModalSuccess";
+import MTSModal from "./MTSModal";
 
-function MCSCard({ lesson, classes, setClasses }) {
+function MTSCard({ trainer, trainers, setTrainers }) {
   //STATO PER POTER GESTIRE IL MODALE
   const [openModal, setOpenModal] = useState(false);
 
@@ -15,51 +15,47 @@ function MCSCard({ lesson, classes, setClasses }) {
       <div className="flex-shrink-0">
         <img
           className="object-cover w-full h-48 rounded-lg"
-          src={`${lesson.cover}`}
-          alt="lesson image"
+          src={`${trainer.avatar}`}
+          alt="trainer image"
         />
       </div>
 
       <div className="flex flex-col justify-between flex-1">
         <div className="flex-1">
-          <div className="flex pt-6 space-x-1 text-sm text-gray-500">
-            <span>
-              {" "}
-              {lesson.day}: {lesson.hour}{" "}
-            </span>
-          </div>
-
           <div className="block mt-2 space-y-6">
             <h3 className="text-2xl font-semibold leading-none tracking-tighter text-neutral-600">
-              {lesson.name}
+              {trainer.nome} {trainer.cognome}
             </h3>
-            <p className="text-lg font-normal text-gray-500">
-              {lesson.description}
-            </p>
+            <ul className="text-lg font-normal text-gray-500">
+              Specializations:
+              {trainer.spcialization.map((specialization, index) => {
+                return (
+                  <li className="flex" key={specialization + index}>
+                    <TrainerSpecializationCheck />
+                    <span>{specialization}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
 
       <ModifyButton setOpenModal={setOpenModal} />
 
-      {/* MODALE PER MODIFICARE LA CLASSE */}
+      {/* MODALE PER MODIFICARE IL TRAINER */}
       {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DELLA LEZIONE */}
       {openModal && (
-        <MCSModal
-          lesson={lesson}
+        <MTSModal
+          trainer={trainer}
           setOpenModal={setOpenModal}
-          classes={classes}
-          setClasses={setClasses}
+          trainers={trainers}
+          setTrainers={setTrainers}
           setOpenModalSuccess={setOpenModalSuccess}
         />
-      )}
-
-      {/* MODALE DI MODIFICA CON SUCCESSO */}
-      {openModalSuccess && (
-        <ModifyModalSuccess setOpenModalSuccess={setOpenModalSuccess} />
       )}
     </div>
   );
 }
 
-export default MCSCard;
+export default MTSCard;

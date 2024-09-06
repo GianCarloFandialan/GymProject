@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import MCSModalForm from "./mcsmodal_components/MCSModalForm";
+import MTSModalForm from "./mtsmodal_components/MTSModalForm";
 
-function MCSModal({
-  lesson,
+function MTSModal({
+  trainer,
   setOpenModal,
-  setClasses,
-  classes,
+  setTrainers,
+  trainers,
   setOpenModalSuccess,
 }) {
   return (
@@ -36,11 +36,11 @@ function MCSModal({
 
               {/* FORM PER MODIFICARE LA CLASSE */}
               {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER MODIFICARE LO STATO DI QUSTO MODALE, L'OGGETTO CONTENTE I DATI DELLA LEZIONE, FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE NEL CASO DI AGGIUNTA CON SUCCESSO DI UN TRAINER */}
-              <MCSModalForm
-                lesson={lesson}
+              <MTSModalForm
+                trainer={trainer}
                 setOpenModal={setOpenModal}
-                classes={classes}
-                setClasses={setClasses}
+                trainers={trainers}
+                setTrainers={setTrainers}
                 setOpenModalSuccess={setOpenModalSuccess}
               />
             </div>
@@ -51,4 +51,4 @@ function MCSModal({
   );
 }
 
-export default MCSModal;
+export default MTSModal;

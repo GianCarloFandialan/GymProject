@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 
-function MCSModalSuccess({ setOpenModalSuccess }) {
+function ModifyModalSuccess({ setOpenModalSuccess }) {
   return (
     <AnimatePresence>
       <motion.div
@@ -46,4 +46,4 @@ function MCSModalSuccess({ setOpenModalSuccess }) {
   );
 }
 
-export default MCSModalSuccess;
+export default ModifyModalSuccess;
