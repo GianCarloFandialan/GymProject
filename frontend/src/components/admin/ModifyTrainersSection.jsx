@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FullPageSpinner from "../spinners/FullPageSpinner";
 import MTSCard from "./modifytrainerssection_components/MTSCard";
 import { getUsers } from "../../services/api";
+import AddNewTrainerContainer from "./modifytrainerssection_components/AddNewTrainerContainer";
 
 function ModifyTrainersSection() {
   //STATO PER GESTIRE LO SPINNER NEL FRATTEMPO CHE LA CHIAMATA NON È ANCORA TERMINATA
@@ -22,9 +23,6 @@ function ModifyTrainersSection() {
         const response = await getUsers();
         //AGGIORNA LO STATO CON I DATI DEI TRAINERS
         setTrainers(
-          response.data.filter((trainer) => trainer.isTrainer === true)
-        );
-        console.log(
           response.data.filter((trainer) => trainer.isTrainer === true)
         );
 
@@ -48,17 +46,17 @@ function ModifyTrainersSection() {
           <FullPageSpinner />
         </div>
       ) : (
-        <section className="">
+        <section className="mt-10">
           <div className="pb-4 border-b border-gray-600 ">
-            <h3 className="text-4xl font-semibold leading-6 text-gray-800 mt-3 uppercase">
-              CLassi
+            <h3 className="text-4xl font-black leading-6 text-gray-800 mt-24 uppercase pl-3">
+              Trainers
             </h3>
           </div>
 
           <div className="relative mx-auto max-w-7xl ">
             <div className="grid max-w-lg gap-12 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none ">
-              {/* CARDS DELLE CLASSI */}
-              {/* SI PASSA COME PARAMETRO L'OGGETTO DEI CONENUTI DELLA CLASSE */}
+              {/* CARDS DEI TRAINER */}
+              {/* SI PASSA COME PARAMETRO L'OGGETTO DEI CONENUTI DEL TRAINER */}
               {trainers.map((trainer) => {
                 return (
                   <MTSCard
@@ -70,6 +68,11 @@ function ModifyTrainersSection() {
                 );
               })}
             </div>
+
+            <AddNewTrainerContainer
+              setTrainers={setTrainers}
+              trainers={trainers}
+            />
           </div>
         </section>
       )}

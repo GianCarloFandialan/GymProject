@@ -38,7 +38,6 @@ function ChangeSpecializationsForm({
         ...currentTrainer,
         spcialization: specializationData,
       });
-      console.log(response.data);
 
       //SI AGGIORNA LO STATO DEL TRAINER SCELTO CON LA RISPOSTA ALLA CHIAMATA
       setCurrentTrainer(response.data);

@@ -1,4 +1,5 @@
 import ModifyClassesSection from "../components/admin/ModifyCLassesSection";
+import ModifyGymSection from "../components/admin/ModifyGymSection";
 import ModifyTrainersSection from "../components/admin/ModifyTrainersSection";
 
 function AdminPage() {
@@ -6,7 +7,7 @@ function AdminPage() {
     <>
       <ModifyClassesSection />
       <ModifyTrainersSection />
-      <span>sds</span>
+      <ModifyGymSection />
     </>
   );
 }

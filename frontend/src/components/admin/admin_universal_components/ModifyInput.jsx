@@ -1,4 +1,4 @@
-import Label from "../universals/forms_components/Label";
+import Label from "../../universals/forms_components/Label";
 
 function ModifyInput({ element, content, handleChange, value }) {
   return (

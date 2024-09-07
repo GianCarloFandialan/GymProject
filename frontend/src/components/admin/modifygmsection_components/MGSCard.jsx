@@ -1,12 +1,11 @@
 import { useState } from "react";
-import TrainerSpecializationCheck from "../../trainers/trainersection_components/TrainerSpecializationCheck";
+import DeleteButton from "../admin_universal_components/DeleteButton";
 import ModifyButton from "../admin_universal_components/ModifyButton";
 import ModifyModalSuccess from "../admin_universal_components/ModifyModalSuccess";
-import DeleteButton from "../admin_universal_components/DeleteButton";
-import DTModal from "./deletetrainer_components/DTModal";
-import MTSModal from "./MTSModal";
+import MGSModal from "./MGModal";
+import DGModal from "./deletegym_components/DGModal";
 
-function MTSCard({ trainer, trainers, setTrainers }) {
+function MGSCard({ gym, gyms, setGyms }) {
   //STATO PER POTER GESTIRE IL MODALE
   const [openModal, setOpenModal] = useState(false);
 
@@ -21,28 +20,23 @@ function MTSCard({ trainer, trainers, setTrainers }) {
       <div className="flex-shrink-0">
         <img
           className="object-cover w-full h-48 rounded-lg"
-          src={`${trainer.avatar}`}
-          alt="trainer image"
+          src={`${gym.cover}`}
+          alt="gym image"
         />
       </div>
 
       <div className="flex flex-col justify-between flex-1">
         <div className="flex-1">
+          <div className="flex pt-6 space-x-1 text-sm text-gray-500">
+            <span>{gym.hours}</span>
+          </div>
+
           <div className="block mt-2 space-y-6">
             <h3 className="text-2xl font-semibold leading-none tracking-tighter text-neutral-600">
-              {trainer.nome} {trainer.cognome}
+              {gym.name}
             </h3>
-            <ul className="text-lg font-normal text-gray-500">
-              Specializations:
-              {trainer.spcialization.map((specialization, index) => {
-                return (
-                  <li className="flex" key={specialization + index}>
-                    <TrainerSpecializationCheck />
-                    <span>{specialization}</span>
-                  </li>
-                );
-              })}
-            </ul>
+            <p className="text-lg font-normal text-gray-500">{gym.tel}</p>
+            <p className="text-lg font-normal text-gray-500">{gym.address}</p>
           </div>
         </div>
       </div>
@@ -50,25 +44,25 @@ function MTSCard({ trainer, trainers, setTrainers }) {
       <ModifyButton setOpenModal={setOpenModal} />
       <DeleteButton setOpenDeleteModal={setOpenDeleteModal} />
 
-      {/* MODALE PER MODIFICARE IL TRAINER */}
+      {/* MODALE PER MODIFICARE LA PALESTRA */}
       {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DEL TRAINER */}
       {openModal && (
-        <MTSModal
-          trainer={trainer}
+        <MGSModal
+          gym={gym}
           setOpenModal={setOpenModal}
-          trainers={trainers}
-          setTrainers={setTrainers}
+          gyms={gyms}
+          setGyms={setGyms}
           setOpenModalSuccess={setOpenModalSuccess}
         />
       )}
 
       {/* MODALE PER LA CANCELLAZIONE DEL TRAINER */}
       {openDeleteModal && (
-        <DTModal
-          id={trainer._id}
+        <DGModal
+          id={gym._id}
           setOpenDeleteModal={setOpenDeleteModal}
-          trainers={trainers}
-          setTrainers={setTrainers}
+          gyms={gyms}
+          setGyms={setGyms}
         />
       )}
 
@@ -80,4 +74,4 @@ function MTSCard({ trainer, trainers, setTrainers }) {
   );
 }
 
-export default MTSCard;
+export default MGSCard;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Label from "../../../universals/forms_components/Label";
 import { updateClass, updateClassCover } from "../../../../services/api";
 import ModalButtonSection from "../../../universals/forms_components/ModalButtonSection";
-import ModifyInput from "../../ModifyInput";
+import ModifyInput from "../../admin_universal_components/ModifyInput";
 
 function MCSModalForm({
   lesson,

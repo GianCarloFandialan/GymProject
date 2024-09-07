@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MCSModal from "./MCSModal";
-import ModifyButton from "../ModifyButton";
-import ModifyModalSuccess from "../ModifyModalSuccess";
+import ModifyButton from "../admin_universal_components/ModifyButton";
+import ModifyModalSuccess from "../admin_universal_components/ModifyModalSuccess";
 
 function MCSCard({ lesson, classes, setClasses }) {
   //STATO PER POTER GESTIRE IL MODALE

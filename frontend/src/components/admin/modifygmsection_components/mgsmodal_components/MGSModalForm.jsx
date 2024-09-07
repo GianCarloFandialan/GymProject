@@ -1,48 +1,37 @@
 import { useState } from "react";
-import Label from "../../../universals/forms_components/Label";
-
-import ModalButtonSection from "../../../universals/forms_components/ModalButtonSection";
-import { updateUser, updateUserAvatar } from "../../../../services/api";
+import { updateGym, updateGymCover } from "../../../../services/api";
 import ChangeErrorAlert from "../../../universals/alerts/ChangeErrorAlert";
 import ModifyInput from "../../admin_universal_components/ModifyInput";
+import Label from "../../../universals/forms_components/Label";
+import ModalButtonSection from "../../../universals/forms_components/ModalButtonSection";
 
-function MTSModalForm({
-  trainer,
+function MGSModalForm({
+  gym,
   setOpenModal,
-  setTrainers,
-  trainers,
+  setGyms,
+  gyms,
   setOpenModalSuccess,
 }) {
   //STATO PER GESITRE I DATI DEL FORM
-  const [trainerData, setTrainerData] = useState(trainer);
+  const [gymData, setGymData] = useState(gym);
 
   //FUNZIONE PER GESTIRE I CAMBAIMANETI DEGLI INPUT NEL FORM E INTEGRARLI NELLO STATO
   function handleChange(e) {
     const { name, value } = e.target;
 
     //NOME E COGNOME INIZIANO SEMPRE CON LA MAIUSCOLA
-    setTrainerData({
-      ...trainerData,
+    setGymData({
+      ...gymData,
       [name]: value,
     });
   }
 
-  //SI CREA UNA FUNZIONE PER POTER GESTIRE PIÙ FACILMENTE IL CAMBIAMENTO DEI VALORI DI INPUT DELLE SPECIALIZZAZIONI
-  const handleSpecializationChange = (e, index) => {
-    //COPIA L'ARRAY specializationData
-    const newSpecializations = [...trainerData.spcialization];
-    //AGGIORNA L'ELEMENTO ALL'INDICE SPECIFICO
-    newSpecializations[index] = e.target.value;
-    //IMPOSTA IL NUOVO STATO
-    setTrainerData({ ...trainerData, spcialization: newSpecializations });
-  };
-
   //SI CREA UNO STATO PER POTERMI GESTIRE IL FILE CARICATO
-  const [avatarFile, setAvatarFile] = useState(null);
+  const [coverFile, setCoverFile] = useState(null);
 
   //SI GESTISCE IL CARICAMENTO DEL FILE DELL'IMMAGINE
   const handleFileChange = (e) => {
-    setAvatarFile(e.target.files[0]);
+    setCoverFile(e.target.files[0]);
   };
 
   //SI CREA UNO STATO PER POTER GESTIRE L'ALERT DI AGGIUNTA CON ERRORE
@@ -52,40 +41,32 @@ function MTSModalForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (avatarFile) {
+    if (coverFile) {
       try {
         const formData = new FormData();
 
         //SI AGGIUNGONO I VARI DATI CHE SERVONO AFFINCHE SI MODIFICHI CORRETTAMENTE LA CLASSE
-        Object.keys(trainerData).forEach((key) =>
-          formData.append(key, trainerData[key])
+        Object.keys(gymData).forEach((key) =>
+          formData.append(key, gymData[key])
         );
 
         //SI AGGIUNGE ANCHE LA FOTO DEL TRAINER
-        if (avatarFile) {
-          formData.append("avatar", avatarFile);
+        if (coverFile) {
+          formData.append("cover", coverFile);
         }
 
         // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
-        const response = await updateUserAvatar(trainer._id, formData);
+        const response = await updateGymCover(gym._id, formData);
 
         console.log(response.data);
-
-        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
-        const finalResponse = await updateUser(trainer._id, {
-          ...response.data,
-          spcialization: trainerData.spcialization,
-        });
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
         //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
-        setTrainers(
-          trainers.map((trainer) =>
-            trainer._id === finalResponse.data._id
-              ? finalResponse.data
-              : trainer
+        setGyms(
+          gyms.map((gym) =>
+            gym._id === response.data._id ? response.data : gym
           )
         );
 
@@ -93,21 +74,21 @@ function MTSModalForm({
         setOpenModal(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella modifica dell'utente: ", error);
+        console.error("Errore nella modifica della palestra: ", error);
         setErrorAlert(true);
       }
     } else {
       try {
         // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
-        const response = await updateUser(trainer._id, trainerData);
+        const response = await updateGym(gym._id, gymData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
         //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
-        setTrainers(
-          trainers.map((trainer) =>
-            trainer._id === response.data._id ? response.data : trainer
+        setGyms(
+          gyms.map((gym) =>
+            gym._id === response.data._id ? response.data : gym
           )
         );
 
@@ -115,7 +96,7 @@ function MTSModalForm({
         setOpenModal(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella modifica dell'utente: ", error);
+        console.error("Errore nella modifica della palestra: ", error);
         setErrorAlert(true);
       }
     }
@@ -129,40 +110,46 @@ function MTSModalForm({
           {/* INPUT PER IL NOME */}
           {/* SI PASSANO COME VARIABILI I DATI DELL'INPUT E LO STATO DEL NUOVO TRAINER CON RELATIVA FUNZIONE CHE CAMBIA IL SUO VALORE AL CAMBIAMENTO DEL VALORE DI INPUT*/}
           <ModifyInput
-            element={"nome"}
+            element={"name"}
             content={"Nome"}
             handleChange={handleChange}
-            value={trainerData.nome}
+            value={gymData.name}
           />
 
-          {/* INPUT PER IL COGNOME */}
+          {/* INPUT PER L'ORARIO */}
           {/* SI PASSANO COME VARIABILI I DATI DELL'INPUT E LO STATO DEL NUOVO TRAINER CON RELATIVA FUNZIONE CHE CAMBIA IL SUO VALORE AL CAMBIAMENTO DEL VALORE DI INPUT*/}
           <ModifyInput
-            element={"cognome"}
-            content={"Cognome"}
+            element={"hours"}
+            content={"Orario"}
             handleChange={handleChange}
-            value={trainerData.cognome}
+            value={gymData.hours}
           />
 
-          {trainerData.spcialization.map((specialization, index) => {
-            return (
-              <ModifyInput
-                element={`specialization-${index}`}
-                content={`Specializzazione n. ${index + 1}`}
-                value={trainerData.spcialization[index]}
-                handleChange={(e) => handleSpecializationChange(e, index)} //PASSA L'INDICE CORRETTO
-                key={`Specializzazione n. ${index + 1}`}
-              />
-            );
-          })}
+          {/* INPUT PER IL NUMERO DI TELEFONO */}
+          {/* SI PASSANO COME VARIABILI I DATI DELL'INPUT E LO STATO DEL NUOVO TRAINER CON RELATIVA FUNZIONE CHE CAMBIA IL SUO VALORE AL CAMBIAMENTO DEL VALORE DI INPUT*/}
+          <ModifyInput
+            element={"tel"}
+            content={"Telefono"}
+            handleChange={handleChange}
+            value={gymData.tel}
+          />
+
+          {/* INPUT PER L'INDIRIZZO */}
+          {/* SI PASSANO COME VARIABILI I DATI DELL'INPUT E LO STATO DEL NUOVO TRAINER CON RELATIVA FUNZIONE CHE CAMBIA IL SUO VALORE AL CAMBIAMENTO DEL VALORE DI INPUT*/}
+          <ModifyInput
+            element={"address"}
+            content={"Indirizzo"}
+            handleChange={handleChange}
+            value={gymData.address}
+          />
 
           <div className="grid gap-2">
-            <Label html={"avatar"} content={"Foto Trainer"} />
+            <Label html={"cover"} content={"Foto Palestra"} />
             <input
               className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-white cursor-pointer text-center"
-              id={"avatar"}
-              placeholder={"Inserisci una foto del trainer"}
-              name={"avatar"}
+              id={"cover"}
+              placeholder={"Inserisci una foto della palestra gym"}
+              name={"cover"}
               type="file"
               onChange={handleFileChange}
             />
@@ -175,4 +162,4 @@ function MTSModalForm({
   );
 }
 
-export default MTSModalForm;
+export default MGSModalForm;
