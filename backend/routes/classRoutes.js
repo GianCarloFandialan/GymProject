@@ -90,7 +90,7 @@ router.patch(
         return res.status(404).json({ message: "Classe non trovato" });
       }
 
-      // AGGIORNA I DATI DELLA CLASSE CON I VALORI FORNITI NEL BODY
+      //AGGIORNA I DATI DELLA CLASSE CON I VALORI FORNITI NEL BODY
       Object.assign(singleClass, req.body);
 
       //SI AGGIORNA L'URL DELLA COVER DELLA CLASSE CON L'URL FORNITO DA CLOUDINARY

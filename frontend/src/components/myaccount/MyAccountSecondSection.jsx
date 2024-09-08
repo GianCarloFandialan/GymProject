@@ -22,7 +22,7 @@ function MyAccountSecondSection() {
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI E SI FILTRA QUELLO DELL'ASS.TO
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
@@ -36,7 +36,7 @@ function MyAccountSecondSection() {
             (subscription) => subscription._id == userData.Subscription.id
           )
         );
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

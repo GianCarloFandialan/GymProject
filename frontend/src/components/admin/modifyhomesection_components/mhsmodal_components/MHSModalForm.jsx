@@ -54,13 +54,13 @@ function MHSModalForm({
           formData.append("cover", coverFile);
         }
 
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL CONTENUTO
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL CONTENUTO
         const response = await updateContentCover(content._id, formData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DEL CONTENUTO
         setOpenModalSuccess(true);
 
-        //AGGIORNO LA PAGINA CON IL CONTENUTO MODIFICATO
+        //SI AGGIORNA LA PAGINA CON IL CONTENUTO MODIFICATO
         setContents(
           contents.map((content) =>
             content._id === response.data._id ? response.data : content
@@ -76,13 +76,13 @@ function MHSModalForm({
       }
     } else {
       try {
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL CONTENUTO
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL CONTENUTO
         const response = await updateContent(content._id, contentData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CONTENUTO
         setOpenModalSuccess(true);
 
-        //AGGIORNO LA PAGINA CON UL CONTENUTO MODIFICATO
+        //SI AGGIORNA LA PAGINA CON UL CONTENUTO MODIFICATO
         setContents(
           contents.map((content) =>
             content._id === response.data._id ? response.data : content

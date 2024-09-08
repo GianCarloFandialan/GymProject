@@ -18,7 +18,7 @@ function Gyms() {
     //SI SCROLLA LA PAGINA SU
     window.scrollTo(0, 0);
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE LE PALESTRE
@@ -28,7 +28,7 @@ function Gyms() {
         const response = await getGyms();
         //AGGIORNA LO STATO CON I DATI DELLE PALESTRE
         setGyms(response.data);
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

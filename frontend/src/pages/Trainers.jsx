@@ -29,7 +29,7 @@ function Trainers() {
         response.data.filter((trainer) => trainer.isTrainer === true)
       );
 
-      //AGGIORNO LO STATO DELLO SPINNER
+      //SI AGGIORNA LO STATO DELLO SPINNER
       setIsLoading(false);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
@@ -42,7 +42,7 @@ function Trainers() {
     //SI SCROLLA LA PAGINA SU
     window.scrollTo(0, 0);
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //CHIAMIAMO LA FUNZIONE fetchTrainers

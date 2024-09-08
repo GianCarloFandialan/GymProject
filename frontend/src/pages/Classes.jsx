@@ -18,7 +18,7 @@ function Classes() {
     //SI SCROLLA LA PAGINA SU
     window.scrollTo(0, 0);
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE ASINCRONA PER OTTENRE LE CLASSI
@@ -28,7 +28,7 @@ function Classes() {
         const response = await getClasses();
         //AGGIORNA LO STATO CON I DATI DELLE CLASSI
         setClasses(response.data);
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

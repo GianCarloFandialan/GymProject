@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Label from "../../../universals/forms_components/Label";
-
 import ModalButtonSection from "../../../universals/forms_components/ModalButtonSection";
 import { updateUser, updateUserAvatar } from "../../../../services/api";
 import ChangeErrorAlert from "../../../universals/alerts/ChangeErrorAlert";
@@ -23,7 +22,7 @@ function MTSModalForm({
     //NOME E COGNOME INIZIANO SEMPRE CON LA MAIUSCOLA
     setTrainerData({
       ...trainerData,
-      [name]: value,
+      [name]: value.charAt(0).toUpperCase() + value.slice(1),
     });
   }
 
@@ -56,7 +55,7 @@ function MTSModalForm({
       try {
         const formData = new FormData();
 
-        //SI AGGIUNGONO I VARI DATI CHE SERVONO AFFINCHE SI MODIFICHI CORRETTAMENTE LA CLASSE
+        //SI AGGIUNGONO I VARI DATI CHE SERVONO AFFINCHE SI MODIFICHI CORRETTAMENTE IL TRAINER
         Object.keys(trainerData).forEach((key) =>
           formData.append(key, trainerData[key])
         );
@@ -66,7 +65,7 @@ function MTSModalForm({
           formData.append("avatar", avatarFile);
         }
 
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateUserAvatar(trainer._id, formData);
 
         console.log(response.data);
@@ -77,10 +76,10 @@ function MTSModalForm({
           spcialization: trainerData.spcialization,
         });
 
-        //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
+        //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DEL TRAINER
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA IL TRAINER DELLA PAGINA CON IL TRAINER MODIFICATO
         setTrainers(
           trainers.map((trainer) =>
             trainer._id === finalResponse.data._id
@@ -98,13 +97,13 @@ function MTSModalForm({
       }
     } else {
       try {
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateUser(trainer._id, trainerData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA LA PAGINA CON IL TRAINER MODIFICATO
         setTrainers(
           trainers.map((trainer) =>
             trainer._id === response.data._id ? response.data : trainer

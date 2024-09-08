@@ -19,7 +19,7 @@ function RegisterSubscription({
 
   //AL CARICAMENTO DEL COMPONENTE SI ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE GLI ABBONAMENTI
@@ -29,7 +29,7 @@ function RegisterSubscription({
         const response = await getSubscriptions();
         //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptions(response.data);
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

@@ -16,7 +16,7 @@ function ChatSidebarUser({ user, setChatter }) {
 
   //AL CARICAMENTO DEL COMPONENTE, SI EFFETTUA UNA CHIAMATA PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE SOLO NEL CASO IN CUI L'UTENTE CHE HA EFFETTUATO L'ACCESSO È UN TRAINER
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I DATI SEL SINGOLO UTENTE INTERLOCUTORE
@@ -24,9 +24,9 @@ function ChatSidebarUser({ user, setChatter }) {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTI I DATI SEL SINGOLO UTENTE INTERLOCUTORE
         const response = await getSingleUser(user);
-        //AGGIORNO LO STATO DEI DATI SINGOLO UTENTE INTERLOCUTORE
+        //SI AGGIORNA LO STATO DEI DATI SINGOLO UTENTE INTERLOCUTORE
         setUserChatData(response.data);
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
@@ -41,7 +41,7 @@ function ChatSidebarUser({ user, setChatter }) {
     if (!userData.isTrainer) {
       fetchSingleUser();
     } else {
-      //AGGIORNO LO STATO DELLO SPINNER
+      //SI AGGIORNA LO STATO DELLO SPINNER
       setIsLoading(false);
     }
   }, []);

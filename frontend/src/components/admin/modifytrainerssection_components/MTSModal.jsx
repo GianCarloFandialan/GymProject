@@ -12,7 +12,7 @@ function MTSModal({
     <>
       <AnimatePresence>
         <motion.div
-          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTEonBlack
+          //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -30,12 +30,12 @@ function MTSModal({
             <div className="rounded-xl border bg-card text-card-foreground shadow lg:w-[30vw] p-2">
               <div className="flex flex-col space-y-1.5 p-6">
                 <h3 className="font-semibold leading-none tracking-tight text-white">
-                  Modifica la classe
+                  Modifica il trainer
                 </h3>
               </div>
 
-              {/* FORM PER MODIFICARE LA CLASSE */}
-              {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER MODIFICARE LO STATO DI QUSTO MODALE, L'OGGETTO CONTENTE I DATI DELLA LEZIONE, FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE NEL CASO DI AGGIUNTA CON SUCCESSO DI UN TRAINER */}
+              {/* FORM PER MODIFICARE IL TRAINER*/}
+              {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER MODIFICARE LO STATO DI QUSTO MODALE, L'OGGETTO CONTENTE I DATI DEL TRAINER, FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE NEL CASO DI AGGIUNTA CON SUCCESSO DI UN TRAINER */}
               <MTSModalForm
                 trainer={trainer}
                 setOpenModal={setOpenModal}

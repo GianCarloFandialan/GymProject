@@ -68,7 +68,7 @@ router.patch(
         return res.status(404).json({ message: "Utente non trovato" });
       }
 
-      // AGGIORNA I DATI DELL'UTENTE CON I VALORI FORNITI NEL BODY
+      //AGGIORNA I DATI DELL'UTENTE CON I VALORI FORNITI NEL BODY
       Object.assign(user, req.body);
 
       //SI AGGIORNA L'URL DELL'AVATAR DELL'UTENTE CON L'URL FORNITO DA CLOUDINARY

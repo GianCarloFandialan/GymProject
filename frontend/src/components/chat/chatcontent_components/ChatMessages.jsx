@@ -13,7 +13,7 @@ function ChatMessages({ chatter, chatmessages, setChatMessages }) {
 
   //USEEFFECT CHE SI ATTIVA OGNI VOLTA CHE L'INTERLOCUTORE CAMBIA(chatter)
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE I MESSAGGI E FILTRARE QUELLI PRECISI DELLA CHAT
@@ -31,7 +31,7 @@ function ChatMessages({ chatter, chatmessages, setChatMessages }) {
                 message.reciever == chatter._id)
           )
         );
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

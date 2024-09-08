@@ -23,7 +23,7 @@ function ChatBarForm({ chatter, setChatMessages, chatmessages }) {
     //SI EFFETUA UNA RICHIESTA POST AL BACKEND PER AGGIUNGERE UN MESSAGGIO
     try {
       const response = await createMessage(newNormalMessagge);
-      //AGGIORNO LO STATO DEI MESSAGGI DELLA CHAT CON LA RISPOSTA ALLA CHIAMATA
+      //SI AGGIORNA LO STATO DEI MESSAGGI DELLA CHAT CON LA RISPOSTA ALLA CHIAMATA
       setChatMessages([...chatmessages, response.data]);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

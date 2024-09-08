@@ -20,7 +20,7 @@ function NavList({
       >
         {listItems.map((listItem) => {
           return (
-            // OGNI ELEMENTO DELLA LISTA REINDERIZZA ALLA CORRISPETTIVA PAGINA
+            //OGNI ELEMENTO DELLA LISTA REINDERIZZA ALLA CORRISPETTIVA PAGINA
             <Link
               to={`/${listItem.slice(0, 1)}${listItem.slice(1).toLowerCase()}`}
               key={listItem}

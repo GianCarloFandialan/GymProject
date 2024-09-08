@@ -31,7 +31,7 @@ function ChangeClassDescriptionForm({ currentLesson, setCurrentLesson }) {
     try {
       //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE L'IMMAGINE DI COPERTINA DELLA LEZIONE
       const response = await updateClass(currentLesson._id, lessonData);
-      //AGGIORNO LO STATO DELLA LEZIONE SCELTA CON LA RISPOSTA ALLA CHIAMATA
+      //SI AGGIORNA LO STATO DELLA LEZIONE SCELTA CON LA RISPOSTA ALLA CHIAMATA
       setCurrentLesson(response.data);
       //SI AGGIORNA LO STATO DELL'ALERT PER CONFERMARE ALL'UTENTE LA MODIFICA
       setSuccessAlert(true);

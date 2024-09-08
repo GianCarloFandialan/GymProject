@@ -12,7 +12,7 @@ function ModifyHomeSection() {
 
   //AL CARICAMENTO DEL COMPONENTE ESEGUO LA CHIAMATA API PER OTTENERE I CONTENUTI
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE ASINCRONA CHE EFFETTUA UNA CHIAMATA PER OTTENERE I CONENTUI DELLA HOMEPAGE
@@ -24,16 +24,8 @@ function ModifyHomeSection() {
         setContents(
           response.data.filter((content) => content.category == "homepage")
         );
-        console.log(
-          response.data.filter((content) => content.category == "homepage")
-        );
-        console.log(
-          response.data
-            .filter((content) => content.category == "homepage")
-            .filter((hero) => hero.title == "Jumbotron")
-        );
 
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

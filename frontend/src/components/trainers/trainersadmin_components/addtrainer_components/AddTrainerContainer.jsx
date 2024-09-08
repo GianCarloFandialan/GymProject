@@ -28,7 +28,7 @@ function AddTrainerContainer({ setTrainers, trainers }) {
     <>
       {isAdmin ? (
         <>
-          {/* // BOTTONE PER APRIRE IL MODALE NEL CASO L'ADMIN VOGLIA AGGIUNGERE UN
+          {/* //BOTTONE PER APRIRE IL MODALE NEL CASO L'ADMIN VOGLIA AGGIUNGERE UN
           NUOVO TRAINER ALLA PAGINA */}
           <div className="w-full flex justify-center mt-3">
             <button

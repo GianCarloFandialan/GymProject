@@ -25,7 +25,7 @@ function ModifyClassImageButton({ id, currentLesson, setCurrentLesson }) {
         //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE L'IMMAGINE DI COPERTINA DELLA LEZIONE
         const response = await updateClassCover(id, formData);
 
-        //AGGIORNO LO STATO DELLA LEZIONE SCELTA CON LA RISPOSTA ALLA CHIAMATA
+        //SI AGGIORNA LO STATO DELLA LEZIONE SCELTA CON LA RISPOSTA ALLA CHIAMATA
         setCurrentLesson(response.data);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

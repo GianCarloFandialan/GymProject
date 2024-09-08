@@ -23,7 +23,7 @@ function AddNewTrainerContainer({ trainers, setTrainers }) {
       </div>
 
       {/* MODALE PER AGGIUNGERE IL TRAINER */}
-      {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DEL TRAINER */}
+      {/* SI PASSANO COME PARAMETRI LA FUNZIONE PER MODIFICARE LO STATO DEL MODALE E L'OGGETTO CONTENENTE I DATI DEI TRAINER */}
       {openModal && (
         <ANTModal
           setOpenModal={setOpenModal}

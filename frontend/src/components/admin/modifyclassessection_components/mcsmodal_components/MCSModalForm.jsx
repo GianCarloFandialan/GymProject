@@ -54,13 +54,13 @@ function MCSModalForm({
           formData.append("cover", coverFile);
         }
 
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateClassCover(lesson._id, formData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
         setClasses(
           classes.map((lesson) =>
             lesson._id === response.data._id ? response.data : lesson
@@ -76,13 +76,13 @@ function MCSModalForm({
       }
     } else {
       try {
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateClass(lesson._id, classData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
         setClasses(
           classes.map((lesson) =>
             lesson._id === response.data._id ? response.data : lesson

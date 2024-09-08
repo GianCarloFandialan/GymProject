@@ -21,7 +21,7 @@ function Home() {
     //SI SCROLLA LA PAGINA SU
     window.scrollTo(0, 0);
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE ASINCRONA CHE EFFETTUA UNA CHIAMATA PER OTTENERE I CONENTUI DELLA HOMEPAGE
@@ -37,7 +37,7 @@ function Home() {
           response.data.filter((content) => content.category == "homepage")
         );
 
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

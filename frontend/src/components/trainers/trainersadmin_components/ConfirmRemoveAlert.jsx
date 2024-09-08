@@ -10,7 +10,7 @@ function ConfirmRemoveAlert({ id, setTrainers, trainers, setOpenAlert }) {
       //CHIUDO L'ALERT DI CONFERMA RIMOZIONE
       setOpenAlert(false);
 
-      //AGGIORNO I TRAINER NELLA PAGINA
+      //SI AGGIORNA I TRAINER NELLA PAGINA
       setTrainers(trainers.filter((trainer) => trainer._id !== id));
       console.log(trainers.filter((trainer) => trainer._id !== id));
     } catch (error) {

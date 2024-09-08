@@ -67,7 +67,7 @@ function ANGModalForm({ setOpenModal, setGyms, gyms, setOpenModalSuccess }) {
       //SI CHIUDE IL MODALE DEL FORM
       setOpenModal(false);
 
-      //AGGIORNO I TRAINERS DELLA PAGINA CON IL NUOVO TRAINER
+      //SI AGGIORNA I TRAINERS DELLA PAGINA CON IL NUOVO TRAINER
       setGyms([...gyms, response.data]);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

@@ -88,7 +88,7 @@ function ANTModalForm({
       //SI CHIUDE IL MODALE DEL FORM
       setOpenModal(false);
 
-      //AGGIORNO I TRAINERS DELLA PAGINA CON IL NUOVO TRAINER
+      //SI AGGIORNA I TRAINERS DELLA PAGINA CON IL NUOVO TRAINER
       setTrainers([...trainers, finalResponse.data]);
     } catch (error) {
       //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

@@ -27,7 +27,7 @@ function ChatSidebar({ setChatter }) {
       return;
     }
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //SE L'UTENTE CHE HA EFFETTUATO L'ACCESSO è UN TRAINER, SI EFFETTUA UNA CHIAMATA PER OTTENERE TUTTI GLI UTENTI CHE LO HANNO SCELTO
@@ -49,7 +49,7 @@ function ChatSidebar({ setChatter }) {
             )
           );
 
-          //AGGIORNO LO STATO DELLO SPINNER
+          //SI AGGIORNA LO STATO DELLO SPINNER
           setIsLoading(false);
         } catch (error) {
           //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
@@ -65,7 +65,7 @@ function ChatSidebar({ setChatter }) {
     } else {
       //SE L'UTENTE CHE HA EFFETTUATO L'ACCESSO NON è UN TRAINER, SI AGGIORNA LO STATO USERS CON L'ID DEI TRAINERS INTERLOCUTORI SCELTI
       setUsers(userData.trainerId);
-      //AGGIORNO LO STATO DELLO SPINNER
+      //SI AGGIORNA LO STATO DELLO SPINNER
       setIsLoading(false);
     }
   }, []);

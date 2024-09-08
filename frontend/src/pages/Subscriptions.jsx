@@ -20,7 +20,7 @@ function Subscriptions() {
     //SI SCROLLA LA PAGINA SU
     window.scrollTo(0, 0);
 
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA GET PER OTTENERE GLI ABBONAMENTI
@@ -30,7 +30,9 @@ function Subscriptions() {
         const response = await getSubscriptions();
         //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptions(response.data);
-        //AGGIORNO LO STATO DELLO SPINNER
+        console.log(response.data);
+
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

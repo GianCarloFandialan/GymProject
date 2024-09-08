@@ -1,7 +1,7 @@
 import { deleteGym } from "../../../../services/api";
 
 function DGDeleteButton({ id, setOpenDeleteModal, gyms, setGyms }) {
-  // FUNZIONE PER GESITRE IL CLICK EL BOTTONE
+  //FUNZIONE PER GESITRE IL CLICK EL BOTTONE
   const handleClick = async () => {
     try {
       //SI EFFETTUA UNA RICHIESTA DELETE AL BACKEND PER CANCELLARE IL TRAINER SPECIFICO

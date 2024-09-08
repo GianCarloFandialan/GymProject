@@ -14,7 +14,7 @@ function GymHero() {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    //AGGIORNO LO STATO DELLO SPINNER
+    //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
     //FUNZIONE CHE ESEGUE UNA CHIAMATA API PER OTTENERE IL CONTENUTO OPPORTUNO
@@ -26,7 +26,7 @@ function GymHero() {
         setContents(
           response.data.filter((content) => content.category == "gyms")
         );
-        //AGGIORNO LO STATO DELLO SPINNER
+        //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE

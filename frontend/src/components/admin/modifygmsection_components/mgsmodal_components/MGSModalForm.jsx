@@ -55,7 +55,7 @@ function MGSModalForm({
           formData.append("cover", coverFile);
         }
 
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateGymCover(gym._id, formData);
 
         console.log(response.data);
@@ -63,7 +63,7 @@ function MGSModalForm({
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
         setGyms(
           gyms.map((gym) =>
             gym._id === response.data._id ? response.data : gym
@@ -79,13 +79,13 @@ function MGSModalForm({
       }
     } else {
       try {
-        // SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
+        //SI EFFETUA UNA RICHIESTA PUT AL BACKEND PER AGGIORNARE IL TRAINER
         const response = await updateGym(gym._id, gymData);
 
         //SI AGGIORNA LO STATO DI SUCCESSO NELLA MODIFICA DELLA CLASSE
         setOpenModalSuccess(true);
 
-        //AGGIORNO LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
+        //SI AGGIORNA LE CLASSI DELLA PAGINA CON LA CLASSE MODIFICATA
         setGyms(
           gyms.map((gym) =>
             gym._id === response.data._id ? response.data : gym

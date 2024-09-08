@@ -25,10 +25,14 @@ function DGModal({ setOpenDeleteModal, id, gyms, setGyms }) {
             <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-red-700 grid place-items-center mx-auto">
               <FiAlertCircle />
             </div>
-            <h3 className="text-3xl font-bold text-center mb-2">SUCCESSO</h3>
-            <p className="text-center mb-6">Modifica avvenuta con successo!</p>
+            <h3 className="text-3xl font-bold text-center mb-2">
+              ELIMINAZIONE
+            </h3>
+            <p className="text-center mb-6">
+              Sei sicuro di voler eliminare la palestra?
+            </p>
             <div className="flex gap-2">
-              {/* AL CLICK CHIUDE IL MODALE E REINDERIZZA ALLA PAGINA CHAT */}
+              {/* AL CLICK CHIUDE IL MODALE */}
               <button
                 onClick={() => {
                   setOpenDeleteModal(false);
@@ -37,7 +41,7 @@ function DGModal({ setOpenDeleteModal, id, gyms, setGyms }) {
               >
                 Chiudi
               </button>
-              {/* AL CLICK CHIUDE IL MODALE E REINDERIZZA ALLA PAGINA CHAT */}
+              {/* AL CLICK CHIUDE IL MODALE */}
               <DGDeleteButton
                 id={id}
                 setOpenDeleteModal={setOpenDeleteModal}

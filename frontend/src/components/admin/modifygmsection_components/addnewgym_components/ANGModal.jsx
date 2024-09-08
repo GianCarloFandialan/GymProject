@@ -5,7 +5,7 @@ function ANGModal({ setOpenModal, setGyms, gyms, setOpenModalSuccess }) {
   return (
     <AnimatePresence>
       <motion.div
-        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTEonBlack
+        //VALORI UTILI PER L'ANIMAZIONE DEL COMPONENTE
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

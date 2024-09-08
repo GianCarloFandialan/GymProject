@@ -90,7 +90,7 @@ router.patch(
         return res.status(404).json({ message: "Palestra non trovata" });
       }
 
-      // AGGIORNA I DATI DELLA CLASSE CON I VALORI FORNITI NEL BODY
+      //AGGIORNA I DATI DELLA CLASSE CON I VALORI FORNITI NEL BODY
       Object.assign(gym, req.body);
 
       //SI AGGIORNA L'URL DELLA COVER DELLA PALESTRA CON L'URL FORNITO DA CLOUDINARY
