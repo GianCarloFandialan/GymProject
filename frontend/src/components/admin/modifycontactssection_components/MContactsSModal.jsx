@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import MSSModalForm from "./mssmodal_components/MSSModalForm";
+import MContactsSModalForm from "./mcontactssmodal_components/MContactsSModalForm";
 
-function MSSModal({
-  subscription,
+function MContactsSModal({
+  contact,
   setOpenModal,
-  setSubscriptions,
-  subscriptions,
+  contacts,
+  setContacts,
   setOpenModalSuccess,
 }) {
   return (
@@ -30,17 +30,17 @@ function MSSModal({
             <div className="rounded-xl border bg-card text-card-foreground shadow lg:w-[30vw] p-2">
               <div className="flex flex-col space-y-1.5 p-6">
                 <h3 className="font-semibold leading-none tracking-tight text-white">
-                  Modifica l'abbonamento
+                  Modifica il contatto
                 </h3>
               </div>
 
-              {/* FORM PER MODIFICARE L'ABBONAMENTO' */}
-              {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER MODIFICARE LO STATO DI QUSTO MODALE, L'OGGETTO CONTENTE I DATI DELL'ABBONAMENTO', FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE NEL CASO DI AGGIUNTA CON SUCCESSO DI UN ABBONAMENTO */}
-              <MSSModalForm
-                subscription={subscription}
+              {/* FORM PER MODIFICARE IL CONTATTO */}
+              {/* SI PASSANO COME PARAMETRI: LA FUNZIONE PER MODIFICARE LO STATO DI QUSTO MODALE, L'OGGETTO CONTENTE I DATI DEL CONTATTO, FUNZIONE PER GESTIRE LO STATO CHE GESTISCE IL MODALE NEL CASO DI AGGIUNTA CON SUCCESSO DI UN CONTATTO */}
+              <MContactsSModalForm
+                contact={contact}
                 setOpenModal={setOpenModal}
-                subscriptions={subscriptions}
-                setSubscriptions={setSubscriptions}
+                contacts={contacts}
+                setContacts={setContacts}
                 setOpenModalSuccess={setOpenModalSuccess}
               />
             </div>
@@ -51,4 +51,4 @@ function MSSModal({
   );
 }
 
-export default MSSModal;
+export default MContactsSModal;

@@ -24,6 +24,8 @@ function Home() {
     //SI AGGIORNA LO STATO DELLO SPINNER
     setIsLoading(true);
 
+    console.log(isLoggedIn);
+
     //FUNZIONE ASINCRONA CHE EFFETTUA UNA CHIAMATA PER OTTENERE I CONENTUI DELLA HOMEPAGE
     const fetchContent = async () => {
       try {

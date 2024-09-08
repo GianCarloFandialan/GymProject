@@ -27,11 +27,13 @@ function Contacts() {
         const response = await getContacts();
         //AGGIORNA LO STATO CON I DATI DEI CONTATTI
         setContacts(response.data);
+        console.log(response.data);
+
         //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
         //SI MOSTRANO EVENTUALI ERRORI NELLA CONSOLE
-        console.error("Errore nella fetch dei conttti: ", error);
+        console.error("Errore nella fetch dei contatti: ", error);
       }
     };
 

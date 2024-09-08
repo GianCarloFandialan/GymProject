@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { RiLoginCircleLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
 import {
   IsLoggedInContext,
   UserDataContext,
@@ -96,7 +97,14 @@ function NavUserIcon() {
             {isLoggedIn ? (
               <>
                 {/* SE L'UTENTE È UN ADMIN PUO FARE SOLO IL LOGOUT */}
-                {!isAdmin && (
+                {isAdmin ? (
+                  <NavUserIconOption
+                    setOpen={setOpen}
+                    Icon={IoSettingsOutline}
+                    text="Admin Page"
+                    link="Admin"
+                  />
+                ) : (
                   <>
                     {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
                     {userData.isTrainer ? (

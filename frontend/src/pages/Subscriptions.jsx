@@ -30,8 +30,6 @@ function Subscriptions() {
         const response = await getSubscriptions();
         //AGGIORNA LO STATO CON I DATI DEGLI ABBONAMENTI
         setSubscriptions(response.data);
-        console.log(response.data);
-
         //SI AGGIORNA LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {
