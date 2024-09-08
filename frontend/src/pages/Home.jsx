@@ -33,6 +33,10 @@ function Home() {
         setContents(
           response.data.filter((content) => content.category == "homepage")
         );
+        console.log(
+          response.data.filter((content) => content.category == "homepage")
+        );
+
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
       } catch (error) {

@@ -46,7 +46,7 @@ function ModifyClassesSection() {
       ) : (
         <section className="">
           <div className="pb-4 border-b border-gray-600 ">
-            <h3 className="text-4xl font-black leading-6 text-gray-800 mt-3 uppercase pl-3">
+            <h3 className="text-4xl font-black leading-6 text-gray-800 mt-24 uppercase pl-3">
               CLassi
             </h3>
           </div>

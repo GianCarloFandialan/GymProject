@@ -21,9 +21,9 @@ function ModifyGymSection() {
       try {
         //EFFETTUA UNA RICHIESTA GET AL BACKEND PER OTTENERE TUTTE LE PALESTRE
         const response = await getGyms();
+
         //AGGIORNA LO STATO CON I DATI DELLE PALESTRE
         setGyms(response.data);
-        console.log(response.data);
 
         //AGGIORNO LO STATO DELLO SPINNER
         setIsLoading(false);
@@ -45,7 +45,7 @@ function ModifyGymSection() {
           <FullPageSpinner />
         </div>
       ) : (
-        <section className="mt-10">
+        <section className="">
           <div className="pb-4 border-b border-gray-600 ">
             <h3 className="text-4xl font-black leading-6 text-gray-800 mt-24 uppercase pl-3">
               Palestre
