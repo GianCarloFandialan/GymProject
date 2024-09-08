@@ -7,8 +7,6 @@ function RSBDeleteButton({
   deletingBenefitIndex,
   subscription,
 }) {
-  //STATO PER GESITRE L'ARRAY DEI BENE
-
   //FUNZIONE PER GESITRE IL CLICK EL BOTTONE
   const handleClick = async () => {
     try {
