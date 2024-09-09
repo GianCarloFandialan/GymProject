@@ -39,16 +39,6 @@ function NavUserIcon() {
   //SI USA IL CONTEXT CHE AIUTA A GESITRE I DATI DELL'UTENTE CHE HA ESEGUITO L'ACCESSO
   const { userData, setUserData } = useContext(UserDataContext);
 
-  //SI USA UNO STATO PER POTER GESTIRE LA PAGINA NEL CASO L'UTENTE CHE ABBIA FATTO L'ACCESSO SIA UN ADMIN
-  const [isAdmin, setIsAdmin] = useState();
-
-  //USEEFFECT CHE SI ATTIVA OGNI VOLTA CHE IL CONTEXT USERDATA SI MODIFICA
-  useEffect(() => {
-    if (userData.isAdmin) {
-      setIsAdmin(true);
-    } else setIsAdmin(false);
-  }, [userData]);
-
   return (
     <>
       <div className="flex items-center justify-center ">
@@ -96,8 +86,8 @@ function NavUserIcon() {
             {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                {/* SE L'UTENTE È UN ADMIN PUO FARE SOLO IL LOGOUT */}
-                {isAdmin ? (
+                {/* SE L'UTENTE È UN ADMIN PUO FARE IL LOGOUT E ACCEDERE ALLA PAGINA DI GESTIONE DEGLI ADMIN*/}
+                {userData.isAdmin ? (
                   <NavUserIconOption
                     setOpen={setOpen}
                     Icon={IoSettingsOutline}

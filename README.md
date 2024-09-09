@@ -13,7 +13,9 @@ Benvenuto nel progetto Gym, un'applicazione web full-stack creata utilizzando il
 
 ## Descrizione del Progetto
 
-Il progetto Gym è un'applicazione web che consente ai clienti di una palestra di gestire il loro abbonamento, visualizzare le sedi delle palestre, iscriversi a corsi, comunicare con i loro trainer e altro ancora. L'applicazione è costruita utilizzando React e Tailwind CSS per il frontend, e Node.js con Express e MongoDB per il backend.
+Il progetto Gym è un'applicazione web che consente ai clienti di una palestra di gestire il loro abbonamento, visualizzare le sedi delle palestre, iscriversi a corsi, comunicare con i loro trainer e altro ancora.
+Lato admin side invece è possibile gestire il contenuto delle pagine visualizzate dai clienti con una pagina apposita acessibile solo dagli admin del sito.
+L'applicazione è costruita utilizzando React e Tailwind CSS per il frontend, e Node.js con Express e MongoDB per il backend.
 
 ## Tecnologie Utilizzate
 
@@ -70,13 +72,13 @@ git clone https://github.com/tuo-username/gym-project.git
 1.  **Backend:**
     Apri un terminale, naviga nella cartella del backend e installa le dipendenze:
     `cd gym-project/backend
- npm install`
+npm install`
     Avvia il server backend:
     `node server.js`
 2.  **Frontend:**
     Apri un terminale, naviga nella cartella del backend e installa le dipendenze:
     `cd gym-project/frontend npm install
- npm install`
+npm install`
     Avvia il server backend:
     `npm run dev`
 
@@ -86,14 +88,8 @@ Una volta avviati sia il server backend che il server frontend, puoi accedere al
 
 ### Contatti
 
-Per qualsiasi domanda o suggerimento, contattaci all'indirizzo email: tuo-email@example.com.
+Per qualsiasi domanda o suggerimento, contattaci all'indirizzo email: gianchifandialan03@gmail.com.
 
-Oppure visita il nostro repository GitHub per contributi: [https://github.com/tuo-username/gym-project](https://github.com/tuo-username/gym-project).
+Oppure visita il nostro repository GitHub per contributi: [https://github.com/GianCarloFandialan/GymProject](https://github.com/GianCarloFandialan/GymProject).
 
 Grazie per aver utilizzato il nostro progetto Gym! Speriamo che la nostra applicazione possa soddisfare tutte le tue esigenze di gestione della palestra.
-
-### Note Aggiuntive
-
-1. **Personalizzazione:** Ricorda di sostituire `tuo-username` con il tuo username GitHub e `tuo-email@example.com` con il tuo indirizzo email per il contatto.
-2. **URL e Informazioni Specifiche:** Se ci sono URL specifici o informazioni che cambiano frequentemente, assicurati di aggiornare il file `README.md` per riflettere questi cambiamenti.
-3. **Altre Librerie:** Se utilizzi altre librerie o strumenti nel progetto, considera l'aggiunta di queste informazioni alla sezione "Tecnologie Utilizzate".

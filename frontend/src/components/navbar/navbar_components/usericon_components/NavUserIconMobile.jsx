@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { RiLoginCircleLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
 import {
   IsLoggedInContext,
   UserDataContext,
@@ -83,29 +84,41 @@ function NavUserIconMobile({ setOpenSidebar, openSidebar }) {
             {/* SE L'UTENTE HA EFFETTUATO IL LOGIN */}
             {isLoggedIn ? (
               <>
-                {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
-                {userData.isTrainer ? (
+                {/* SE L'UTENTE È UN ADMIN PUO FARE IL LOGOUT E ACCEDERE ALLA PAGINA DI GESTIONE DEGLI ADMIN*/}
+                {userData.isAdmin ? (
                   <NavUserIconOption
                     setOpen={setOpen}
-                    Icon={IoChatbubblesOutline}
-                    text="Chat"
-                    link="Chat"
+                    Icon={IoSettingsOutline}
+                    text="Admin Page"
+                    link="Admin"
                   />
                 ) : (
-                  //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
                   <>
-                    <NavUserIconOption
-                      setOpen={setOpen}
-                      Icon={FiEdit}
-                      text="Il mio account"
-                      link="account"
-                    />
-                    <NavUserIconOption
-                      setOpen={setOpen}
-                      Icon={IoChatbubblesOutline}
-                      text="Chat"
-                      link="Chat"
-                    />
+                    {/* SE L'UTENTE È UN TRAINER VEDRA SOLO LA SEZIONE CHAT */}
+                    {userData.isTrainer ? (
+                      <NavUserIconOption
+                        setOpen={setOpen}
+                        Icon={IoChatbubblesOutline}
+                        text="Chat"
+                        link="Chat"
+                      />
+                    ) : (
+                      //ALTRIMENTI VEDRA LA SEZIONE CHAT E MYACCOUNT
+                      <>
+                        <NavUserIconOption
+                          setOpen={setOpen}
+                          Icon={FiEdit}
+                          text="Il mio account"
+                          link="account"
+                        />
+                        <NavUserIconOption
+                          setOpen={setOpen}
+                          Icon={IoChatbubblesOutline}
+                          text="Chat"
+                          link="Chat"
+                        />
+                      </>
+                    )}
                   </>
                 )}
                 <LogoutButton setOpen={setOpen} />

@@ -25,7 +25,7 @@ function Chat() {
   return (
     <>
       {/* CONTENITORE PRINCIPALE DEL COMPOENENTE*/}
-      <div className="h-[calc(100vh_-_80px)] flex w-full absolute bottom-0 left-0 right-0 top-[80px]">
+      <div className="h-[calc(100vh_-_80px)] flex w-full absolute bottom-0 left-0 right-0 top-[80px] bg-white">
         {/* SIDEBAR A CUI VIENE PASSATA COME PARAMETRO IL "setChatter" */}
         <ChatSidebar setChatter={setChatter} />
 

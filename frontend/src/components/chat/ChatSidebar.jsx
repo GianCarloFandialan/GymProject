@@ -78,7 +78,7 @@ function ChatSidebar({ setChatter }) {
           <FullPageSpinner />
         </div>
       ) : (
-        <div className="w-screen md:w-[40vw] lg:w-[27vw] absolute overflow-y-scroll h-full">
+        <div className="w-screen md:w-[40vw] lg:w-[27vw] absolute overflow-y-scroll h-full border-r border-black">
           <ul className="h-full flex flex-col bg-white">
             {/* GLI ELEMENTI DELLA LISTA <li> SONO GLI INTERLOCUTORI SCELTI DALL'UTENTE */}
             {users.map((user, index) => {
