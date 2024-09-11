@@ -2,6 +2,8 @@
 
 Benvenuto nel progetto Gym, un'applicazione web full-stack creata utilizzando il stack MERN (MongoDB, Express, React, Node.js). Questa applicazione è progettata per gestire e interagire con una palestra, offrendo una varietà di funzionalità per i clienti e i trainer.
 
+DEMO: https://gym-project-ygzb.vercel.app/
+
 ## Sommario
 
 - [Descrizione del Progetto](#descrizione-del-progetto)
