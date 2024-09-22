@@ -29,6 +29,7 @@ L'applicazione è costruita utilizzando React e Tailwind CSS per il frontend, e 
   - [React Router](https://reactrouter.com/)
   - [Axios](https://axios-http.com/)
   - [React Query](https://react-query.tanstack.com/)
+  - [Framer motion](https://www.framer.com/motion/)
 
 - **Backend:**
   - [Node.js](https://nodejs.org/)
